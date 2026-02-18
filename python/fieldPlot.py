@@ -1,7 +1,7 @@
 import numpy as np
 from matplotlib import pyplot as plt
 
-def velocity_local (x,y,t,a,om):
+""" def velocity_local (x,y,t,a,om):
     #this function gives the velocity in position (x,y) and time t
     #a is the amplitude, om the frequency
     
@@ -11,27 +11,28 @@ def velocity_local (x,y,t,a,om):
     u=a*   x*np.cos(f*t) * t  #velocity in x-direction
     v=a*(-y)*np.cos(f*t) + x # and y-direction
     
+    return u,v """
+
+def velocity_local (x,y,t,a,om):
+    u= a * (np.e**(m * y)) * np.cos(k * t - m*x)
+    v= -1 * a * (np.e**(m * y)) * np.sin(k * t - m * x)
     return u,v
 
 def drawField(xRange, yRange, count, time, nskip=15):
-    xmin, xmax = xRange
-    ymin, ymax = yRange
-    nx, ny = count
-    xlin = np.linspace(xmin, xmax, nx)    #generate vectors of x and y values
-    ylin = np.linspace(ymin, ymax, ny)
-    xx, yy = np.meshgrid(xlin, ylin)      #combine to 2 matrices holding x and y values for each grid point
+    lins = makePointGrid(xRange, yRange, count)  #make 1D arrays of x and y values
+    xx, yy = np.meshgrid(lins[0], lins[1])      #combine to 2 matrices holding x and y values for each grid point
         
     (uu,vv) = velocity_local(xx,yy,time,a,om)  #use the velocity function to generate velocity values
    
-    uur=uu[0:nx:nskip,0:ny:nskip]   #only keep every nskip-th value 
-    vvr=vv[0:nx:nskip,0:ny:nskip]
-    xxr=xx[0:nx:nskip,0:ny:nskip]
-    yyr=yy[0:nx:nskip,0:ny:nskip]
+    uur=uu[0:count:nskip,0:count:nskip]   #only keep every nskip-th value 
+    vvr=vv[0:count:nskip,0:count:nskip]
+    xxr=xx[0:count:nskip,0:count:nskip]
+    yyr=yy[0:count:nskip,0:count:nskip]
 
     fig, ax = plt.subplots()  #make fig with 1 item (called ax)
     ax.quiver(xxr,yyr, uur, vvr)
     fig.show()
-    plt.pause(10)
+    plt.pause(20)
 
 def makePointGrid(xRange, yRange, count):
     nx = ny = count
@@ -39,6 +40,7 @@ def makePointGrid(xRange, yRange, count):
     ymin, ymax = yRange
     xlin = np.linspace(xmin, xmax, nx)
     ylin = np.linspace(ymin, ymax, ny)
+    print(ylin)
     return [xlin, ylin]
 
 def drawTrajectories(points, t_count, t_max, t_start, draw=True):
@@ -65,7 +67,7 @@ def drawTrajectories(points, t_count, t_max, t_start, draw=True):
         ax.set_xlabel('x')
         ax.set_ylabel('y')
         ax.set_title('trajectories')
-        ax.legend(loc='upper right')
+        #ax.legend(loc='upper right')
         fig.show()
         plt.pause(20)
     else:
@@ -85,12 +87,14 @@ def drawStreakline(x, y, t_count, t_max):
     ax.set_xlabel('x')
     ax.set_ylabel('y')
     ax.set_title('streakline')
-    ax.legend(loc='upper right')
+    #ax.legend(loc='upper right')
     fig.show()
     plt.pause(20)
 
 a=1
 om=1
-drawField(xRange=[-10, 10], yRange=[-10, 10], count=[20, 20], nskip=1, time=0)
-drawTrajectories(makePointGrid(xRange=[-10, 10], yRange=[-10, 10], count=20), t_count=200, t_max=10, t_start=0)
-drawStreakline(1, 3, t_count=200, t_max=10)
+m = 1
+k = 1
+drawField(xRange=[-10, 10], yRange=[-23, -3], count=21, nskip=1, time=0)
+drawTrajectories(makePointGrid(xRange=[-10, 10], yRange=[-20, 0], count=21), t_count=2000, t_max=10, t_start=0)
+drawStreakline(1, -3, t_count=20, t_max=100)
