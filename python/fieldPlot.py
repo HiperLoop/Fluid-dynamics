@@ -8,12 +8,12 @@ def velocity_local (x,y,t,a,om):
     pi=np.pi   #define some auxiliary variable that we will not return 
     f=2*pi*om
     
-    u=a*   x*np.cos(f*t)  #velocity in x-direction
+    u=a*   x*np.cos(f*t) * t  #velocity in x-direction
     v=a*(-y)*np.cos(f*t) + x # and y-direction
     
     return u,v
 
-def drawField(xRange, yRange, count, nskip=15):
+def drawField(xRange, yRange, count, time, nskip=15):
     xmin, xmax = xRange
     ymin, ymax = yRange
     nx, ny = count
@@ -21,7 +21,7 @@ def drawField(xRange, yRange, count, nskip=15):
     ylin = np.linspace(ymin, ymax, ny)
     xx, yy = np.meshgrid(xlin, ylin)      #combine to 2 matrices holding x and y values for each grid point
         
-    (uu,vv) = velocity_local(xx,yy,t,a,om)  #use the velocity function to generate velocity values
+    (uu,vv) = velocity_local(xx,yy,time,a,om)  #use the velocity function to generate velocity values
    
     uur=uu[0:nx:nskip,0:ny:nskip]   #only keep every nskip-th value 
     vvr=vv[0:nx:nskip,0:ny:nskip]
@@ -41,7 +41,7 @@ def makePointGrid(xRange, yRange, count):
     ylin = np.linspace(ymin, ymax, ny)
     return [xlin, ylin]
 
-def drawTrajectories(points, t_count, t_max, draw=True):
+def drawTrajectories(points, t_count, t_max, t_start, draw=True):
     dt = t_max / t_count
     count = len(points[0])
     xlin = points[0]
@@ -51,7 +51,7 @@ def drawTrajectories(points, t_count, t_max, draw=True):
     y_coords = [yy]
         
     for i in range(1, t_count + 1):
-        (uu,vv) = velocity_local(x_coords[i - 1],y_coords[i - 1],t + i*dt,a,om)
+        (uu,vv) = velocity_local(x_coords[i - 1],y_coords[i - 1],t_start + i*dt,a,om)
 
         x_coords.append(x_coords[i - 1] + uu * dt)
         y_coords.append(y_coords[i - 1] + vv * dt)
@@ -77,10 +77,10 @@ def drawStreakline(x, y, t_count, t_max):
     x_coords = []
     y_coords = []
     for i in range(t_count):
-        x_vals, y_vals = drawTrajectories([[x], [y]], t_count, t_max, False)
+        x_vals, y_vals = drawTrajectories([[x], [y]], t_count, t_max, t_start=i * dt, draw=False)
         x_coords.append(x_vals)
         y_coords.append(y_vals)
-        ax.plot([x_coords[i][n][0] for n in range(len(x_coords[i][0]))], [y_coords[i][n][0] for n in range(len(y_coords[i][0]))])
+        ax.plot([x_coords[i][n][0] for n in range(t_count - i)], [y_coords[i][n][0] for n in range(t_count - i)])
 
     ax.set_xlabel('x')
     ax.set_ylabel('y')
@@ -91,7 +91,6 @@ def drawStreakline(x, y, t_count, t_max):
 
 a=1
 om=1
-t = 1
-drawField(xRange=[-10, 10], yRange=[-10, 10], count=[20, 20], nskip=1)
-drawTrajectories(makePointGrid(xRange=[-10, 10], yRange=[-10, 10], count=20), t_count=20, t_max=1)
-drawStreakline(1, 3, t_count=20, t_max=1)
+drawField(xRange=[-10, 10], yRange=[-10, 10], count=[20, 20], nskip=1, time=0)
+drawTrajectories(makePointGrid(xRange=[-10, 10], yRange=[-10, 10], count=20), t_count=200, t_max=10, t_start=0)
+drawStreakline(1, 3, t_count=200, t_max=10)
