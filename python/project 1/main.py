@@ -20,6 +20,13 @@ def stream_function(x, y, x_vel, y_vel, a, gamma):
     value = U * r * np.sin(theta) * (1 - a**2 / r**2) - gamma / (2 * np.pi) * np.log(r)
     return value.real
 
+def velocity_potential_function(x, y, x_vel, y_vel, a, gamma):
+    U = x_vel - 1j * y_vel
+    r = np.sqrt((x - z0[0])**2 + (y - z0[1])**2)
+    theta = np.arctan2(y - z0[1], x - z0[0])
+    value = U * r * np.cos(theta) * (1 + a**2 / r**2) + gamma / (2 * np.pi) * theta
+    return value.real
+
 def show_plot(x, y):
     fig, ax = plt.subplots()
     for i in range(len(x)):
@@ -45,12 +52,14 @@ def plotter(f, c):
     ax.set_xlim(-2 + z0[0], 2 + z0[0])
     ax.set_ylim(-2 + z0[1], 2 + z0[1])
     ax.scatter(x, y, 2)
+    fig.set_size_inches(6, 6)
     plt.show()
 
 c = 0
 a = 1.12
 z0 = (-0.1, 0.22)
 plotter(lambda x, y: stream_function(x, y, 1, 0, a, -3), c)
+plotter(lambda x, y: velocity_potential_function(x, y, 1, 0, a, -3), c)
 
 x, y = generate_cylinder(a, z0, n=1000)
 xj, yj = joukowski_transform(x, y, 1)
