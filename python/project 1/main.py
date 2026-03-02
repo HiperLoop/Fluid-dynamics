@@ -15,10 +15,14 @@ def joukowski_transform(x, y, a):
 
 def show_plot(x, y):
     fig, ax = plt.subplots()
-    ax.scatter(x, y)
+    for i in range(len(x)):
+        ax.scatter(x[i], y[i], 2)
     fig.show()
     plt.pause(20)
 
-x, y = generate_cylinder(1, (0, 0), n=1000)
-#x, y = joukowski_transform(x, y, 1)
-show_plot(x, y)
+def stream_function():
+    
+
+x, y = generate_cylinder(1.12, (-0.1, 0.22), n=1000)
+xj, yj = joukowski_transform(x, y, 1)
+show_plot([x, xj], [y, yj])
