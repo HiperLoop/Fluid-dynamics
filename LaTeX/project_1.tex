@@ -1,0 +1,220 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{physics}
+\usepackage{enumitem}
+
+\title{Project 1 -- Airplanes}
+\date{February 25, 2026}
+
+\begin{document}
+
+\maketitle
+
+\noindent
+\textbf{Deadline:} 11.3.2026, 13:00.
+
+\vspace{0.5em}
+
+Please hand in your solution as follows: One single pdf containing all text and plots, and one single, working (!)
+python script or notebook containing all code used. Ideally, give your documents an easily identifiable name such as
+``Project1\_groupA\_text.pdf''.
+
+Your submission does not need to win a beauty contest, but make sure that it is clear:
+readable plots with clear figure captions and references in the text, clear section titles, clear language etc.
+A very messy hand-in may loose you up to 1 out of 10.
+
+Recall that if you use ChatGPT or similar tools, you must briefly explain how you did it and how you checked that its
+results make sense, and hand in a complete log sheet with your prompts and the answers obtained.
+This will not explicitly be graded, but serves as a reference.
+
+To be handed in via BB, one per group. All names of group members should be on the sheet.
+
+\section*{Part 1 -- A flat airplane wing (analytic solution)}
+
+In the analytic part we look at a flat airplane wing. As we will see, it generates lift by being turned by an angle $\alpha$
+(the angle of attack) with respect to the wind, which is horizontal. For simplicity, however, we rotate our coordinate
+system such that the wing is along the $x$-axis, meaning that the wind comes slightly from ``below'' in our coordinate
+system, even though physically speaking, it is the wind that is horizontal.
+
+Consider a flat plate of length $4b$, situated horizontally (i.e.\ from $x=-2b$ to $x=2b$).
+We know that we can consider this plate as product of a Joukowski-transformation of a cylinder with radius $1$
+(centred on the origin).
+
+The circle is parameterised by its angle:
+\[
+Z(\gamma) = R e^{i\gamma}
+\]
+where here $R=1$ (radius). In the following, $Z$ is the complex coordinate in the situation with a cylindrical wing
+(circle in 2D), and $z$ its Joukowski transform.
+
+The Joukowski transformation is given by
+\[
+z = Z + \frac{b^2}{Z}
+\]
+and we will take $b=1$.
+
+Now let’s say that the plate is in a wind field, whose complex velocity far away from the origin takes the value
+\[
+U_x - i U_y = U e^{-i\alpha}
+\]
+where $0 \le \alpha \le \frac{\pi}{2}$ is the angle of attack, and $U$ is real positive.
+
+\subsection*{a) (5 points)}
+
+Explain briefly why the complex potential around the cylinder is given by
+\[
+f(Z) = U e^{-i\alpha} Z + \frac{U e^{i\alpha}}{Z}
+- \frac{i\Gamma}{2\pi} \ln(Z)
+\tag{1}
+\]
+with an as yet unknown parameter $\Gamma$.
+
+If you use equations from the lecture notes, refer to them explicitly (e.g., ``starting from eq.~1.1, we see...'').
+
+\subsection*{b) (BONUS: max +5 points)}
+
+We have seen in the lecture that the complex potential in point $z$ near the plate equals that of point $Z$ near the cylinder,
+where $z$ is the Joukowski transform of $Z$.
+This could give us the idea that to obtain the velocity potential at any $z$ near the plate, we just need to seek the
+corresponding value $Z$ and check the velocity potential there.
+
+Compute the inverse of the Joukowski transformation and show that it is not unique.
+Argue that for our case of a flat horizontal plate (and $b=1$), it makes sense to pick always the solution $Z$ that has
+the same sign of the imaginary part as $z$, i.e.\ $Y$ and $y$ have the same sign.
+Come up with a rule for points on the $x$-axis with $|z|>2$.
+
+\subsection*{c) (12 points)}
+
+We are interested in the velocity distribution on the plate, in particular the edges ($z=-2$, $z=2$).
+Show that the complex velocity around the plate,
+\[
+\frac{df}{dz},
+\]
+fulfils
+\[
+\frac{df}{dz}
+=
+\frac{U \sin(\gamma - \alpha) - \Gamma/(4\pi)}
+{\sin(\gamma)}.
+\]
+
+Hint: Use
+\[
+\frac{df}{dz} = \frac{df/dZ}{dz/dZ}
+\]
+and first show that this relation indeed holds.
+
+\subsection*{d) (8 points)}
+
+What is the problem at the tips of the plate?
+
+Hint: First check which angles $\gamma$ correspond to the tips of the plate.
+
+\subsection*{e) (15 points)}
+
+For the trailing edge (the back edge, turned away from the wind), we can fix the problem by a smart choice of $\Gamma$.
+For the leading edge, we cannot do the same simultaneously.
+
+In proper wings (as opposed to flat plates), this problem is solved by making the wing slightly rounded at the leading
+edge, while the trailing edge remains sharp. So we consider it sufficient here to remove the singularity on the trailing edge.
+
+\begin{itemize}[leftmargin=1.5em]
+\item What is the correct choice of $\Gamma$?
+\item Compute the drag and lift force using the Blasius theorem and the theorem of Kutta–Joukowski.
+\item Discuss its dependence on the angle of attack.
+\item Compute the unit of the lift force in our equation. Why is it not Newton? What does this imply for the lift of an actual plane?
+\end{itemize}
+
+\section*{Part 2 -- A realistic wing profile (numerical)}
+
+In the second part, we investigate the lift on a more realistically-shaped airplane wing using again the Joukowski transformation.
+We will put $b=1$ throughout.
+
+We start with a cylinder in the $Z$-plane:
+\[
+Z = Z_0 + R e^{i\gamma}, \qquad 0 \le \gamma < 2\pi.
+\]
+
+(Notation: $z$ is the coordinate in the airfoil case; $Z$ in the cylinder case.)
+
+\subsection*{a) (6 points)}
+
+Plot the Joukowski transform of a circle with
+\[
+Z_0 = -0.1 + 0.22i, \qquad R = 1.12.
+\]
+
+You should get a profile with a sharp edge on the right and rounded on the left.
+
+\subsection*{b) (8 points)}
+
+Plot the streamfunction around the cylinder for
+\[
+\Gamma = 0 \quad \text{and} \quad \Gamma = -3.
+\]
+
+Check the boundary condition carefully.
+
+Plot the velocity potential as well. Why is there a weird jump along some (probably horizontal) line?
+Does it have a physical meaning?
+
+\subsection*{c) (8 points)}
+
+Using the Joukowski transformation, also plot the stream function around the wing
+for the same two values of $\Gamma$.
+Check the boundary condition.
+
+\subsection*{d) (6 points)}
+
+What happens to the stagnation point around the sharp trailing edge?
+If needed, zoom in.
+
+\subsection*{e) (6 points)}
+
+Find a value of the circulation for which the flow around the trailing edge is smooth.
+(You may determine it numerically to percent precision.)
+Use this value from now on.
+
+\subsection*{f) (10 points)}
+
+For this circulation, compute and plot the pressure field around the cylinder and the wing.
+
+Hints:
+\[
+w = \frac{df}{dz} \approx \frac{f_1 - f_2}{z_1 - z_2}
+\]
+
+Think carefully about possible artefacts in the velocity field.
+
+\subsection*{g) (8 points)}
+
+Numerically compute the lift using
+\[
+F_x - iF_y
+=
+\frac{i\rho}{2}
+\oint_C w^2 \, dz
+\approx
+\frac{i\rho}{2}
+\sum_k w_k^2 \Delta z_k,
+\qquad
+\Delta z_k = \frac{z_{k+1} - z_{k-1}}{2}.
+\]
+
+\subsection*{h) (8 points)}
+
+Does the result in g) match the theoretical results from the lectures?
+
+\vspace{1em}
+
+\noindent
+\textbf{Technical hints:}
+\begin{itemize}
+\item Useful plotting tools can be found in the python introduction code.
+\item \texttt{plt.contour} can generate contour plots even on irregular grids.
+\end{itemize}
+
+\end{document}
