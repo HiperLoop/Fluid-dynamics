@@ -42,8 +42,8 @@ def show_plot(x, y):
     plt.pause(20)
 
 def plotter(f, c):
-    theta = np.linspace(0, 2 * np.pi, 400)
-    r = np.linspace(a, 3.5, 400)
+    theta = np.linspace(-np.pi/4, np.pi/4, 400)
+    r = np.linspace(a, 2.5, 400)
     #x = np.linspace(-2, 2, 100)
     #y = np.linspace(-2, 2, 100)
     x = z0[0] + r * np.cos(theta)
@@ -58,17 +58,17 @@ def plotter(f, c):
     fig, ax = plt.subplots()
     #ax.scatter(X, Y, 2)
     cs = ax.contour(Xj,Yj,Z, levels=100)
-    ax.set_xlim(-2.5 + z0[0], 2.5 + z0[0])
-    ax.set_ylim(-2.5 + z0[1], 2.5 + z0[1])
-    ax.scatter(xj, yj, 2)
+    ax.set_xlim(1.9 + z0[0], 2.2 + z0[0])
+    ax.set_ylim(-0.25 + z0[1], -0.15 + z0[1])
+    ax.plot(xj, yj, 2)
     fig.set_size_inches(6, 6)
     plt.show()
 
 c = 0
 a = 1.12
 z0 = (-0.1, 0.22)
-plotter(lambda x, y: complex_potential(x, y, 1, 0, a, -3)[1], c)
-plotter(lambda x, y: complex_potential(x, y, 1, 0, a, -3)[0], c)
+plotter(lambda x, y: complex_potential(x, y, 1, 0, a, -6)[1], c)
+plotter(lambda x, y: complex_potential(x, y, 1, 0, a, -6)[0], c)
 
 x, y = generate_cylinder(a, z0, n=1000)
 xj, yj = joukowski_transform(x, y, 1)
