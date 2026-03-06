@@ -16,5 +16,8 @@ z0 = (-0.1, 0.22)
 #plotter(plotter_function(1, 0, a, -0.2), joukowski=True, draw_shape=True, fig_limit=0.5, fig_offset=[2, -0.2], contours=200)
 #endregion
 #region e)
-plotter(plotter_function(1, 0, a, -0.2), joukowski=True, draw_shape=False, fig_limit=0.5, fig_offset=[2, -0.2], contours=400)
+#plotter(plotter_function(1, 0, a, -2.5, stream=True), joukowski=True, draw_shape=True, fig_limit=0.3, fig_offset=[2.1, -0.2], contours=800)
+#endregion
+#region f)
+
 #endregion
