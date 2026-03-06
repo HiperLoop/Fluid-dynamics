@@ -27,49 +27,60 @@ def velocity_potential_function(x, y, x_vel, y_vel, a, gamma):
     value = U * r * np.cos(theta) * (1 + a**2 / r**2) + gamma / (2 * np.pi) * theta
     return value.real
 
+def calculate_complex_potential(x, y, x_vel, y_vel, a, gamma):
+    return velocity_potential_function(x, y, x_vel, y_vel, a, gamma) + 1j * stream_function(x, y, x_vel, y_vel, a, gamma)
+
 def complex_potential(x, y, x_vel, y_vel, a, gamma):
     z = x + 1j * y
     U = x_vel - 1j * y_vel
     U_bar = x_vel + 1j * y_vel
-    f = U*z + U_bar * a**2 / z - 1j * gamma / (2 * np.pi) * np.log(z)
+    f = U*z + ((U_bar * a**2) / z) - (1j * (gamma / (2 * np.pi) * np.log(z)))
     return f.real, f.imag
 
-def show_plot(x, y):
+def show_plot(x, y, fig_lim = 2.5):
     fig, ax = plt.subplots()
     for i in range(len(x)):
         ax.scatter(x[i], y[i], 2)
+    ax.set_xlim(-1 * fig_lim + z0[0], fig_lim + z0[0])
+    ax.set_ylim(-1 * fig_lim + z0[1], fig_lim + z0[1])
+    fig.set_size_inches(6, 6)
     fig.show()
     plt.pause(20)
 
-def plotter(f, c):
-    theta = np.linspace(-np.pi/4, np.pi/4, 400)
-    r = np.linspace(a, 2.5, 400)
-    #x = np.linspace(-2, 2, 100)
-    #y = np.linspace(-2, 2, 100)
+def plotter_function(x_vel, y_vel, a, gamma, stream=True):
+    return lambda x, y: stream_function(x, y, x_vel, y_vel, a, gamma) if stream else lambda x, y: velocity_potential_function(x, y, x_vel, y_vel, a, gamma)
+
+def plotter(f, joukowski=False, draw_shape=False, fig_limit = 2.5, fig_offset = [0, 0], contours = 100):
+    #theta = np.linspace(-np.pi/4, np.pi/4, 400)
+    theta = np.linspace(0, 2 * np.pi, 400)
+    r = np.linspace(a, 3.5, 400)
     x = z0[0] + r * np.cos(theta)
     y = z0[1] + r * np.sin(theta)
     R, Theta = np.meshgrid(r,theta)
     X = z0[0] + R * np.cos(Theta)
     Y = z0[1] + R * np.sin(Theta)
-    Xj, Yj = joukowski_transform(X, Y, 1)
     Z = f(X,Y)
     x, y = generate_cylinder(a, z0, n=1000)
-    xj, yj = joukowski_transform(x, y, 1)
+    if joukowski:
+        X, Y = joukowski_transform(X, Y, 1)
+        x, y = joukowski_transform(x, y, 1)
     fig, ax = plt.subplots()
-    #ax.scatter(X, Y, 2)
-    cs = ax.contour(Xj,Yj,Z, levels=100)
-    ax.set_xlim(1.9 + z0[0], 2.2 + z0[0])
-    ax.set_ylim(-0.25 + z0[1], -0.15 + z0[1])
-    ax.plot(xj, yj, 2)
+    cs = ax.contour(X,Y,Z, levels=contours)
+    #ax.set_xlim(1.9 + z0[0], 2.2 + z0[0])
+    #ax.set_ylim(-0.25 + z0[1], -0.15 + z0[1])
+    ax.set_xlim(-1 * fig_limit + z0[0] + fig_offset[0], fig_limit + z0[0] + fig_offset[0])
+    ax.set_ylim(-1 * fig_limit + z0[1] + fig_offset[1], fig_limit + z0[1] + fig_offset[1])
+    if draw_shape:
+        ax.plot(x, y, 2, color='red')
     fig.set_size_inches(6, 6)
     plt.show()
 
-c = 0
 a = 1.12
 z0 = (-0.1, 0.22)
-plotter(lambda x, y: complex_potential(x, y, 1, 0, a, -6)[1], c)
-plotter(lambda x, y: complex_potential(x, y, 1, 0, a, -6)[0], c)
+#plotter(plotter_function(1, 0, a, 0), joukowski=True, draw_shape=True, fig_limit=2.5, contours=100)
+#plotter(lambda x, y: complex_potential(x, y, 1, 0, a, 0)[1], c)
 
-x, y = generate_cylinder(a, z0, n=1000)
-xj, yj = joukowski_transform(x, y, 1)
-#show_plot([x, xj], [y, yj])
+def question_a():
+    x, y = generate_cylinder(a, z0, n=1000)
+    xj, yj = joukowski_transform(x, y, 1)
+    show_plot([x, xj], [y, yj])
