@@ -1,6 +1,10 @@
 import numpy as np
 from matplotlib import pyplot as plt
 
+#circle constants
+a = 1.12
+z0 = (-0.1, 0.22)
+
 def generate_cylinder(r, z0, n = 100):
     theta = np.linspace(0, 2 * np.pi, n)
     x = z0[0] +r * np.cos(theta)
@@ -51,7 +55,6 @@ def plotter_function(x_vel, y_vel, a, gamma, stream=True):
     return lambda x, y: stream_function(x, y, x_vel, y_vel, a, gamma) if stream else lambda x, y: velocity_potential_function(x, y, x_vel, y_vel, a, gamma)
 
 def plotter(f, joukowski=False, draw_shape=False, fig_limit = 2.5, fig_offset = [0, 0], contours = 100):
-    #theta = np.linspace(-np.pi/4, np.pi/4, 400)
     theta = np.linspace(0, 2 * np.pi, 400)
     r = np.linspace(a, 3.5, 400)
     x = z0[0] + r * np.cos(theta)
@@ -66,19 +69,12 @@ def plotter(f, joukowski=False, draw_shape=False, fig_limit = 2.5, fig_offset = 
         x, y = joukowski_transform(x, y, 1)
     fig, ax = plt.subplots()
     cs = ax.contour(X,Y,Z, levels=contours)
-    #ax.set_xlim(1.9 + z0[0], 2.2 + z0[0])
-    #ax.set_ylim(-0.25 + z0[1], -0.15 + z0[1])
     ax.set_xlim(-1 * fig_limit + z0[0] + fig_offset[0], fig_limit + z0[0] + fig_offset[0])
     ax.set_ylim(-1 * fig_limit + z0[1] + fig_offset[1], fig_limit + z0[1] + fig_offset[1])
     if draw_shape:
         ax.plot(x, y, 2, color='red')
     fig.set_size_inches(6, 6)
     plt.show()
-
-a = 1.12
-z0 = (-0.1, 0.22)
-#plotter(plotter_function(1, 0, a, 0), joukowski=True, draw_shape=True, fig_limit=2.5, contours=100)
-#plotter(lambda x, y: complex_potential(x, y, 1, 0, a, 0)[1], c)
 
 def question_a():
     x, y = generate_cylinder(a, z0, n=1000)
