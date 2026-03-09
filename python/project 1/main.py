@@ -58,6 +58,12 @@ def pressure(x, y, x_vel, y_vel, a, gamma):
     p = air_density * ((air_pressure / air_density) - v**2 / 2)
     return p
 
+def lift(x, y, x_vel, y_vel, a, gamma):
+    vel = velocity_field(x, y, x_vel, y_vel, a, gamma)
+    total_velocity_squared = (vel[0] + vel[1])**2
+    force = (1j * air_density) / 2 * total_velocity_squared * () / 2
+
+
 def show_plot(x, y, fig_lim = 2.5):
     fig, ax = plt.subplots()
     for i in range(len(x)):
@@ -95,8 +101,6 @@ def plotter(f, joukowski=False, draw_shape=False, fig_limit = 2.5, fig_offset = 
         ax.plot(x, y, 2, color='red')
     fig.set_size_inches(6, 6)
     plt.show()
-
-plotter(lambda x, y: pressure(x, y, 1, 0, a, -2.5), joukowski=True, draw_shape=True, fig_limit=2.5, contours=1000, colourmap='turbo')
 
 def question_a():
     x, y = generate_cylinder(a, z0, n=1000)
