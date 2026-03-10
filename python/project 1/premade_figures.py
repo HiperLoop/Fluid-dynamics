@@ -1,4 +1,5 @@
-from main import plotter_function, plotter, pressure, question_a
+from main import plotter_function, plotter, pressure, question_a, velocity_field, joukowski_velocity
+import numpy as np
 a = 1.12
 z0 = (-0.1, 0.22)
 #region a)
@@ -16,9 +17,12 @@ z0 = (-0.1, 0.22)
 #plotter(plotter_function(1, 0, a, -0.2), joukowski=True, draw_shape=True, fig_limit=0.5, fig_offset=[2, -0.2], contours=200)
 #endregion
 #region e)
-plotter(plotter_function(1, 0, a, -2.5), joukowski=True, draw_shape=True, fig_limit=2.5, contours=100)
-plotter(plotter_function(1, 0, a, -2.5, stream=True), joukowski=True, draw_shape=True, fig_limit=0.3, fig_offset=[2.1, -0.2], contours=800)
+#plotter(plotter_function(1, 0, a, -2.5), joukowski=True, draw_shape=True, fig_limit=2.5, contours=100)
+#plotter(plotter_function(1, 0, a, -2.5, function='stream'), joukowski=True, draw_shape=True, fig_limit=0.3, fig_offset=[2.1, -0.2], contours=800)
 #endregion
 #region f)
-#plotter(lambda x, y: pressure(x, y, 1, 0, a, -4), joukowski=False, draw_shape=True, fig_limit=2.5, contours=30, colourmap='turbo')
+plotter(plotter_function(1, 0, a, -2.5, function='pressure'), joukowski=True, draw_shape=True, fig_limit=2.5, contours=100, colourmap='turbo', fill=True)
+#plotter(plotter_function(1, 0, a, -2.5, function='jvelocity'), joukowski=True, draw_shape=True, fig_limit=2.5, contours=100, colourmap='turbo', fill=True)
+#endregion
+#region g)
 #endregion
