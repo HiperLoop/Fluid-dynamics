@@ -94,6 +94,8 @@ def plotter_function(U, a, gamma, function = 'stream'):
     if function == 'velocity_potential':
         return lambda z: complex_potential(z, U, a, gamma)[0]
     if function == 'pressure':
+        return lambda z: pressure(z, U, a, gamma, joukowski=False)
+    if function == 'jpressure':
         return lambda z: pressure(z, U, a, gamma)
     if function == 'velocity':
         return lambda z: np.abs(velocity(z, U, a, gamma))
