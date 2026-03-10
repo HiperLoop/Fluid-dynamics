@@ -39,13 +39,14 @@ air_pressure = 101325
 air_density = 1.225
 def pressure(x, y, x_vel, y_vel, a, gamma):
     v = np.abs(joukowski_velocity(velocity_field(x, y, x_vel, y_vel, a, gamma), x, y))
-    p =  air_pressure - 0.5 *(air_density * v**2)
+    p = air_pressure - 0.5 *(air_density * v**2)
     return p
 
 def force(x, y, x_vel, y_vel, a, gamma, joukowski=False):
     vel = velocity_field(x, y, x_vel, y_vel, a, gamma)
     if joukowski:
-        vel = joukowski_velocity(vel, x, y)      
+        vel = joukowski_velocity(vel, x, y)
+        x, y = joukowski_transform(x, y, 1)
     z = x + 1j * y
     dz = (np.roll(z, -1) - np.roll(z, 1)) / 2
     return (1j * air_density) / 2 * np.sum((vel**2) * dz)
