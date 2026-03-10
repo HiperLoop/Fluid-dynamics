@@ -28,8 +28,8 @@
 \newcommand{\y}{\mathbf{\hat{y}}}
 \newcommand{\z}{\mathbf{\hat{z}}}
 \newcommand{\vr}{\mathbf{\hat r}}
-\newcommand{\thet}{\boldsymbol{{\hat\theta}}}
-\newcommand{\ph}{\boldsymbol{{\hat\phi}}}
+\newcommand{\thet}{\boldsymbol{{\hat \theta}}}
+\newcommand{\ph}{\boldsymbol{{\hat \phi}}}
 \newcommand{\ba}{\mathbf{a}}
 \newcommand{\bb}{\mathbf{b}}
 \newcommand{\vl}{\mathbf{l}}
@@ -50,6 +50,8 @@
     \LARGE{\bfseries{ Project \AssignmentNum}}
     \line(1,0){430}
     \end{center}
+
+\section*{Part 1 -- A flat airplane wing (analytic solution)}
 
 \subsection*{c)}
 First, we show that $df/dz=\frac{df/dZ}{dZ/dz}$ by invoking the chain rule: If $y=f(u)$ and $u=g(x)$, then $\frac{dy}{dx}=\frac{dy}{du}\cdot \frac{du}{dx}$. Since $f$ is a function of $Z$ and $Z$ can be expressed as a function of $z$. Accordingly:
@@ -132,4 +134,8 @@ We can now calculate the units:
     [\mathcal F_y]=[ \rho U^2b]=\frac{\text{kg}\cdot \text{m}^2}{\text{m}^3\cdot \text{s}^2}\cdot\text{m}=\frac{\text{kg}}{ \text{s}^2}=\frac{\text {N}}{\text{m}}
 \end{align*}
 The formula was derived with the non-dimensionalized length of $b$. We have to restore it at this point, so that we arrive at Newton per meter. This is also what is to be expected, as we are looking at a two-dimensional problem and the wind can only attack a one dimensional line instead of an area, which would be the real-world equivalent.
+
+\section*{Part 2 -- A realistic wing profile (numerical)}
+
+
 \end{document}
