@@ -18,23 +18,6 @@ def joukowski_transform(x, y, a):
     w = z + a**2 / z
     return w.real, w.imag
 
-def stream_function(x, y, x_vel, y_vel, a, gamma):
-    U = x_vel - 1j * y_vel
-    r = np.sqrt((x - z0[0])**2 + (y - z0[1])**2)
-    theta = np.arctan2(y - z0[1], x - z0[0])
-    value = U * r * np.sin(theta) * (1 - a**2 / r**2) - gamma / (2 * np.pi) * np.log(r)
-    return value.real
-
-def velocity_potential_function(x, y, x_vel, y_vel, a, gamma):
-    U = x_vel - 1j * y_vel
-    r = np.sqrt((x - z0[0])**2 + (y - z0[1])**2)
-    theta = np.arctan2(y - z0[1], x - z0[0])
-    value = U * r * np.cos(theta) * (1 + a**2 / r**2) + gamma / (2 * np.pi) * theta
-    return value.real
-
-def calculate_complex_potential(x, y, x_vel, y_vel, a, gamma):
-    return velocity_potential_function(x, y, x_vel, y_vel, a, gamma) + 1j * stream_function(x, y, x_vel, y_vel, a, gamma)
-
 def complex_potential(x, y, x_vel, y_vel, a, gamma):
     z = (x - z0[0]) + 1j * (y - z0[1])
     U = x_vel - 1j * y_vel
@@ -43,26 +26,18 @@ def complex_potential(x, y, x_vel, y_vel, a, gamma):
     return f.real, f.imag
 
 def velocity_field(x, y, x_vel, y_vel, a, gamma):
-    """ d = 0.0001
-    v = (calculate_complex_potential(x + d, y + d, x_vel, y_vel, a, gamma) - calculate_complex_potential(x, y, x_vel, y_vel, a, gamma)) / (np.sqrt(2) * d)
-    v = np.sqrt(v.real**2 + v.imag**2)
-    return v """
     z = (x - z0[0]) + 1j * (y - z0[1])
     U = x_vel - 1j * y_vel
     U_bar = x_vel + 1j * y_vel
     return U - (U_bar * (a**2 / z**2)) - ((1j * gamma) / (2 * np.pi * z))
 
 def joukowski_velocity(v, x, y, b = 1):
-    #x, y = joukowski_transform(x, y, 1)
     z = x + 1j * (y)
     return v / (1 - (b**2 / z**2))
 
 air_pressure = 101325
 air_density = 1.225
 def pressure(x, y, x_vel, y_vel, a, gamma):
-    d = 0.0001
-    #v = (calculate_complex_potential(x + d, y + d, x_vel, y_vel, a, gamma) - calculate_complex_potential(x, y, x_vel, y_vel, a, gamma)) / (np.sqrt(2) * d)
-    #v_squared = v.real**2 + v.imag**2
     v = np.abs(joukowski_velocity(velocity_field(x, y, x_vel, y_vel, a, gamma), x, y))
     p =  air_pressure - 0.5 *(air_density * v**2)
     return p
@@ -77,12 +52,12 @@ def force(x, y, x_vel, y_vel, a, gamma, joukowski=False):
 
 def print_force(x_vel, y_vel, a, gamma):
     print("cyllinder:")
-    x, y = generate_cylinder(a, z0, n=1000)
+    x, y = generate_cylinder(a, z0, n=10000)
     force_value = force(x, y, x_vel, y_vel, a, gamma)
-    print(f"Fx: {force_value.real:f} N\nFy: {-force_value.imag:f} N\n")
+    print(f"Fx: {force_value.real:f} N/m\nFy: {-force_value.imag:f} N/m\n")
     print("joukowski:")
     force_value = force(x, y, x_vel, y_vel, a, gamma, joukowski=True)
-    print(f"Fx: {force_value.real:f} N\nFy: {-force_value.imag:f} N\n")
+    print(f"Fx: {force_value.real:f} N/m\nFy: {-force_value.imag:f} N/m\n")
 
 def show_scatter_plot(x, y, fig_lim = 2.5, save = False, filename = 'scatter.png'):
     fig, ax = plt.subplots()
@@ -90,7 +65,6 @@ def show_scatter_plot(x, y, fig_lim = 2.5, save = False, filename = 'scatter.png
         ax.scatter(x[i], y[i], 2)
     ax.set_xlim(-1 * fig_lim + z0[0], fig_lim + z0[0])
     ax.set_ylim(-1 * fig_lim + z0[1], fig_lim + z0[1])
-    #fig.set_size_inches(6, 6)
     if save:
         PATH = 'LaTex/figures/'
         plt.savefig(PATH + filename)
@@ -132,7 +106,6 @@ def plotter(f, joukowski=False, draw_shape=False, fig_limit = 2.5, fig_offset = 
     ax.set_ylim(-1 * fig_limit + z0[1] + fig_offset[1], fig_limit + z0[1] + fig_offset[1])
     if draw_shape:
         ax.plot(x, y, 2, color='red')
-    #fig.set_size_inches(6, 6)
     if save:
         PATH = 'LaTex/figures/'
         plt.savefig(PATH + filename)
