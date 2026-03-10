@@ -51,6 +51,11 @@ def print_force(U, a, gamma):
     print("joukowski:")
     force_value = force(z, U, a, gamma, joukowski=True)
     print(f"Fx: {force_value.real:f} N/m\nFy: {-force_value.imag:f} N/m\n")
+    with open("LaTex/figures/h_force_values.txt", "a") as f:
+        f.write("cyllinder:")
+        f.write(f"\nFx: {force_value.real:f} N/m\nFy: {-force_value.imag:f} N/m\n")
+        f.write("joukowski:")
+        f.write(f"\nFx: {force_value.real:f} N/m\nFy: {-force_value.imag:f} N/m\n\n")
 
 def show_scatter_plot(x, y, fig_lim = 2.5, save = False, filename = 'scatter.png'):
     fig, ax = plt.subplots()
