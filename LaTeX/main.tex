@@ -14,10 +14,10 @@
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\newcommand{\AssignmentNum}{4}
+\newcommand{\AssignmentNum}{1}
 \lhead{Stromingsleer en transportverschijnselen (NS-265B)\\
 2025/2026}
-\rhead{Tereza Bílková, Bela F. Brunner,\\ Niels Epema, Adam Zich (0074187)}
+\rhead{Tereza Bílková (7137257), Bela F. Brunner (8002193),\\ Niels Epema (2927578), Adam Zich (0074187)}
 \fancyfoot{}
 \fancyfoot[R]{Page \thepage /\pageref{LastPage}}
 
@@ -51,7 +51,34 @@
     \line(1,0){430}
     \end{center}
 
-    \subsection*{solution d)}
+\subsection*{c)}
+First, we show that $df/dz=\frac{df/dZ}{dZ/dz}$ by invoking the chain rule: If $y=f(u)$ and $u=g(x)$, then $\frac{dy}{dx}=\frac{dy}{du}\cdot \frac{du}{dx}$. Since $f$ is a function of $Z$ and $Z$ can be expressed as a function of $z$. Accordingly:
+\begin{align*}
+    \frac{df}{dz}=\frac{df}{dZ}\cdot \frac{dZ}{dz}=\frac{df/dZ}{dz/dZ}\quad \square 
+\end{align*}
+We can now evaluate both of the term separately. We first look at the bottom term. For this, we can just plug in the formula for $z(Z)=Z+\dfrac{1}{Z}$, where we used that $b=1$. Plugging this in gives: 
+\begin{align*}
+    \frac{dz}{dZ}=(Z+\frac{1}{Z})'=1-\frac{1}{Z^2}
+\end{align*}
+Secondly, we are looking at the top term: 
+\begin{align*}
+    \frac{df}{dZ}&=\left( U e^{-i\alpha} Z + \frac{U e^{i\alpha}}{Z}- \frac{i\Gamma}{2\pi} \ln(Z)\right)'\\
+&=U e^{-i\alpha} - \frac{U e^{i\alpha}}{Z^2}- \frac{i\Gamma}{2\pi Z} 
+\end{align*}
+Now putting both of them together: 
+\begin{align*}
+    \frac{df}{dz}&=\frac{U e^{-i\alpha} - \frac{U e^{i\alpha}}{Z^2}- \frac{i\Gamma}{2\pi Z} }{1-\frac{1}{Z^2}}\\
+    &=\frac{ZU e^{-i\alpha} - \frac{U e^{i\alpha}}{Z}- \frac{i\Gamma}{2\pi} }{Z-\frac{1}{Z}}
+\end{align*}
+Now, we replace $Z=e^{i\gamma}$, where we set the radius to be 1: 
+\begin{align*}
+    \frac{df}{dz}&=\frac{Ue^{i\gamma} e^{-i\alpha} - {U e^{i\alpha}}e^{-i\gamma}- \frac{i\Gamma}{2\pi} }{e^{i\gamma}-e^{-i\gamma}}\\
+    &=\frac{U(e^{i(\gamma-\alpha)}-e^{-i(\gamma-\alpha)})-\frac{i\Gamma}{2\pi} }{{e^{i\gamma}-e^{-i\gamma}}}\\
+    &=\frac{U2i\sin(\gamma-\alpha )-\frac{i\Gamma}{2\pi}}{2i\sin (\gamma)}\\
+    &=\frac{U\sin(\gamma -\alpha)-\Gamma/4\pi}{\sin(\gamma )} \quad \square 
+\end{align*}
+
+\subsection*{d)}
 We first want to find a relationship to relate $z$ to gamma. For this we can use the definition, $b=1$ and $R=1$: 
 \begin{align*}
     z=Z+\frac{1}{Z}=e^{i\gamma }+e^{-i\gamma }=2\cos(\gamma)
@@ -77,8 +104,32 @@ If we know plug this into the formula obtained in c), we get:
 \end{align*}
 Therefore, in both cases the velocity actually approaches infinity when it gets closer to the edges, since we are dividing by 0. 
 
-Here could be your change to add some more discussion about the physical implications of this result, or to explore what happens if we consider a small perturbation around $z=\pm 2$ to see how the velocity behaves in that case.
+\subsection*{e)}
+The correct choice for $\Gamma$ would be such that the upper part of the fraction also becomes zero, since then we could apply L'Hospital and find a real velocity. Since, as given by the problem, we are only concerned with the trailing edge, we only have to look at $z=2$, as $0\leq\alpha \leq \frac{\pi}{2}$ and the wind is standardly coming from the left, therefore the leading edge will always be at $z=-2$. Finding $\Gamma$:
+\begin{align*}
+    U\sin(-\alpha)-\Gamma /(4\pi)=0\\
+    \Leftrightarrow \Gamma =-{U\sin(\alpha)}{4\pi}
+\end{align*}
+We can now calculate the velocity at the edge with L'Hospital: 
+\begin{align*}
+    \frac{df(2)}{dz}=\lim _{\gamma \to 0 }U\frac{\sin(\gamma -\alpha)-\sin(-\alpha)}{\sin(\gamma)}=\lim _{\gamma \to 0 }U\frac{\cos(\gamma -\alpha)}{\cos(\gamma)}=U\frac{\cos(-\alpha)}{1}=U\cos (-\alpha)
+\end{align*}
+Since the Blasius theorem is just the foundation for the theorem of Kutta-Joukowski, we can just use this one. With this, we get: 
+\begin{align*}
+    \mathcal F_x-i\mathcal F_y&=i\rho U\Gamma \\
+    &=-i\rho U^2{\sin(\alpha)}{4\pi}
+\end{align*}
+Since we defined $U$ to be real, this gives: 
+\begin{align*}
+        \mathcal F_x-i\mathcal F_y&=-i\rho U^2{\sin(\alpha)}{4\pi} \\
+    \Leftrightarrow \mathcal F_y&=4\pi \rho U^2\sin (\alpha )\\
+    \Rightarrow \mathcal F_y&\propto \sin(\alpha)
+\end{align*}
+Since $\sin (0)=0$ and $\sin(\pi/2)=1$, we can see that the lift force is 0 if the wind comes directly from the side and becomes maximum the wind comes directly from the bottom, which makes sense intuitively. 
 
-
-changing for testing
+We can now calculate the units: 
+\begin{align*}
+    [\mathcal F_y]=[ \rho U^2b]=\frac{\text{kg}\cdot \text{m}^2}{\text{m}^3\cdot \text{s}^2}\cdot\text{m}=\frac{\text{kg}}{ \text{s}^2}=\frac{\text {N}}{\text{m}}
+\end{align*}
+The formula was derived with the non-dimensionalized length of $b$. We have to restore it at this point, so that we arrive at Newton per meter. This is also what is to be expected, as we are looking at a two-dimensional problem and the wind can only attack a one dimensional line instead of an area, which would be the real-world equivalent.
 \end{document}
