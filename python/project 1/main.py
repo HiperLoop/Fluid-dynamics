@@ -105,7 +105,7 @@ def plotter_function(U, a, gamma, function = 'stream'):
 # a list fig_offset to determine the offset of the plot, a constant contours to determine the number of contours to plot,
 # a string colourmap to determine the colourmap to use for the contours, a boolean fill to determine whether to fill the contours or not,
 # and a boolean save to determine whether to save the plot or not, with the filename specified by filename
-def plotter(f, joukowski=False, draw_shape=False, fig_limit = 2.5, fig_offset = [0, 0], contours = 100, colourmap = 'winter', fill = False, save = False, filename = 'figure.png'):
+def plotter(f, joukowski=False, draw_shape=False, fig_limit = 2.5, fig_offset = [0, 0], contours = 100, colourmap = 'winter', label = '', units = '', scale = True, fill = False, save = False, filename = 'figure.png'):
     theta = np.linspace(0, 2 * np.pi, 400)
     a = np.linspace(R, 3.5, 400)
     A, Theta = np.meshgrid(a,theta)
@@ -123,10 +123,15 @@ def plotter(f, joukowski=False, draw_shape=False, fig_limit = 2.5, fig_offset = 
         cs = ax.contourf(Z.real, Z.imag, val, levels=contours, cmap=mpl.colormaps[colourmap])
     else:
         cs = ax.contour(Z.real, Z.imag, val, levels=contours, cmap=mpl.colormaps[colourmap])
-    plt.colorbar(cs, ax=ax)
+    if scale:
+        plt.colorbar(cs, ax=ax, label=f'{label} [{units}]')
     cs.changed()
     ax.set_xlim(-1 * fig_limit + z0.real + fig_offset[0], fig_limit + z0.real + fig_offset[0])
     ax.set_ylim(-1 * fig_limit + z0.imag + fig_offset[1], fig_limit + z0.imag + fig_offset[1])
+    ax.set_aspect('equal', adjustable='box')
+    ax.set_xlabel('x coordinate')
+    ax.set_ylabel('y coordinate')
+    ax.legend()
     if draw_shape:
         ax.plot(z.real, z.imag, 2, color='red')
     if save:
