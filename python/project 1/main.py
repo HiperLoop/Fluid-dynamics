@@ -84,13 +84,16 @@ def print_force(x_vel, y_vel, a, gamma):
     force_value = force(x, y, x_vel, y_vel, a, gamma, joukowski=True)
     print(f"Fx: {force_value.real:f} N\nFy: {-force_value.imag:f} N\n")
 
-def show_scatter_plot(x, y, fig_lim = 2.5):
+def show_scatter_plot(x, y, fig_lim = 2.5, save = False, filename = 'scatter.png'):
     fig, ax = plt.subplots()
     for i in range(len(x)):
         ax.scatter(x[i], y[i], 2)
     ax.set_xlim(-1 * fig_lim + z0[0], fig_lim + z0[0])
     ax.set_ylim(-1 * fig_lim + z0[1], fig_lim + z0[1])
-    fig.set_size_inches(6, 6)
+    #fig.set_size_inches(6, 6)
+    if save:
+        PATH = 'LaTex/figures/'
+        plt.savefig(PATH + filename)
     fig.show()
 
 def plotter_function(x_vel, y_vel, a, gamma, function = 'stream'):
@@ -105,7 +108,7 @@ def plotter_function(x_vel, y_vel, a, gamma, function = 'stream'):
     if function == 'jvelocity':
         return lambda x, y: np.abs(joukowski_velocity(velocity_field(x, y, x_vel, y_vel, a, gamma), x, y))
 
-def plotter(f, joukowski=False, draw_shape=False, fig_limit = 2.5, fig_offset = [0, 0], contours = 100, colourmap = 'winter', fill = False):
+def plotter(f, joukowski=False, draw_shape=False, fig_limit = 2.5, fig_offset = [0, 0], contours = 100, colourmap = 'winter', fill = False, save = False, filename = 'figure.png'):
     theta = np.linspace(0, 2 * np.pi, 400)
     r = np.linspace(a, 3.5, 400)
     x = z0[0] + r * np.cos(theta)
@@ -129,10 +132,13 @@ def plotter(f, joukowski=False, draw_shape=False, fig_limit = 2.5, fig_offset = 
     ax.set_ylim(-1 * fig_limit + z0[1] + fig_offset[1], fig_limit + z0[1] + fig_offset[1])
     if draw_shape:
         ax.plot(x, y, 2, color='red')
-    fig.set_size_inches(6, 6)
+    #fig.set_size_inches(6, 6)
+    if save:
+        PATH = 'LaTex/figures/'
+        plt.savefig(PATH + filename)
     plt.show()
 
-def question_a():
+def question_a(save = False, filename = 'a_scatter.png'):
     x, y = generate_cylinder(a, z0, n=1000)
     xj, yj = joukowski_transform(x, y, 1)
-    show_scatter_plot([x, xj], [y, yj])
+    show_scatter_plot([x, xj], [y, yj], save=save, filename=filename)
