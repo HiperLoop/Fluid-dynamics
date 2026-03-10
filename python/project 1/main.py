@@ -67,11 +67,22 @@ def pressure(x, y, x_vel, y_vel, a, gamma):
     p =  air_pressure - 0.5 *(air_density * v**2)
     return p
 
-def force(x, y, x_vel, y_vel, a, gamma):
+def force(x, y, x_vel, y_vel, a, gamma, joukowski=False):
     vel = velocity_field(x, y, x_vel, y_vel, a, gamma)
+    if joukowski:
+        vel = joukowski_velocity(vel, x, y)      
     z = x + 1j * y
     dz = (np.roll(z, -1) - np.roll(z, 1)) / 2
-    return (1j * air_density) / 2 * np.sum(vel**2 * dz)
+    return (1j * air_density) / 2 * np.sum((vel**2) * dz)
+
+def print_force(x_vel, y_vel, a, gamma):
+    print("cyllinder:")
+    x, y = generate_cylinder(a, z0, n=1000)
+    force_value = force(x, y, x_vel, y_vel, a, gamma)
+    print(f"Fx: {force_value.real:f} N\nFy: {-force_value.imag:f} N\n")
+    print("joukowski:")
+    force_value = force(x, y, x_vel, y_vel, a, gamma, joukowski=True)
+    print(f"Fx: {force_value.real:f} N\nFy: {-force_value.imag:f} N\n")
 
 def show_scatter_plot(x, y, fig_lim = 2.5):
     fig, ax = plt.subplots()
@@ -93,7 +104,6 @@ def plotter_function(x_vel, y_vel, a, gamma, function = 'stream'):
         return lambda x, y: np.abs(velocity_field(x, y, x_vel, y_vel, a, gamma))
     if function == 'jvelocity':
         return lambda x, y: np.abs(joukowski_velocity(velocity_field(x, y, x_vel, y_vel, a, gamma), x, y))
-
 
 def plotter(f, joukowski=False, draw_shape=False, fig_limit = 2.5, fig_offset = [0, 0], contours = 100, colourmap = 'winter', fill = False):
     theta = np.linspace(0, 2 * np.pi, 400)
