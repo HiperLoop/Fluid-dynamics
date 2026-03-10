@@ -62,7 +62,7 @@ def force(z, U, a, gamma, joukowski=False):
 
 #Function to print the force values for both the cylinder and the Joukowski wing, takes in a constant U, a constant a, and a constant gamma,
 # and prints the force values for both the cylinder and the Joukowski airfoil to the console, and also saves them to a text file in the LaTex/figures folder
-def print_force(U, a, gamma, save = True):
+def print_force(U, a, gamma, save = False):
     print("cyllinder:")
     z = generate_cylinder(a, z0, n=10000)
     force_value = force(z, U, a, gamma)
