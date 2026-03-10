@@ -1,8 +1,12 @@
-from main import plotter_function, plotter, pressure, print_force, question_a, velocity_field, joukowski_velocity
+from main import plotter_function, plotter, pressure, print_force, question_a, velocity, joukowski_velocity
 import numpy as np
+
+#Circle, wind and circulation constants
 a = 1.12
 z0 = -0.1 + 0.22j
 correct_gamma = -2.8
+U = 1
+
 #region a)
 #question_a(save=True, filename='a_scatter.png')
 #endregion

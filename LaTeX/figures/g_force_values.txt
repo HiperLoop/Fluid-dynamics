@@ -5,3 +5,10 @@ joukowski:
 Fx: -0.000065 N/m
 Fy: 3.429954 N/m
 
+cyllinder:
+Fx: -0.000065 N/m
+Fy: 3.429954 N/m
+joukowski:
+Fx: -0.000065 N/m
+Fy: 3.429954 N/m
+
