@@ -50,4 +50,31 @@
     \LARGE{\bfseries{ Project \AssignmentNum}}
     \line(1,0){430}
     \end{center}
+
+    \subsection*{solution d)}
+We first want to find a relationship to relate $z$ to gamma. For this we can use the definition, $b=1$ and $R=1$: 
+\begin{align*}
+    z=Z+\frac{1}{Z}=e^{i\gamma }+e^{-i\gamma }=2\cos(\gamma)
+\end{align*}
+With this formula, we can find for $z=\pm 2$:
+\begin{align*}
+    2=2\cos(\gamma )\Leftrightarrow \gamma_{2z} =\arccos (1)=0 \\
+    -2=2\cos(\gamma )\Leftrightarrow \gamma_{-2z} =\arccos (-1)=\pi 
+\end{align*}
+If we know plug this into the formula obtained in c), we get: 
+
+\begin{align*}
+    \frac{df(2)}{dz}
+=
+\frac{U \sin(0 - \alpha) - \Gamma/(4\pi)}
+{\sin(0)}=\frac{U \sin(-\alpha) - \Gamma/(4\pi)}
+{0}\\
+\frac{df(-2)}{dz}
+=
+\frac{U \sin(\pi - \alpha) - \Gamma/(4\pi)}
+{\sin(\pi)}=\frac{U \sin(\pi-\alpha) - \Gamma/(4\pi)}
+{0}
+\end{align*}
+Therefore, in both cases the velocity actually approaches infinity when it gets closer to the edges, since we are dividing by 0. 
+
 \end{document}
