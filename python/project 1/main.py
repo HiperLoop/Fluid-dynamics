@@ -2,6 +2,9 @@ import numpy as np
 from matplotlib import pyplot as plt
 import matplotlib as mpl
 
+# Figure save path
+PATH = 'LaTex/figures/'
+
 #circle constants and air constants
 R = 1.12
 z0 = -0.1 + 0.22j
@@ -68,7 +71,7 @@ def print_force(U, a, gamma, save = True):
     force_value = force(z, U, a, gamma, joukowski=True)
     print(f"Fx: {force_value.real:f} N/m\nFy: {-force_value.imag:f} N/m\n")
     if save:
-        with open("LaTex/figures/g_force_values.txt", "a") as f:
+        with open(PATH + "g_force_values.txt", "a") as f:
             f.write("cyllinder:")
             f.write(f"\nFx: {force_value.real:f} N/m\nFy: {-force_value.imag:f} N/m\n")
             f.write("joukowski:")
@@ -83,7 +86,6 @@ def show_scatter_plot(x, y, fig_lim = 2.5, save = False, filename = 'scatter.png
     ax.set_xlim(-1 * fig_lim + z0.real, fig_lim + z0.real)
     ax.set_ylim(-1 * fig_lim + z0.imag, fig_lim + z0.imag)
     if save:
-        PATH = 'LaTex/figures/'
         plt.savefig(PATH + filename)
     fig.show()
 
@@ -139,7 +141,6 @@ def plotter(f, joukowski=False, draw_shape=False, fig_limit = 2.5, fig_offset = 
     if draw_shape:
         ax.plot(z.real, z.imag, 2, color='red')
     if save:
-        PATH = 'LaTex/figures/'
         plt.savefig(PATH + filename)
     plt.show()
 
