@@ -104,7 +104,9 @@ def plotter_function(U, a, gamma, function = 'stream'):
 # a boolean draw_shape to determine whether to draw the shape of the cylinder//wing, a constant fig_limit to determine the limits of the plot,
 # a list fig_offset to determine the offset of the plot, a constant contours to determine the number of contours to plot,
 # a string colourmap to determine the colourmap to use for the contours, a boolean fill to determine whether to fill the contours or not,
-# and a boolean save to determine whether to save the plot or not, with the filename specified by filename
+# and a boolean save to determine whether to save the plot or not, with the filename specified by filename,
+# and a string label to determine the label for the colourbar, and a string units to determine the units for the colourbar,
+# and a boolean scale to determine whether to show the colourbar or not
 def plotter(f, joukowski=False, draw_shape=False, fig_limit = 2.5, fig_offset = [0, 0], contours = 100, colourmap = 'winter', label = '', units = '', scale = True, fill = False, save = False, filename = 'figure.png'):
     theta = np.linspace(0, 2 * np.pi, 400)
     a = np.linspace(R, 3.5, 400)
