@@ -19,14 +19,15 @@ U = 1
 #plotter(plotter_function(1, a, -3), joukowski=True, draw_shape=True, fig_limit=2.5, contours=100, save=True, filename='c_streamfunction_gamma-3.png', label='Streamfunction', units='m^2/s')
 #endregion
 #region d)
-plotter(plotter_function(1, a, -0.2), joukowski=True, draw_shape=True, fig_limit=0.3, fig_offset=[2.1, -0.2], contours=400, save=True, filename=f'd_streamfunction_gamma-{-0.2}.png', label='Streamfunction', units='m^2/s')
+#plotter(plotter_function(1, a, -0.2), joukowski=True, draw_shape=True, fig_limit=0.3, fig_offset=[2.1, -0.2], contours=400, save=True, filename=f'd_streamfunction_gamma-{-0.2}.png', label='Streamfunction', units='m^2/s')
 #endregion
 #region e)
 #plotter(plotter_function(1, a, correct_gamma), joukowski=True, draw_shape=True, fig_limit=2.5, contours=100, save=True, filename=f'e_streamfunction_gamma-{correct_gamma}.png', label='Streamfunction', units='m^2/s')
 #plotter(plotter_function(1, a, correct_gamma), joukowski=True, draw_shape=True, fig_limit=0.3, fig_offset=[2.1, -0.2], contours=800, save=True, filename=f'e_zoomed_streamfunction_gamma-{correct_gamma}.png', label='Streamfunction', units='m^2/s')
 #endregion
 #region f)
-#plotter(plotter_function(1, a, correct_gamma, function='pressure'), joukowski=True, draw_shape=True, fig_limit=2.5, contours=100, colourmap='turbo', fill=True, save=True, filename='f_pressure.png', label='Pressure', units='Pa')
+plotter(plotter_function(1, a, correct_gamma, function='pressure'), joukowski=True, draw_shape=True, fig_limit=2.5, contours=100, colourmap='turbo', fill=True, save=True, filename='f_Cylinder_pressure.png', label='Pressure', units='Pa')
+plotter(plotter_function(1, a, correct_gamma, function='pressure'), joukowski=False, draw_shape=True, fig_limit=2.5, contours=100, colourmap='turbo', fill=True, save=True, filename='f_Wing_pressure.png', label='Pressure', units='Pa')
 #plotter(plotter_function(1, a, correct_gamma, function='jvelocity'), joukowski=True, draw_shape=True, fig_limit=2.5, contours=100, colourmap='turbo', fill=True, save=True, filename='f_joukowski_velocity.png', label='Velocity', units='m/s')
 #endregion
 #region g)
