@@ -51,7 +51,7 @@ def print_force(U, a, gamma):
     print("joukowski:")
     force_value = force(z, U, a, gamma, joukowski=True)
     print(f"Fx: {force_value.real:f} N/m\nFy: {-force_value.imag:f} N/m\n")
-    with open("LaTex/figures/h_force_values.txt", "a") as f:
+    with open("LaTex/figures/g_force_values.txt", "a") as f:
         f.write("cyllinder:")
         f.write(f"\nFx: {force_value.real:f} N/m\nFy: {-force_value.imag:f} N/m\n")
         f.write("joukowski:")
