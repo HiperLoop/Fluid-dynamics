@@ -116,7 +116,6 @@ def plotter(f, joukowski=False, draw_shape=False, fig_limit = 2.5, fig_offset = 
     X = z0.real + A * np.cos(Theta)
     Y = z0.imag + A * np.sin(Theta)
     Z = X + 1j * Y
-    print(Z)
     val = f(Z)
     z = generate_cylinder(R, z0, n=1000)
     if joukowski:
