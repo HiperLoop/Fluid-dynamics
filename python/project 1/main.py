@@ -59,7 +59,7 @@ def force(z, U, a, gamma, joukowski=False):
 
 #Function to print the force values for both the cylinder and the Joukowski wing, takes in a constant U, a constant a, and a constant gamma,
 # and prints the force values for both the cylinder and the Joukowski airfoil to the console, and also saves them to a text file in the LaTex/figures folder
-def print_force(U, a, gamma):
+def print_force(U, a, gamma, save = True):
     print("cyllinder:")
     z = generate_cylinder(a, z0, n=10000)
     force_value = force(z, U, a, gamma)
@@ -67,11 +67,12 @@ def print_force(U, a, gamma):
     print("joukowski:")
     force_value = force(z, U, a, gamma, joukowski=True)
     print(f"Fx: {force_value.real:f} N/m\nFy: {-force_value.imag:f} N/m\n")
-    with open("LaTex/figures/g_force_values.txt", "a") as f:
-        f.write("cyllinder:")
-        f.write(f"\nFx: {force_value.real:f} N/m\nFy: {-force_value.imag:f} N/m\n")
-        f.write("joukowski:")
-        f.write(f"\nFx: {force_value.real:f} N/m\nFy: {-force_value.imag:f} N/m\n\n")
+    if save:
+        with open("LaTex/figures/g_force_values.txt", "a") as f:
+            f.write("cyllinder:")
+            f.write(f"\nFx: {force_value.real:f} N/m\nFy: {-force_value.imag:f} N/m\n")
+            f.write("joukowski:")
+            f.write(f"\nFx: {force_value.real:f} N/m\nFy: {-force_value.imag:f} N/m\n\n")
 
 #Function to show a scatter plot of arrays x and y, with limits of fig_lim, and save the plot to a file if save is true,
 # with the filename specified by filename
