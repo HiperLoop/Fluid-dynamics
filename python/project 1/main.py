@@ -36,35 +36,44 @@ def calculate_complex_potential(x, y, x_vel, y_vel, a, gamma):
     return velocity_potential_function(x, y, x_vel, y_vel, a, gamma) + 1j * stream_function(x, y, x_vel, y_vel, a, gamma)
 
 def complex_potential(x, y, x_vel, y_vel, a, gamma):
-    z = x + 1j * y
+    z = (x - z0[0]) + 1j * (y - z0[1])
     U = x_vel - 1j * y_vel
     U_bar = x_vel + 1j * y_vel
     f = U*z + ((U_bar * a**2) / z) - (1j * (gamma / (2 * np.pi) * np.log(z)))
     return f.real, f.imag
 
 def velocity_field(x, y, x_vel, y_vel, a, gamma):
-    z = x + 1j * y
+    """ d = 0.0001
+    v = (calculate_complex_potential(x + d, y + d, x_vel, y_vel, a, gamma) - calculate_complex_potential(x, y, x_vel, y_vel, a, gamma)) / (np.sqrt(2) * d)
+    v = np.sqrt(v.real**2 + v.imag**2)
+    return v """
+    z = (x - z0[0]) + 1j * (y - z0[1])
     U = x_vel - 1j * y_vel
     U_bar = x_vel + 1j * y_vel
-    f_prime = U - ((U_bar * a**2) / z**2) - (1j * (gamma / (2 * np.pi) * (1/z)))
-    return f_prime.real, f_prime.imag
+    return U - (U_bar * (a**2 / z**2)) - ((1j * gamma) / (2 * np.pi * z))
+
+def joukowski_velocity(v, x, y, b = 1):
+    #x, y = joukowski_transform(x, y, 1)
+    z = x + 1j * (y)
+    return v / (1 - (b**2 / z**2))
 
 air_pressure = 101325
 air_density = 1.225
 def pressure(x, y, x_vel, y_vel, a, gamma):
     d = 0.0001
-    v = (calculate_complex_potential(x + d, y + d, x_vel, y_vel, a, gamma) - calculate_complex_potential(x, y, x_vel, y_vel, a, gamma)) / (np.sqrt(2) * d)
-    v = np.sqrt(v.real**2 + v.imag**2)
-    p = air_density * ((air_pressure / air_density) - v**2 / 2)
+    #v = (calculate_complex_potential(x + d, y + d, x_vel, y_vel, a, gamma) - calculate_complex_potential(x, y, x_vel, y_vel, a, gamma)) / (np.sqrt(2) * d)
+    #v_squared = v.real**2 + v.imag**2
+    v = np.abs(joukowski_velocity(velocity_field(x, y, x_vel, y_vel, a, gamma), x, y))
+    p =  air_pressure - 0.5 *(air_density * v**2)
     return p
 
-def lift(x, y, x_vel, y_vel, a, gamma):
+def force(x, y, x_vel, y_vel, a, gamma):
     vel = velocity_field(x, y, x_vel, y_vel, a, gamma)
-    total_velocity_squared = (vel[0] + vel[1])**2
-    force = (1j * air_density) / 2 * total_velocity_squared * () / 2
+    z = x + 1j * y
+    dz = (np.roll(z, -1) - np.roll(z, 1)) / 2
+    return (1j * air_density) / 2 * np.sum(vel**2 * dz)
 
-
-def show_plot(x, y, fig_lim = 2.5):
+def show_scatter_plot(x, y, fig_lim = 2.5):
     fig, ax = plt.subplots()
     for i in range(len(x)):
         ax.scatter(x[i], y[i], 2)
@@ -72,12 +81,21 @@ def show_plot(x, y, fig_lim = 2.5):
     ax.set_ylim(-1 * fig_lim + z0[1], fig_lim + z0[1])
     fig.set_size_inches(6, 6)
     fig.show()
-    plt.pause(20)
 
-def plotter_function(x_vel, y_vel, a, gamma, stream=True):
-    return lambda x, y: stream_function(x, y, x_vel, y_vel, a, gamma) if stream else lambda x, y: velocity_potential_function(x, y, x_vel, y_vel, a, gamma)
+def plotter_function(x_vel, y_vel, a, gamma, function = 'stream'):
+    if function == 'stream':
+        return lambda x, y: complex_potential(x, y, x_vel, y_vel, a, gamma)[1]
+    if function == 'velocity_potential':
+        return lambda x, y: complex_potential(x, y, x_vel, y_vel, a, gamma)[0]
+    if function == 'pressure':
+        return lambda x, y: pressure(x, y, x_vel, y_vel, a, gamma)
+    if function == 'velocity':
+        return lambda x, y: np.abs(velocity_field(x, y, x_vel, y_vel, a, gamma))
+    if function == 'jvelocity':
+        return lambda x, y: np.abs(joukowski_velocity(velocity_field(x, y, x_vel, y_vel, a, gamma), x, y))
 
-def plotter(f, joukowski=False, draw_shape=False, fig_limit = 2.5, fig_offset = [0, 0], contours = 100, colourmap = 'winter'):
+
+def plotter(f, joukowski=False, draw_shape=False, fig_limit = 2.5, fig_offset = [0, 0], contours = 100, colourmap = 'winter', fill = False):
     theta = np.linspace(0, 2 * np.pi, 400)
     r = np.linspace(a, 3.5, 400)
     x = z0[0] + r * np.cos(theta)
@@ -91,9 +109,11 @@ def plotter(f, joukowski=False, draw_shape=False, fig_limit = 2.5, fig_offset = 
         X, Y = joukowski_transform(X, Y, 1)
         x, y = joukowski_transform(x, y, 1)
     fig, ax = plt.subplots()
-    cs = ax.contour(X,Y,Z, levels=contours, cmap=mpl.colormaps[colourmap])
-    cs.cmap.set_over('red')
-    cs.cmap.set_under('blue')
+    if fill:
+        cs = ax.contourf(X,Y,Z, levels=contours, cmap=mpl.colormaps[colourmap])
+    else:
+        cs = ax.contour(X,Y,Z, levels=contours, cmap=mpl.colormaps[colourmap])
+    plt.colorbar(cs, ax=ax)
     cs.changed()
     ax.set_xlim(-1 * fig_limit + z0[0] + fig_offset[0], fig_limit + z0[0] + fig_offset[0])
     ax.set_ylim(-1 * fig_limit + z0[1] + fig_offset[1], fig_limit + z0[1] + fig_offset[1])
@@ -105,5 +125,4 @@ def plotter(f, joukowski=False, draw_shape=False, fig_limit = 2.5, fig_offset = 
 def question_a():
     x, y = generate_cylinder(a, z0, n=1000)
     xj, yj = joukowski_transform(x, y, 1)
-    show_plot([x, xj], [y, yj])
-
+    show_scatter_plot([x, xj], [y, yj])
