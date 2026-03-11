@@ -11,6 +11,8 @@
 \usepackage{braket}
 \usepackage{mathrsfs}
 \usepackage{bm}
+\usepackage{subcaption}
+\usepackage{float}
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -44,6 +46,7 @@
 \newcommand{\E}{\mathbb{E}}
 
 \newcommand{\mbeq}{\overset{!}{=}}
+\newcommand{\PATH}{figures/}
 
 \begin{document}
     \begin{center}
@@ -170,14 +173,12 @@ We can now calculate the units:
 \end{align*}
 The formula was derived with the non-dimensionalized length of $b$. We have to restore it at this point, so that we arrive at Newton per meter. This is also what is to be expected, as we are looking at a two-dimensional problem and the wind can only attack a one dimensional line instead of an area, which would be the real-world equivalent.
 
-
-
 \subsection*{a)}
     When plotting the Joukowski transform of a circle with the values $Z_0=-0.1 + 0.22i$ and $R = 1.12$, we indeed get a profile with a sharp edge on the right and rounded on the left, as can be seen in \ref{fig:a_scatter}
     
     \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.8\linewidth]{a_scatter.png}
+        \centering 
+        \includegraphics[width=0.8\linewidth]{\PATH a_scatter.png}
         \caption{Joukowski transform of a circle with $Z_0 = -0.1 + 0.22i$ and $R=1.12$}
         \label{fig:a_scatter}
     \end{figure}
@@ -191,14 +192,14 @@ The formula was derived with the non-dimensionalized length of $b$. We have to r
     
     \begin{subfigure}{0.48\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{b_streamfunction_gamma0.png}
+        \includegraphics[width=\linewidth]{\PATH b_streamfunction_gamma0.png}
         \caption{}
         \label{fig:b_streamfunction_gamma0}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.48\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{b_streamfunction_gamma-3.png}
+        \includegraphics[width=\linewidth]{\PATH b_streamfunction_gamma-3.png}
         \caption{}
         \label{fig:b_streamfunction_gamma-3}
     \end{subfigure}
@@ -211,24 +212,20 @@ The formula was derived with the non-dimensionalized length of $b$. We have to r
     
     \begin{subfigure}{0.48\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{b_velocity_potential_gamma0.png}
+        \includegraphics[width=\linewidth]{\PATH b_velocity_potential_gamma0.png}
         \caption{}
         \label{fig:b_velocity_potential_gamma0}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.48\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{b_velocity_potential_gamma-3.png}
+        \includegraphics[width=\linewidth]{\PATH b_velocity_potential_gamma-3.png}
         \caption{}
         \label{fig:b_velocity_potential_gamma-3}
     \end{subfigure}
     
     \caption{Velocity potential for $\Gamma = 0$ (a) and $\Gamma = -3$ (b)}
     \end{figure}
-
-    
-
-    
 
 \subsection*{c)}
 The streamfunctions are plotted in figure \ref{fig:c_streamfunction_gamma0} and \ref{fig:c_streamfunction_gamma-3}. Both boundary conditions seem to be met. Further away from the wing, streamfunction looks undisturbed and parallel, and the streamfunction is never perpendicular to the surface of the cylinder.
@@ -238,14 +235,14 @@ The streamfunctions are plotted in figure \ref{fig:c_streamfunction_gamma0} and 
     
     \begin{subfigure}{0.48\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{c_streamfunction_gamma0.png}
+        \includegraphics[width=\linewidth]{\PATH c_streamfunction_gamma0.png}
         \caption{}
         \label{fig:c_streamfunction_gamma0}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.48\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{c_streamfunction_gamma-3.png}
+        \includegraphics[width=\linewidth]{\PATH c_streamfunction_gamma-3.png}
         \caption{}
         \label{fig:c_streamfunction_gamma-3}
     \end{subfigure}
@@ -257,7 +254,7 @@ The streamfunctions are plotted in figure \ref{fig:c_streamfunction_gamma0} and 
 When zooming in at the stagnation piont around the sharp trailing edge, for the values $\Gamma = 0$ and $\Gamma = -3$, you can notice that the stagnation point moves more back on the wing when the magnitude of the vortex gets larger. A stagnation point on the wing itself creates turbulence and drag. The aim is therefore always to make the streamfunction smooth, to create an efficient wing. 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{d_streamfunction_gamma-3.png}
+    \includegraphics[width=0.5\linewidth]{\PATH d_streamfunction_gamma--2.8.png}
     \caption{Streamfunction zoomed in at the stagnation point around the sharp trailing edge. $\Gamma = -3$}
     \label{fig:placeholder}
 \end{figure}
@@ -266,43 +263,43 @@ When zooming in at the stagnation piont around the sharp trailing edge, for the 
 
 \subsection*{e)}
 
-    To find the best fitting $\Gamma$ to make our stream smooth, we find the value for $\Gamma$ such that the velocity at the trailing edge is as close as possible to 0. The value that we got from trying this out is $\Gamma = -2.5$. In figure \ref{fig:e_streamfunction_gamma-2.5} we plotted the streamfunction for this value and in figure \ref{fig:e_zoomed_streamfunction_gamma-2.5}, where we zoom in on the trailing edge, you can see better how smooth the streamfunction is. 
+    To find the best fitting $\Gamma$ to make our stream smooth, we find the value for $\Gamma$ such that the streamfunction around the training edge is as smooth as possible. The value that we got from trying this out is $\Gamma = -2.8$. In figure \ref{fig:e_streamfunction_gamma-2.5} we plotted the streamfunction for this value and in figure \ref{fig:e_zoomed_streamfunction_gamma-2.5}, where we zoom in on the trailing edge, you can see better how smooth the streamfunction is. 
     \begin{figure}[H]
     \centering
     
     \begin{subfigure}{0.48\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{e_streamfunction_gamma-2.5.png}
+        \includegraphics[width=\linewidth]{\PATH e_streamfunction_gamma--2.8.png}
         \caption{}
         \label{fig:e_streamfunction_gamma-2.5}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.48\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{e_zoomed_streamfunction_gamma-2.5.png}
+        \includegraphics[width=\linewidth]{\PATH e_zoomed_streamfunction_gamma--2.8.png}
         \caption{}
         \label{fig:e_zoomed_streamfunction_gamma-2.5}
     \end{subfigure}
     
-    \caption{Streamfunction for $\Gamma=2.5$ (a) and zoomed in on the trailing edge.}
+    \caption{Streamfunction for $\Gamma=-2.8$ (a) and zoomed in on the trailing edge.}
     \end{figure}
 
 \subsection*{f)}
-    For the value of $\Gamma = -2.5$, we plot the pressure field around the cylinder in \ref{fig:f_Cylinder_pressure} and around the wing in \ref{fig:f_Wing_pressure}.
+    For the value of $\Gamma = -2.8$, we plot the pressure field around the cylinder in \ref{fig:f_Cylinder_pressure} and around the wing in \ref{fig:f_Wing_pressure}.
     
        \begin{figure}[H]
     \centering
     
     \begin{subfigure}{0.48\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{f_Cylinder_pressure.png}
+        \includegraphics[width=\linewidth]{\PATH f_Cylinder_pressure.png}
         \caption{}
         \label{fig:f_Cylinder_pressure}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.48\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{f_Wing_pressure.png}
+        \includegraphics[width=\linewidth]{\PATH f_Wing_pressure.png}
         \caption{}
         \label{fig:f_Wing_pressure}
     \end{subfigure}
