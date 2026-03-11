@@ -4,7 +4,7 @@ This is a repository contains code for weekly exercises and hand-in projects tha
 
 ## Structure
 
-The repository is structured such that weekly eercises have their own folder and each projest has its own.
+The repository is structured such that weekly exercises have their own folder and each projest has its own.
 
 ### Project folders
 
