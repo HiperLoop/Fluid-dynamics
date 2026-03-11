@@ -28,8 +28,8 @@ plotter(plotter_function(1, a, correct_gamma), joukowski=True, draw_shape=True, 
 plotter(plotter_function(1, a, correct_gamma), joukowski=True, draw_shape=True, fig_limit=0.3, fig_offset=[2.1, -0.2], contours=800, save=False, filename=f'e_zoomed_streamfunction_gamma-{correct_gamma}.png', label='Streamfunction', units='m^2/s')
 #endregion
 #region f)
-plotter(plotter_function(1, a, correct_gamma, function='jpressure'), joukowski=True, draw_shape=True, fig_limit=2.5, contours=100, colourmap='turbo', fill=True, save=False, filename='f_Cylinder_pressure.png', label='Pressure', units='Pa')
-plotter(plotter_function(1, a, correct_gamma, function='pressure'), joukowski=False, draw_shape=True, fig_limit=2.5, contours=100, colourmap='turbo', fill=True, save=False, filename='f_Wing_pressure.png', label='Pressure', units='Pa')
+plotter(plotter_function(1, a, correct_gamma, function='jpressure'), joukowski=True, draw_shape=True, fig_limit=2.5, contours=100, colourmap='turbo', fill=True, save=False, filename='f_Wing_pressure.png', label='Pressure', units='Pa')
+plotter(plotter_function(1, a, correct_gamma, function='pressure'), joukowski=False, draw_shape=True, fig_limit=2.5, contours=100, colourmap='turbo', fill=True, save=False, filename='f_Cylinder_pressure.png', label='Pressure', units='Pa')
 #endregion
 #region g)
 print_force(1, a=a, gamma=correct_gamma)
