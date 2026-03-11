@@ -12,6 +12,8 @@ question_a(save=False, filename='a_scatter.png')
 #region b)
 plotter(plotter_function(1, a, 0), joukowski=False, draw_shape=True, fig_limit=2.5, contours=100, save=False, filename='b_streamfunction_gamma0.png', label='Streamfunction', units='m^2/s')
 plotter(plotter_function(1, a, -3), joukowski=False, draw_shape=True, fig_limit=2.5, contours=100, save=False, filename='b_streamfunction_gamma-3.png', label='Streamfunction', units='m^2/s')
+plotter(plotter_function(1, a, 0, function='velocity_potential'), joukowski=False, draw_shape=True, fig_limit=2.5, contours=100, save=False, filename='b_velocity_potential_gamma0.png', label='Velocity Potential', units='m^2/s')
+plotter(plotter_function(1, a, -3, function='velocity_potential'), joukowski=False, draw_shape=True, fig_limit=2.5, contours=100, save=False, filename='b_velocity_potential_gamma-3.png', label='Velocity Potential', units='m^2/s')
 #endregion
 #region c)
 plotter(plotter_function(1, a, 0), joukowski=True, draw_shape=True, fig_limit=2.5, contours=100, save=False, filename='c_streamfunction_gamma0.png', label='Streamfunction', units='m^2/s')
