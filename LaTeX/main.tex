@@ -1,0 +1,334 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=2cm,includefoot]{geometry}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{physics}
+\usepackage[shortlabels]{enumitem}
+\usepackage{cancel}
+\usepackage{lastpage}
+\usepackage{braket}
+\usepackage{mathrsfs}
+\usepackage{bm}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\newcommand{\AssignmentNum}{1}
+\lhead{Stromingsleer en transportverschijnselen (NS-265B)\\
+2025/2026}
+\rhead{Tereza Bílková (7137257), Bela F. Brunner (8002193),\\ Niels Epema (2927578), Adam Zich (0074187)}
+\fancyfoot{}
+\fancyfoot[R]{Page \thepage /\pageref{LastPage}}
+
+\newcommand{\vba}{\mathbf{A}}
+\newcommand{\vbb}{\mathbf{B}}
+\newcommand{\C}{\mathbf{C}}
+\newcommand{\x}{\mathbf{\hat{x}}}
+\newcommand{\y}{\mathbf{\hat{y}}}
+\newcommand{\z}{\mathbf{\hat{z}}}
+\newcommand{\vr}{\mathbf{\hat r}}
+\newcommand{\thet}{\boldsymbol{{\hat \theta}}}
+\newcommand{\ph}{\boldsymbol{{\hat \phi}}}
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\bb}{\mathbf{b}}
+\newcommand{\vl}{\mathbf{l}}
+\newcommand{\vv}{\mathbf{v}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\p}{\mathbb{P}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\E}{\mathbb{E}}
+
+\newcommand{\mbeq}{\overset{!}{=}}
+
+\begin{document}
+    \begin{center}
+    \LARGE{\bfseries{ Project \AssignmentNum}}
+    \line(1,0){430}
+    \end{center}
+
+\subsection*{a)}
+Note: In this problem, $Z$ refers to the coordinate in the cylinder-plane, which is why we also replace $z$ used within the definitions with $Z$.\\ 
+The three sections are the necessary combination of flow fields to conform to our boundary conditions that the flow far away is essentially parallel and the flow on the surface of the wing cannot be perpendicular to the circle. This is equivalent to saying that the streamline along the surface of our wing is constant, because constant streamfunctions are streamlines which are by definition parallel to the velocity. This can be reached by combining a parallel flow, a dipole and a circulation around the wing.\\
+The first term is the potential for a parallel flow, given on page 44 of the lecture notes \footnote{outside of an equation, otherwise we would refer to the equation number}, namely $f=(U_x-iU_y)Z$. 
+Using the complex velocity $Ue^{-i\alpha} = U_x - i U_y$, where $\alpha$ is the angle of attack, this gives $f=Ue^{-i\alpha}Z$. The parallel flow is the underlying wind that is valid far away from the wing.
+We can now combine this with a dipole field, which leads to no wind acting perpendicular to the wing. We start with the definition of the velocity potential for a complex dipole field in equation 3.104:
+\begin{align*}
+    f(Z)=-\frac{\mu_x+i\mu_y}{2\pi (Z-z_0)}
+\end{align*}
+where we can set $z_0=0$, by putting our plane at the origin. This then gives the velocity potential: 
+\begin{align*}
+    f(Z) &= Ue^{-i\alpha}Z - \frac{\mu_x+i\mu_y}{2\pi Z} \\
+    &= (U_x - i U_y)(x + iy) - \frac{\mu_x + i\mu_y}{2\pi (x + iy)} \\
+    &= (U_xx - U_yy) - \frac{\mu_xx + \mu_yy}{2\pi R^2} + i(U_xy - U_yx) - \frac{i(-\mu_xy + \mu_yx)}{2\pi R^2}
+\end{align*}
+The complex potential is defined as $f(Z) = \zeta(Z) + i \psi(Z)$ where $\psi$ is our streamfunction. To prove our second boundary condition we show that the streamfunction, which is equal to the imaginary part of the expression derived above, is zero (eqs. 3.113 and 3.114):
+\begin{align*}
+    \psi(Z) &= (U_xy - U_yx) - \frac{-\mu_xy + \mu_yx}{2\pi R^2} \\
+    &= x(-U_y - \frac{\mu_y}{2\pi R^2}) + y(U_x + \frac{\mu_x}{2\pi R^2}) \\
+    \psi(\theta) &= R\cos{\theta}(-U_y - \frac{\mu_y}{2\pi R^2}) + R\sin{\theta}(U_x + \frac{\mu_x}{2\pi R^2})
+\end{align*}
+This is only constant and zero if both terms are zero independent of $\theta$. Thereby, $\mu_x = -2\pi U_x R^2$ and $\mu_y = -2\pi U_y R^2$. Using $R^2 = 1$, which yields:
+\begin{align*}
+    f(Z) &= Ue^{-i\alpha}Z - \frac{-2\pi U_x+2\pi iU_y}{2\pi Z}\\
+    &=Ue^{-i\alpha}Z+\frac{U_x+iU_y}{Z}\\
+    &=Ue^{-i\alpha}Z+\frac{Ue^{i\alpha}}{Z}
+\end{align*}
+We add a third term corresponding to the vortex of the field around our wing because we need a source of lift, which requires a pressure difference below and above the ring and therefore a difference in velocity. It also does not interfere with the boundary conditions, as it cannot change the streamfunction among the that is its radius.  Furthermore, this curl will be necessary to calculate the velocity around the edge of the wing, as we will see in d) and e). The potential is given by eq. 3.108: 
+\begin{align*}
+    f(Z)=\frac{-i \Gamma }{2\pi}\ln (Z-z_0)
+\end{align*}
+Setting $z_0=0$, we get for the total potential: 
+\begin{align*}
+    f(Z) = U e^{-i\alpha} Z + \frac{U e^{i\alpha}}{Z}
+- \frac{i\Gamma}{2\pi} \ln(Z) \quad \square 
+\end{align*}
+
+\subsection*{c)}
+First, we show that $df/dz=\frac{df/dZ}{dZ/dz}$ by invoking the chain rule: If $y=f(u)$ and $u=g(x)$, then $\frac{dy}{dx}=\frac{dy}{du}\cdot \frac{du}{dx}$. Since $f$ is a function of $Z$ and $Z$ can be expressed as a function of $z$. Accordingly:
+\begin{align*}
+    \frac{df}{dz}=\frac{df}{dZ}\cdot \frac{dZ}{dz}=\frac{df/dZ}{dz/dZ}\quad \square 
+\end{align*}
+We can now evaluate both of the term separately. We first look at the bottom term. For this, we can just plug in the formula for $z(Z)=Z+\dfrac{1}{Z}$, where we used that $b=1$. Plugging this in gives: 
+\begin{align*}
+    \frac{dz}{dZ}=(Z+\frac{1}{Z})'=1-\frac{1}{Z^2}
+\end{align*}
+Secondly, we are looking at the top term: 
+\begin{align*}
+    \frac{df}{dZ}&=\left( U e^{-i\alpha} Z + \frac{U e^{i\alpha}}{Z}- \frac{i\Gamma}{2\pi} \ln(Z)\right)'\\
+&=U e^{-i\alpha} - \frac{U e^{i\alpha}}{Z^2}- \frac{i\Gamma}{2\pi Z} 
+\end{align*}
+Now putting both of them together: 
+\begin{align*}
+    \frac{df}{dz}&=\frac{U e^{-i\alpha} - \frac{U e^{i\alpha}}{Z^2}- \frac{i\Gamma}{2\pi Z} }{1-\frac{1}{Z^2}}\\
+    &=\frac{ZU e^{-i\alpha} - \frac{U e^{i\alpha}}{Z}- \frac{i\Gamma}{2\pi} }{Z-\frac{1}{Z}}
+\end{align*}
+Now, we replace $Z=e^{i\gamma}$, where we set the radius to be 1: 
+\begin{align*}
+    \frac{df}{dz}&=\frac{Ue^{i\gamma} e^{-i\alpha} - {U e^{i\alpha}}e^{-i\gamma}- \frac{i\Gamma}{2\pi} }{e^{i\gamma}-e^{-i\gamma}}\\
+    &=\frac{U(e^{i(\gamma-\alpha)}-e^{-i(\gamma-\alpha)})-\frac{i\Gamma}{2\pi} }{{e^{i\gamma}-e^{-i\gamma}}}\\
+    &=\frac{U2i\sin(\gamma-\alpha )-\frac{i\Gamma}{2\pi}}{2i\sin (\gamma)}\\
+    &=\frac{U\sin(\gamma -\alpha)-\Gamma/4\pi}{\sin(\gamma )} \quad \square 
+\end{align*}
+
+\subsection*{d)}
+We first want to find a relationship to relate $z$ to gamma. For this we can use the definition, $b=1$ and $R=1$: 
+\begin{align*}
+    z=Z+\frac{1}{Z}=e^{i\gamma }+e^{-i\gamma }=2\cos(\gamma)
+\end{align*}
+With this formula, we can find for $z=\pm 2$:
+\begin{align*}
+    2=2\cos(\gamma )\Leftrightarrow \gamma_{2z} =\arccos (1)=0 \\
+    -2=2\cos(\gamma )\Leftrightarrow \gamma_{-2z} =\arccos (-1)=\pi 
+\end{align*}
+If we know plug this into the formula obtained in c), we get: 
+
+\begin{align*}
+    \frac{df(2)}{dz}
+=
+\frac{U \sin(0 - \alpha) - \Gamma/(4\pi)}
+{\sin(0)}=\frac{U \sin(-\alpha) - \Gamma/(4\pi)}
+{0}\\
+\frac{df(-2)}{dz}
+=
+\frac{U \sin(\pi - \alpha) - \Gamma/(4\pi)}
+{\sin(\pi)}=\frac{U \sin(\pi-\alpha) - \Gamma/(4\pi)}
+{0}
+\end{align*}
+Therefore, in both cases the velocity actually approaches infinity when it gets closer to the edges, since we are dividing by 0. 
+
+\subsection*{e)}
+The correct choice for $\Gamma$ would be such that the upper part of the fraction also becomes zero, since then we could apply L'Hospital and find a real velocity. Since, as given by the problem, we are only concerned with the trailing edge, we only have to look at $z=2$, as $0\leq\alpha \leq \frac{\pi}{2}$ and the wind is standardly coming from the left, therefore the leading edge will always be at $z=-2$. Finding $\Gamma$:
+\begin{align*}
+    U\sin(-\alpha)-\Gamma /(4\pi)=0\\
+    \Leftrightarrow \Gamma =-{U\sin(\alpha)}{4\pi}
+\end{align*}
+We can now calculate the velocity at the edge with L'Hospital: 
+\begin{align*}
+    \frac{df(2)}{dz}=\lim _{\gamma \to 0 }U\frac{\sin(\gamma -\alpha)-\sin(-\alpha)}{\sin(\gamma)}=\lim _{\gamma \to 0 }U\frac{\cos(\gamma -\alpha)}{\cos(\gamma)}=U\frac{\cos(-\alpha)}{1}=U\cos (-\alpha)
+\end{align*}
+Since the Blasius theorem is just the foundation for the theorem of Kutta-Joukowski, we can just use this one. With this, we get: 
+\begin{align*}
+    \mathcal F_x-i\mathcal F_y&=i\rho U\Gamma \\
+    &=-i\rho U^2{\sin(\alpha)}{4\pi}
+\end{align*}
+Since we defined $U$ to be real, this gives: 
+\begin{align*}
+        \mathcal F_x-i\mathcal F_y&=-i\rho U^2{\sin(\alpha)}{4\pi} \\
+    \Leftrightarrow \mathcal F_y&=4\pi \rho U^2\sin (\alpha )\\
+    \Rightarrow \mathcal F_y&\propto \sin(\alpha)
+\end{align*}
+Since $\sin (0)=0$ and $\sin(\pi/2)=1$, we can see that the lift force is 0 if the wind comes directly from the side and becomes maximum the wind comes directly from the bottom, which makes sense intuitively. 
+
+We can now calculate the units: 
+\begin{align*}
+    [\mathcal F_y]=[ \rho U^2b]=\frac{\text{kg}\cdot \text{m}^2}{\text{m}^3\cdot \text{s}^2}\cdot\text{m}=\frac{\text{kg}}{ \text{s}^2}=\frac{\text {N}}{\text{m}}
+\end{align*}
+The formula was derived with the non-dimensionalized length of $b$. We have to restore it at this point, so that we arrive at Newton per meter. This is also what is to be expected, as we are looking at a two-dimensional problem and the wind can only attack a one dimensional line instead of an area, which would be the real-world equivalent.
+
+
+
+\subsection*{a)}
+    When plotting the Joukowski transform of a circle with the values $Z_0=-0.1 + 0.22i$ and $R = 1.12$, we indeed get a profile with a sharp edge on the right and rounded on the left, as can be seen in \ref{fig:a_scatter}
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\linewidth]{a_scatter.png}
+        \caption{Joukowski transform of a circle with $Z_0 = -0.1 + 0.22i$ and $R=1.12$}
+        \label{fig:a_scatter}
+    \end{figure}
+
+\subsection*{b)}
+
+    In figure \ref{fig:b_streamfunction_gamma0} and \ref{fig:b_streamfunction_gamma-3} you can see the plottet streamfunction around the cylinder for $\Gamma = 0$ and $\Gamma = -3$. The velocity potentials are plottet in figure \ref{fig:b_velocity_potential_gamma0} and \ref{fig:b_velocity_potential_gamma-3}.
+
+    \begin{figure}[H]
+    \centering
+    
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{b_streamfunction_gamma0.png}
+        \caption{}
+        \label{fig:b_streamfunction_gamma0}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{b_streamfunction_gamma-3.png}
+        \caption{}
+        \label{fig:b_streamfunction_gamma-3}
+    \end{subfigure}
+    
+    \caption{Streamfunction for $\Gamma = 0$ (a) and $\Gamma = -3$ (b)}
+    \end{figure}
+
+        \begin{figure}[H]
+    \centering
+    
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{b_velocity_potential_gamma0.png}
+        \caption{}
+        \label{fig:b_velocity_potential_gamma0}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{b_velocity_potential_gamma-3.png}
+        \caption{}
+        \label{fig:b_velocity_potential_gamma-3}
+    \end{subfigure}
+    
+    \caption{Velocity potential for $\Gamma = 0$ (a) and $\Gamma = -3$ (b)}
+    \end{figure}
+
+    
+
+    
+
+\subsection*{c)}
+The streamfunctions are plotted in figure \ref{fig:c_streamfunction_gamma0} and \ref{fig:c_streamfunction_gamma-3}. Both boundary conditions seem to be met. Further away from the wing, streamfunction looks undisturbed and parallel, and the streamfunction is never perpendicular to the surface of the cylinder.
+
+   \begin{figure}[H]
+    \centering
+    
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{c_streamfunction_gamma0.png}
+        \caption{}
+        \label{fig:c_streamfunction_gamma0}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{c_streamfunction_gamma-3.png}
+        \caption{}
+        \label{fig:c_streamfunction_gamma-3}
+    \end{subfigure}
+    
+    \caption{Streamfunction for $\Gamma = 0$ (a) and $\Gamma = -3$ (b) after Joukowski transformation}
+    \end{figure}
+
+\subsection*{d)}
+When zooming in at the stagnation piont around the sharp trailing edge, for the values $\Gamma = 0$ and $\Gamma = -3$, you can notice that the stagnation point moves more back on the wing when the magnitude of the vortex gets larger. A stagnation point on the wing itself creates turbulence and drag. The aim is therefore always to make the streamfunction smooth, to create an efficient wing. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{d_streamfunction_gamma-3.png}
+    \caption{Streamfunction zoomed in at the stagnation point around the sharp trailing edge. $\Gamma = -3$}
+    \label{fig:placeholder}
+\end{figure}
+
+
+
+\subsection*{e)}
+
+    To find the best fitting $\Gamma$ to make our stream smooth, we find the value for $\Gamma$ such that the velocity at the trailing edge is as close as possible to 0. The value that we got from trying this out is $\Gamma = -2.5$. In figure \ref{fig:e_streamfunction_gamma-2.5} we plotted the streamfunction for this value and in figure \ref{fig:e_zoomed_streamfunction_gamma-2.5}, where we zoom in on the trailing edge, you can see better how smooth the streamfunction is. 
+    \begin{figure}[H]
+    \centering
+    
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{e_streamfunction_gamma-2.5.png}
+        \caption{}
+        \label{fig:e_streamfunction_gamma-2.5}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{e_zoomed_streamfunction_gamma-2.5.png}
+        \caption{}
+        \label{fig:e_zoomed_streamfunction_gamma-2.5}
+    \end{subfigure}
+    
+    \caption{Streamfunction for $\Gamma=2.5$ (a) and zoomed in on the trailing edge.}
+    \end{figure}
+
+\subsection*{f)}
+    For the value of $\Gamma = -2.5$, we plot the pressure field around the cylinder in \ref{fig:f_Cylinder_pressure} and around the wing in \ref{fig:f_Wing_pressure}.
+    
+       \begin{figure}[H]
+    \centering
+    
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{f_Cylinder_pressure.png}
+        \caption{}
+        \label{fig:f_Cylinder_pressure}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{f_Wing_pressure.png}
+        \caption{}
+        \label{fig:f_Wing_pressure}
+    \end{subfigure}
+    
+    \caption{The pressure field plotted for the cylinder (a) and the wing (b).}
+    \end{figure}
+
+\subsection*{g)}
+    We find the forces on the cylinder to be:
+    $$
+    F_x = -0.000065 \text{ N/m}, \quad F_y = 3.429954 \text{ N/m}
+    $$
+    For the wing we find the same values:
+    $$
+    F_x = -0.000065 \text{ N/m}, \quad F_y = 3.429954 \text{ N/m}
+    $$
+
+\subsection*{h)}
+    The theoretical results from the lectures were calculated using Kutta Joukowski theorem:
+    $$
+    F_y=i\rho U\Gamma
+    $$
+    Filling in the values for $U, \rho$ and $\Gamma$:
+    $$
+    F_y = 1.225 \text{ kg/m^2 } \cdot 1 \cdot -2.8 = -3.43 \text{ N/m}
+    $$
+    This corresponds with the values that we obtained.
+
+\end{document}

@@ -1,5 +1,4 @@
 from main import plotter_function, plotter, pressure, print_force, question_a, velocity, joukowski_velocity
-import numpy as np
 
 #Circle, wind and circulation constants
 a = 1.12
@@ -21,7 +20,8 @@ plotter(plotter_function(1, a, 0), joukowski=True, draw_shape=True, fig_limit=2.
 plotter(plotter_function(1, a, -3), joukowski=True, draw_shape=True, fig_limit=2.5, contours=100, save=False, filename='c_streamfunction_gamma-3.png', label='Streamfunction', units='m^2/s')
 #endregion
 #region d)
-plotter(plotter_function(1, a, -0.2), joukowski=True, draw_shape=True, fig_limit=0.3, fig_offset=[2.1, -0.2], contours=400, save=False, filename=f'd_streamfunction_gamma-{-0.2}.png', label='Streamfunction', units='m^2/s')
+plotter(plotter_function(1, a, -0.2), joukowski=True, draw_shape=True, fig_limit=0.3, fig_offset=[2.1, -0.2], contours=400, save=False, filename=f'd_streamfunction_gamma-{-0.3}.png', label='Streamfunction', units='m^2/s')
+plotter(plotter_function(1, a, -0.2), joukowski=True, draw_shape=True, fig_limit=0.3, fig_offset=[2.1, -0.2], contours=400, save=False, filename=f'd_streamfunction_gamma-{-3}.png', label='Streamfunction', units='m^2/s')
 #endregion
 #region e)
 plotter(plotter_function(1, a, correct_gamma), joukowski=True, draw_shape=True, fig_limit=2.5, contours=100, save=False, filename=f'e_streamfunction_gamma-{correct_gamma}.png', label='Streamfunction', units='m^2/s')
