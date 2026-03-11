@@ -4,5 +4,8 @@ This is a repository contains code for weekly exercises and hand-in projects tha
 
 ## Structure
 
-The code files are sorted into either the weekly exercises or project folders in the python directory.
-The LaTeX files are sorted in the same way in the LaTeX directory.
+The repository is structured such that weekly eercises have their own folder and each projest has its own.
+
+### Project folders
+
+The project folders are numberd. All contain a README file explaining what the project is about and how the code works. Then they contain a src directory that contains all the code and a tex directory that contains all the LaTeX documents.
