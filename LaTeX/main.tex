@@ -54,6 +54,8 @@
     \line(1,0){430}
     \end{center}
 
+\section*{Part 1 -- A flat airplane wing (analytic solution)}
+
 \subsection*{a)}
 Note: In this problem, $Z$ refers to the coordinate in the cylinder-plane, which is why we also replace $z$ used within the definitions with $Z$.\\ 
 The three sections are the necessary combination of flow fields to conform to our boundary conditions that the flow far away is essentially parallel and the flow on the surface of the wing cannot be perpendicular to the circle. This is equivalent to saying that the streamline along the surface of our wing is constant, because constant streamfunctions are streamlines which are by definition parallel to the velocity. This can be reached by combining a parallel flow, a dipole and a circulation around the wing.\\
@@ -172,6 +174,8 @@ We can now calculate the units:
     [\mathcal F_y]=[ \rho U^2b]=\frac{\text{kg}\cdot \text{m}^2}{\text{m}^3\cdot \text{s}^2}\cdot\text{m}=\frac{\text{kg}}{ \text{s}^2}=\frac{\text {N}}{\text{m}}
 \end{align*}
 The formula was derived with the non-dimensionalized length of $b$. We have to restore it at this point, so that we arrive at Newton per meter. This is also what is to be expected, as we are looking at a two-dimensional problem and the wind can only attack a one dimensional line instead of an area, which would be the real-world equivalent.
+
+\section*{Part 2 -- A realistic wing profile (numerical)}
 
 \subsection*{a)}
     When plotting the Joukowski transform of a circle with the values $Z_0=-0.1 + 0.22i$ and $R = 1.12$, we indeed get a profile with a sharp edge on the right and rounded on the left, as can be seen in \ref{fig:a_scatter}.
