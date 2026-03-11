@@ -93,6 +93,43 @@ Setting $z_0=0$, we get for the total potential:
 - \frac{i\Gamma}{2\pi} \ln(Z) \quad \square 
 \end{align*}
 
+\subsection*{b)}
+To find the inverse of the Joukowski transformation we rearrange the transform to isolate $Z$ (we take b = 1):
+\begin{align*}
+    z = Z + \frac{1}{Z} \\
+    Zz = Z^2 + 1 \\
+    Z^2 - Zz + 1  = 0 \\
+    Z = \frac{z \pm \sqrt{z^2 - 4}}{2} \\
+    Z = \frac{z}{2} \pm \sqrt{\left(\frac{z}{2}\right)^2 - 1}
+\end{align*}
+Since there are two roots to the quadratic, there are two possible $Z$ corresponding to a transformed $z$ and therefore the inverse of the transformation is not unique.
+Writing this out as $Z = X + iY$ and $z = x + iy$:
+\begin{align*}
+    X + iY &= \frac{x + iy}{2} \pm \sqrt{\left(\frac{x+iy}{2}\right)^2 - 1}\\
+    &= \frac{x + iy}{2} \pm \sqrt{\left(\frac{x^2 - y^2 + 2ixy}{4}\right) - 1}\\
+    &= \frac{x + iy}{2} \pm \frac{1}{2}\sqrt{x^2 - y^2 - 4 + 2ixy}
+\end{align*}
+\begin{align*}
+    2X + 2iY - x - iy &= \sqrt{x^2 - y^2 - 4 + 2ixy} \\
+    (2X - x + i(2Y - y))^2 &= x^2 - y^2 - 4 + 2ixy \\
+    (2X - x)^2 - (2Y - y)^2 + i(2X - x)&(2Y - y) = x^2 - y^2 - 4 + 2ixy
+\end{align*}
+Equating real and imaginary parts, respectively,
+\begin{align*}
+    (2X - x)^2 - (2Y - y)^2 &= x^2 - y^2 - 4\\
+    (2X - x)(2Y -y) &= xy
+\end{align*}
+The real part gives:
+$$X^2 - Y^2 - Xx + Yy = -1$$
+While the imaginary part gives:
+$$2XY - Xy - Yx = 0$$
+which can be written as:
+$$(2X - 1)Y = Xy \Rightarrow y = \frac{2X - 1}{X}Y$$
+which means that the signs of the imaginary parts $Y$ and $y$ are the same. \\
+For points on the x-axis, $y = 0$, so $Z$ becomes:
+$$Z = \frac{x}{2} \pm \sqrt{\left(\frac{x}{2}\right)^2 - 1}$$
+If $|z| > 2$, for $y = 0$ this means $|x| > 2$, therefore $\left(\frac{x}{2}\right) \geq 1$ and $\left(\frac{x}{2}\right)^2 - 1 \geq 0$ so $Z$ is real. Since we are interested in the flow outside of our circle, we take $|Z| > 1$.
+
 \subsection*{c)}
 First, we show that $df/dz=\frac{df/dZ}{dZ/dz}$ by invoking the chain rule: If $y=f(u)$ and $u=g(x)$, then $\frac{dy}{dx}=\frac{dy}{du}\cdot \frac{du}{dx}$. Since $f$ is a function of $Z$ and $Z$ can be expressed as a function of $z$. Accordingly:
 \begin{align*}
