@@ -51,7 +51,42 @@
     \line(1,0){430}
     \end{center}
 
-\section*{Part 1 -- A flat airplane wing (analytic solution)}
+\subsection*{a)}
+Note: In this problem, $Z$ refers to the coordinate in the cylinder-plane, which is why we also replace $z$ used within the definitions with $Z$.\\ 
+The three sections are the necessary combination of flow fields to conform to our boundary conditions that the flow far away is essentially parallel and the flow on the surface of the wing cannot be perpendicular to the circle. This is equivalent to saying that the streamline along the surface of our wing is constant, because constant streamfunctions are streamlines which are by definition parallel to the velocity. This can be reached by combining a parallel flow, a dipole and a circulation around the wing.\\
+The first term is the potential for a parallel flow, given on page 44 of the lecture notes \footnote{outside of an equation, otherwise we would refer to the equation number}, namely $f=(U_x-iU_y)Z$. 
+Using the complex velocity $Ue^{-i\alpha} = U_x - i U_y$, where $\alpha$ is the angle of attack, this gives $f=Ue^{-i\alpha}Z$. The parallel flow is the underlying wind that is valid far away from the wing.
+We can now combine this with a dipole field, which leads to no wind acting perpendicular to the wing. We start with the definition of the velocity potential for a complex dipole field in equation 3.104:
+\begin{align*}
+    f(Z)=-\frac{\mu_x+i\mu_y}{2\pi (Z-z_0)}
+\end{align*}
+where we can set $z_0=0$, by putting our plane at the origin. This then gives the velocity potential: 
+\begin{align*}
+    f(Z) &= Ue^{-i\alpha}Z - \frac{\mu_x+i\mu_y}{2\pi Z} \\
+    &= (U_x - i U_y)(x + iy) - \frac{\mu_x + i\mu_y}{2\pi (x + iy)} \\
+    &= (U_xx - U_yy) - \frac{\mu_xx + \mu_yy}{2\pi R^2} + i(U_xy - U_yx) - \frac{i(-\mu_xy + \mu_yx)}{2\pi R^2}
+\end{align*}
+The complex potential is defined as $f(Z) = \zeta(Z) + i \psi(Z)$ where $\psi$ is our streamfunction. To prove our second boundary condition we show that the streamfunction, which is equal to the imaginary part of the expression derived above, is zero (eqs. 3.113 and 3.114):
+\begin{align*}
+    \psi(Z) &= (U_xy - U_yx) - \frac{-\mu_xy + \mu_yx}{2\pi R^2} \\
+    &= x(-U_y - \frac{\mu_y}{2\pi R^2}) + y(U_x + \frac{\mu_x}{2\pi R^2}) \\
+    \psi(\theta) &= R\cos{\theta}(-U_y - \frac{\mu_y}{2\pi R^2}) + R\sin{\theta}(U_x + \frac{\mu_x}{2\pi R^2})
+\end{align*}
+This is only constant and zero if both terms are zero independent of $\theta$. Thereby, $\mu_x = -2\pi U_x R^2$ and $\mu_y = -2\pi U_y R^2$. Using $R^2 = 1$, which yields:
+\begin{align*}
+    f(Z) &= Ue^{-i\alpha}Z - \frac{-2\pi U_x+2\pi iU_y}{2\pi Z}\\
+    &=Ue^{-i\alpha}Z+\frac{U_x+iU_y}{Z}\\
+    &=Ue^{-i\alpha}Z+\frac{Ue^{i\alpha}}{Z}
+\end{align*}
+We add a third term corresponding to the vortex of the field around our wing because we need a source of lift, which requires a pressure difference below and above the ring and therefore a difference in velocity. It also does not interfere with the boundary conditions, as it cannot change the streamfunction among the that is its radius.  Furthermore, this curl will be necessary to calculate the velocity around the edge of the wing, as we will see in d) and e). The potential is given by eq. 3.108: 
+\begin{align*}
+    f(Z)=\frac{-i \Gamma }{2\pi}\ln (Z-z_0)
+\end{align*}
+Setting $z_0=0$, we get for the total potential: 
+\begin{align*}
+    f(Z) = U e^{-i\alpha} Z + \frac{U e^{i\alpha}}{Z}
+- \frac{i\Gamma}{2\pi} \ln(Z) \quad \square 
+\end{align*}
 
 \subsection*{c)}
 First, we show that $df/dz=\frac{df/dZ}{dZ/dz}$ by invoking the chain rule: If $y=f(u)$ and $u=g(x)$, then $\frac{dy}{dx}=\frac{dy}{du}\cdot \frac{du}{dx}$. Since $f$ is a function of $Z$ and $Z$ can be expressed as a function of $z$. Accordingly:
