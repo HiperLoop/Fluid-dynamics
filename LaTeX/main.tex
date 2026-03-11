@@ -252,27 +252,43 @@ The streamfunctions are plotted in figure \ref{fig:c_streamfunction_gamma0} and 
     \end{figure}
 
 \subsection*{d)}
-When zooming in at the stagnation point around the sharp trailing edge, for the values $\Gamma = 0$ and $\Gamma = -2.8$, which we can see in figure \ref{fig:placeholder0} and \ref{fig:placeholder1} respectively, you can notice that the stagnation point moves more back on the wing when the magnitude of the vortex gets larger. A stagnation point on the wing itself creates turbulence and drag. The aim is therefore always to make the streamfunction smooth, to create an efficient wing. 
+When zooming in at the stagnation point around the sharp trailing edge, you can clearly notice (fig. \ref{fig:d_streamfunctions_zoom}) that the stagnation point moves back on the wing when the magnitude of the vortex increases. A stagnation point on the wing itself creates turbulence and drag. The aim is therefore always to make the streamfunction smooth, to create an efficient wing. Using this we can adjust the $\Gamma$ to get a smooth flow.
+
 \begin{figure}[H]
     \centering
-
+    
     \begin{subfigure}{0.48\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{\PATH d_streamfunction_gamma--0.2.png}
+        \includegraphics[width=\linewidth]{d_streamfunction_zoom_gamma0.png}
         \caption{}
-        \label{fig:placeholder0}
+        \label{fig:e_streamfunction_zoom_gamma0}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.48\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{\PATH d_streamfunction_gamma--2.8.png}
+        \includegraphics[width=\linewidth]{d_streamfunction_zoom_gamma-1.png}
         \caption{}
-        \label{fig:placeholder1}
+        \label{fig:e_zoomed_streamfunction_zoom_gamma-1}
+    \end{subfigure} \\
+    \begin{subfigure}
+        {0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{d_streamfunction_zoom_gamma-2.png}
+        \caption{}
+        \label{fig:e_zoomed_streamfunction_zoom_gamma-2}
     \end{subfigure}
-
-    \caption{Streamfunction zoomed in at the stagnation point around the sharp trailing edge for $\Gamma = -0.2$ (a) and $\Gamma = -2.8$ (b)}
-    \label{fig:placeholder}
-\end{figure}
+    \hfill
+    \begin{subfigure}
+        {0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{d_streamfunction_zoom_gamma-3.png}
+        \caption{}
+        \label{fig:d_streamfunction_zoom_gamma-3}
+    \end{subfigure}
+    
+    \caption{Streamfunction for $\Gamma=0$ (a), $\Gamma = -1$ (b), $\Gamma = -2$ (c), and $\Gamma = -3$ (d) zoomed in on the trailing edge.}
+    \label{fig:d_streamfunctions_zoom}
+    \end{figure}
 
 
 
