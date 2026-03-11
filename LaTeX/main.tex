@@ -174,7 +174,7 @@ We can now calculate the units:
 The formula was derived with the non-dimensionalized length of $b$. We have to restore it at this point, so that we arrive at Newton per meter. This is also what is to be expected, as we are looking at a two-dimensional problem and the wind can only attack a one dimensional line instead of an area, which would be the real-world equivalent.
 
 \subsection*{a)}
-    When plotting the Joukowski transform of a circle with the values $Z_0=-0.1 + 0.22i$ and $R = 1.12$, we indeed get a profile with a sharp edge on the right and rounded on the left, as can be seen in \ref{fig:a_scatter}
+    When plotting the Joukowski transform of a circle with the values $Z_0=-0.1 + 0.22i$ and $R = 1.12$, we indeed get a profile with a sharp edge on the right and rounded on the left, as can be seen in \ref{fig:a_scatter}.
     
     \begin{figure}[H]
         \centering 
@@ -185,7 +185,8 @@ The formula was derived with the non-dimensionalized length of $b$. We have to r
 
 \subsection*{b)}
 
-    In figure \ref{fig:b_streamfunction_gamma0} and \ref{fig:b_streamfunction_gamma-3} you can see the plottet streamfunction around the cylinder for $\Gamma = 0$ and $\Gamma = -3$. The velocity potentials are plottet in figure \ref{fig:b_velocity_potential_gamma0} and \ref{fig:b_velocity_potential_gamma-3}.
+    In figure \ref{fig:b_streamfunction_gamma0} and \ref{fig:b_streamfunction_gamma-3} you can see the plotted streamfunction around the cylinder for $\Gamma = 0$ and $\Gamma = -3$. The velocity potentials are plotted in figure \ref{fig:b_velocity_potential_gamma0} and \ref{fig:b_velocity_potential_gamma-3}.
+    We see a weird jump across a horizontal line in \ref{fig:b_velocity_potential_gamma-3} as predicted by the question. It happens along a line parallel to the $x-$axis going through the centre of the cylinder. It happens because the air directly above this line is accelerated upwards and the air underneath is going downwards, thus creating a sudden jump in potential.
 
     \begin{figure}[H]
     \centering
@@ -251,11 +252,25 @@ The streamfunctions are plotted in figure \ref{fig:c_streamfunction_gamma0} and 
     \end{figure}
 
 \subsection*{d)}
-When zooming in at the stagnation piont around the sharp trailing edge, for the values $\Gamma = 0$ and $\Gamma = -3$, you can notice that the stagnation point moves more back on the wing when the magnitude of the vortex gets larger. A stagnation point on the wing itself creates turbulence and drag. The aim is therefore always to make the streamfunction smooth, to create an efficient wing. 
+When zooming in at the stagnation point around the sharp trailing edge, for the values $\Gamma = 0$ and $\Gamma = -2.8$, which we can see in figure \ref{fig:placeholder0} and \ref{fig:placeholder1} respectively, you can notice that the stagnation point moves more back on the wing when the magnitude of the vortex gets larger. A stagnation point on the wing itself creates turbulence and drag. The aim is therefore always to make the streamfunction smooth, to create an efficient wing. 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{\PATH d_streamfunction_gamma--2.8.png}
-    \caption{Streamfunction zoomed in at the stagnation point around the sharp trailing edge. $\Gamma = -3$}
+
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{\PATH d_streamfunction_gamma--0.2.png}
+        \caption{}
+        \label{fig:placeholder0}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{\PATH d_streamfunction_gamma--2.8.png}
+        \caption{}
+        \label{fig:placeholder1}
+    \end{subfigure}
+
+    \caption{Streamfunction zoomed in at the stagnation point around the sharp trailing edge for $\Gamma = -0.2$ (a) and $\Gamma = -2.8$ (b)}
     \label{fig:placeholder}
 \end{figure}
 
@@ -281,7 +296,7 @@ When zooming in at the stagnation piont around the sharp trailing edge, for the 
         \label{fig:e_zoomed_streamfunction_gamma-2.5}
     \end{subfigure}
     
-    \caption{Streamfunction for $\Gamma=-2.8$ (a) and zoomed in on the trailing edge.}
+    \caption{Streamfunction for $\Gamma=-2.8$ (a) and zoomed in on the trailing edge (b).}
     \end{figure}
 
 \subsection*{f)}
@@ -319,13 +334,13 @@ When zooming in at the stagnation piont around the sharp trailing edge, for the 
 
 \subsection*{h)}
     The theoretical results from the lectures were calculated using Kutta Joukowski theorem:
-    $$
-    F_y=i\rho U\Gamma
-    $$
-    Filling in the values for $U, \rho$ and $\Gamma$:
-    $$
-    F_y = 1.225 \text{ kg/m^2 } \cdot 1 \cdot -2.8 = -3.43 \text{ N/m}
-    $$
+    \begin{align*}
+        F_x - iF_y=i\rho U\Gamma
+    \end{align*}
+    Since all the values for $U, \rho$ and $\Gamma$ are real, we get only a force in the $y$-direction. We fill in the values and get
+    \begin{align*}
+        F_y = (-1) \cdot 1.225 \text{ kg/m$^2$ } \cdot 1\text{ m/s} \cdot (-2.8) \text{ m$^2$/s}= 3.43 \text{ N/m}.
+    \end{align*}
     This corresponds with the values that we obtained.
 
 \end{document}
