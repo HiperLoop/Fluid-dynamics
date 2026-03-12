@@ -62,10 +62,10 @@
 We argue that we can describe the flow using mass and momentum balance as
 
 \begin{align*}
-    \partial_x^2(\mathbf v)+\partial _x\nabla v_x&=\nabla ^2v_x\\
-    \partial ^2_xv_x+\partial ^2_xv_y+\partial^2_xv_z+\partial _x\nabla \cdot v_x&=\partial_x^2v_x+\partial_y^2v_x+\partial_z ^2v_x\\
-    \partial ^2_xv_x+\partial ^2_xv_y+\partial^2_xv_z+\partial _{xy}v_x+\partial_{xz}v_x&=\partial_y^2v_x+\partial_z ^2v_x\\
-    \partial^2_x(v_x+v_y+v_z)&=(\partial _y^2+\partial_z^2-\partial _{xy}-\partial_{xz})v_x
+    \partial_x^2(\mathbf v)+\partial _x\nabla v_x&=\nabla ^2v_x,\\
+    \partial ^2_xv_x+\partial ^2_xv_y+\partial^2_xv_z+\partial _x\nabla \cdot v_x&=\partial_x^2v_x+\partial_y^2v_x+\partial_z ^2v_x,\\
+    \partial ^2_xv_x+\partial ^2_xv_y+\partial^2_xv_z+\partial _{xy}v_x+\partial_{xz}v_x&=\partial_y^2v_x+\partial_z ^2v_x,\\
+    \partial^2_x(v_x+v_y+v_z)&=(\partial _y^2+\partial_z^2-\partial _{xy}-\partial_{xz})v_x.
 \end{align*}
 
 This is because TODO
@@ -75,16 +75,48 @@ This is because TODO
 In our situation, the equations, using $v_x = u$, simplify to
 
 \begin{align*}
-    \rho \,\partial_t u &= -\partial_x p + \mu \,\partial_z^2 u \\
-    \partial_z v_z &= 0, \qquad \text{hence } v_z = 0 \\
-    0 &= -\partial_y p \\
-    0 &= -\partial_z p - \rho g \\
-    p(x,z,t) &= -\rho g z + C(x,y,t)
+    \rho \,\partial_t u &= -\partial_x p + \mu \,\partial_z^2 u, \\
+    \partial_z v_z &= 0, \qquad \text{hence } v_z = 0, \\
+    0 &= -\partial_y p, \\
+    0 &= -\partial_z p - \rho g, \\
+    p(x,z,t) &= -\rho g z + C(x,y,t).
 \end{align*}
 
+This is because TODO
+
+Additionally, $C$ does not depend on $x, y$, therefore we can siplify the equations even further to TODO
+
 \subsection*{c)}
+
+The equations of motion and boundary conditions then become
+\begin{align*}
+    (1)\quad & \rho \,\partial_t u = \mu \,\partial_z^2 u, \\
+    (2)\quad & z = 0 :\; u = U(t), \\
+    (3)\quad & z = \infty :\; u \rightarrow 0, \\
+    (4)\quad & t = 0 :\; u = 0.
+\end{align*}
+
+This is beacause TODO
+
 \subsection*{d)}
+
+After the plate has oscilated a few times, the equaiton of motion becomes
+\begin{align*}
+    u(z,t) = U_0 e^{-kz} \sin\!\left( 2\pi \frac{t - \tau(z)}{T} \right),
+\end{align*}
+where $k > 0$ is a constant and $\tau(z)$ a height-ependent phase shift.\\
+
+We can assume this because TODO\\
+
+When we insert this into equations in c) we see that this provides a solution with correct $k$ and $\tau(z)$ as TODO
+
+We find that $k = \sqrt{\dfrac{\rho \omega}{2\mu}}$ where $\omega = 2\pi/T$ and $\tau(z) = TODO$. It makes sense that $k$ increases with $\omega$ as TODO
+
 \subsection*{e)}
+
+The velocity field $u(z, t)$ changes over a period $T$ as TODO\\
+
+When we plot the field at time $t = 0$ (Figure \ref{fig:velocity_t0}) and $t = T/4$ (Figure \ref{fig:velocity_tT/4}) we see that TODO
 
     \begin{figure}[H]
     \centering
