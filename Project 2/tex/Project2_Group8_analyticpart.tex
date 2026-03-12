@@ -58,7 +58,30 @@
 \section{Analytic part}
 
 \subsection*{a)}
+
+We argue that we can describe the flow using mass and momentum balance as
+
+\begin{align*}
+    \partial_x^2(\mathbf v)+\partial _x\nabla v_x&=\nabla ^2v_x\\
+    \partial ^2_xv_x+\partial ^2_xv_y+\partial^2_xv_z+\partial _x\nabla \cdot v_x&=\partial_x^2v_x+\partial_y^2v_x+\partial_z ^2v_x\\
+    \partial ^2_xv_x+\partial ^2_xv_y+\partial^2_xv_z+\partial _{xy}v_x+\partial_{xz}v_x&=\partial_y^2v_x+\partial_z ^2v_x\\
+    \partial^2_x(v_x+v_y+v_z)&=(\partial _y^2+\partial_z^2-\partial _{xy}-\partial_{xz})v_x
+\end{align*}
+
+This is because TODO
+
 \subsection*{b)}
+
+In our situation, the equations, using $v_x = u$, simplify to
+
+\begin{align*}
+    \rho \,\partial_t u &= -\partial_x p + \mu \,\partial_z^2 u \\
+    \partial_z v_z &= 0, \qquad \text{hence } v_z = 0 \\
+    0 &= -\partial_y p \\
+    0 &= -\partial_z p - \rho g \\
+    p(x,z,t) &= -\rho g z + C(x,y,t)
+\end{align*}
+
 \subsection*{c)}
 \subsection*{d)}
 \subsection*{e)}
