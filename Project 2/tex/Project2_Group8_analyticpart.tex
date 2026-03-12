@@ -1,0 +1,113 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=2cm,includefoot]{geometry}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{physics}
+\usepackage[shortlabels]{enumitem}
+\usepackage{cancel}
+\usepackage{lastpage}
+\usepackage{braket}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{subcaption}
+\usepackage{float}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\newcommand{\AssignmentNum}{2}
+\lhead{Stromingsleer en transportverschijnselen (NS-265B)\\
+2025/2026}
+\rhead{Tereza Bílková (7137257), Bela F. Brunner (8002193),\\ Niels Epema (2927578), Adam Zich (0074187)}
+\fancyfoot{}
+\fancyfoot[R]{Page \thepage /\pageref{LastPage}}
+
+\newcommand{\vba}{\mathbf{A}}
+\newcommand{\vbb}{\mathbf{B}}
+\newcommand{\C}{\mathbf{C}}
+\newcommand{\x}{\mathbf{\hat{x}}}
+\newcommand{\y}{\mathbf{\hat{y}}}
+\newcommand{\z}{\mathbf{\hat{z}}}
+\newcommand{\vr}{\mathbf{\hat r}}
+\newcommand{\thet}{\boldsymbol{{\hat \theta}}}
+\newcommand{\ph}{\boldsymbol{{\hat \phi}}}
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\bb}{\mathbf{b}}
+\newcommand{\vl}{\mathbf{l}}
+\newcommand{\vv}{\mathbf{v}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\p}{\mathbb{P}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\E}{\mathbb{E}}
+
+\newcommand{\mbeq}{\overset{!}{=}}
+\newcommand{\PATH}{figures/}
+
+\begin{document}
+    \setlength{\headheight}{23.10004pt}
+    \begin{center}
+    \LARGE{\bfseries{ Project \AssignmentNum}}
+    \line(1,0){430}
+    \end{center}
+
+\section{Analytic part}
+
+\subsection*{a)}
+
+We argue that we can describe the flow using mass and momentum balance as
+
+\begin{align*}
+    \partial_x^2(\mathbf v)+\partial _x\nabla v_x&=\nabla ^2v_x\\
+    \partial ^2_xv_x+\partial ^2_xv_y+\partial^2_xv_z+\partial _x\nabla \cdot v_x&=\partial_x^2v_x+\partial_y^2v_x+\partial_z ^2v_x\\
+    \partial ^2_xv_x+\partial ^2_xv_y+\partial^2_xv_z+\partial _{xy}v_x+\partial_{xz}v_x&=\partial_y^2v_x+\partial_z ^2v_x\\
+    \partial^2_x(v_x+v_y+v_z)&=(\partial _y^2+\partial_z^2-\partial _{xy}-\partial_{xz})v_x
+\end{align*}
+
+This is because TODO
+
+\subsection*{b)}
+
+In our situation, the equations, using $v_x = u$, simplify to
+
+\begin{align*}
+    \rho \,\partial_t u &= -\partial_x p + \mu \,\partial_z^2 u \\
+    \partial_z v_z &= 0, \qquad \text{hence } v_z = 0 \\
+    0 &= -\partial_y p \\
+    0 &= -\partial_z p - \rho g \\
+    p(x,z,t) &= -\rho g z + C(x,y,t)
+\end{align*}
+
+\subsection*{c)}
+\subsection*{d)}
+\subsection*{e)}
+
+    \begin{figure}[H]
+    \centering
+    
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{\PATH 1_e_Velocity_profile_t=0.png}
+        \caption{}
+        \label{fig:velocity_t0}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{\PATH 1_e_Velocity_profile_t=Tover4.png}
+        \caption{}
+        \label{fig:velocity_tT/4}
+    \end{subfigure}
+
+    \caption{Velocity field for $t = 0$ (a) and $t = T/4$ (b)}
+    \end{figure}
+
+\section{Computational part}
+
+All explanations for the computational part are in the jupyter notebook.
+
+\end{document}
