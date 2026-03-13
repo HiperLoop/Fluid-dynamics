@@ -99,22 +99,55 @@ The equations of motion and boundary conditions then become
 This is beacause TODO
 
 \subsection*{d)}
-
-After the plate has oscilated a few times, the equaiton of motion becomes
+We can find with BC (2) that the solution should have a form: 
+\begin{align*}
+    u(z,t) = f(z)\cdot U_0 \sin\!\left( 2\pi \frac{t - \tau(z)}{T} \right),
+\end{align*}
+with $f(0)=1$ and $\tau(0)=0$. Here, $f(z)$ is a function that describes how the amplitude of the oscillations changes with height and $\tau(z)$ is a function that describes how the phase of the oscillations changes with height. Since we know that the amplitude of oscilation is damped for higher $z$, we can expect that $f(z)$ is a decreasing function of $z$. Furtermore, Damping is usually exponential, which is why $f(z)=e^{-k}$ is a reasonable guess. The phase-shift is necessary, since we know that the oscilation only moves up the water with a ceratin delay. Then, the equaiton of motion becomes
 \begin{align*}
     u(z,t) = U_0 e^{-kz} \sin\!\left( 2\pi \frac{t - \tau(z)}{T} \right),
 \end{align*}
-where $k > 0$ is a constant and $\tau(z)$ a height-ependent phase shift.\\
+where $k$ must be a positive constant, since otherwise there would be no damping effect.\\
 
-We can assume this because TODO\\
+Note that we implicitly used BC (3), as this is determining the damping. Furthermore, this is only reasonable after a few oscilations, which is why we cannot apply BC (4). This leaves us with BC (1), with which we can determine $k$ and $\tau(z)$:
+\begin{align*}
+    \rho \,\partial_t u &= \mu \,\partial_z^2 u\\
+    \rho U_0 e^{-kz} \frac{2\pi}{T} \cos\!\left( 2\pi \frac{t - \tau(z)}{T} \right) &=\mu\partial _z\left(U_0e^{-kz}(-k)\sin\left(2\pi\frac{t-\tau(z)}{T}\right)-U_0e^{-kz}\cos\left(2\pi\frac{t-\tau(z)}{T}\right)\frac{2\pi\partial_z\tau(z)}{T}\right)\\
+    \frac{\rho}{\mu}e^{-kz}\frac{2\pi}{T}\cos\!\left( 2\pi \frac{t - \tau(z)}{T} \right) &=e^{-kz}\left(k^2\sin \left(2\pi\frac{t-\tau(z)}{T}\right)+k\cos \left(2\pi\frac{t-\tau(z)}{T}\right)\frac{2\pi\partial_z\tau(z)}{T}\right)\\
+    &\quad -e^{-kz}\cos\left(2\pi\frac{t-\tau(z)}{T}\right)\frac{2\pi}{T}\left((-k\partial _z\tau(z))+\partial ^2_z\tau(z)\right)\\
+    &\quad-e^{-kz}\sin\left(2\pi\frac{t-\tau(z)}{T}\right)\left(\frac{2\pi\partial_z\tau(z)}{T}\right)^2\\
+    \frac{2\pi\rho}{\mu T}\cos\!\left( 2\pi \frac{t - \tau(z)}{T} \right) &=\sin \left(2\pi\frac{t-\tau(z)}{T}\right)\left(k^2-\left(\frac{2\pi\partial_z\tau(z)}{T}\right)^2\right)\\
+    &\quad+\cos \left(2\pi\frac{t-\tau(z)}{T}\right)\left(2k\frac{2\pi\partial_z\tau(z)}{T}-\left(\frac{2\pi\partial_z^2\tau(z)}{T}\right)\right)
+\end{align*}
+Since we know that this must be true for all of $t$, we can find that the $\sin$ terms must be zero and the $\cos$ terms must be equal on both sides. This gives us the two equations: 
+\begin{align*}
+    k^2-\left(\frac{2\pi\partial_z\tau(z)}{T}\right)^2&=0,\\
+    2k\frac{2\pi\partial_z\tau(z)}{T}-\left(\frac{2\pi\partial_z^2\tau(z)}{T}\right)&=\frac{2\pi\rho}{\mu T}.
+\end{align*}
+The first one reduces to: 
+\begin{align*}
+    k&=\frac{2\pi\partial_z\tau(z)}{T} \Leftrightarrow \partial_z\tau(z) = \frac{kT}{2\pi} \rightarrow \tau(z) = \frac{kT}{2\pi}z + C
+\end{align*}
+To determine the constant, we use BC (2):\footnote{Of course, used this already above, for completion the calculation is included here.}
+\begin{align*}
+    u(0,t)&=U(t)\\
+    U_0 \sin\!\left( 2\pi \frac{t-\tau(0)}{T} \right)&=  U_0 \sin\!\left( 2\pi \frac{t}{T} \right)\\
+    \Rightarrow \tau (0)&=0 \Rightarrow \frac{kT}{2\pi}0 + C = 0 \Rightarrow C = 0
+\end{align*}
+With the second equation, we can determine the value of $k$:
+\begin{align*}
+    2k\partial_z\tau(z)-\partial_z^2\tau(z)&=\frac{\rho}{\mu}\\
+    \Leftrightarrow\tau''-2k\tau'+\frac{\rho}{\mu}&=0\\
+    0-2k\frac{kT}{2\pi}+\frac{\rho}{\mu}&=0\\
+    \Rightarrow k&=\sqrt{\frac{\rho 2\pi}{2\mu T}}=\sqrt{\frac{\rho \omega}{2\mu}}
+\end{align*}
 
-When we insert this into equations in c) we see that this provides a solution with correct $k$ and $\tau(z)$ as TODO
-
-We find that $k = \sqrt{\dfrac{\rho \omega}{2\mu}}$ where $\omega = 2\pi/T$ and $\tau(z) = TODO$. It makes sense that $k$ increases with $\omega$ as TODO
+We find that $k = \sqrt{\dfrac{\rho \omega}{2\mu}}$ where $\omega = 2\pi/T$ and $\tau(z) = \frac{kT}{2\pi}z$. \\
+The statement that $k$ increases with $\omega$ is equivalent to saying that a faster oscilation will experience stronger damping. This statement is reasonable, since the acceleration of the next layer of fluid due to the friction is not instentanous. However, when now the oscilation is faster, the next layer of fluid will not have enough time to accelerate before the oscilation changes direction again, therefore the whole motion experiences stronger damping per height.
 
 \subsection*{e)}
 
-The velocity field $u(z, t)$ changes over a period $T$ as TODO\\
+The velocity field $u(z, t)$ changes over a period $T$ as a damped sinusodial function along the z-axis. \\
 
 When we plot the field at time $t = 0$ (Figure \ref{fig:velocity_t0}) and $t = T/4$ (Figure \ref{fig:velocity_tT/4}) we see that TODO
 
