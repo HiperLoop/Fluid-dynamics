@@ -84,7 +84,8 @@ In our situation, the equations, using $v_x = u$, simplify to
 
 We can do this, because we know the velocity field $\vec{v}=(u(z,t), 0, 0)^T$. $v_y, v_z=0$, and therefore their derivatives will be $0$ too. $v_x$ only depends on $z$ and $t$, and therefore also $\partial_x v_x, \partial_y v_x = 0$. This allows us to do the following simplifications. \\
 
-\ref{eq:a2} simplifies to \ref{eq:b1}:
+Equation \ref{eq:a2} simplifies to equation \ref{eq:b1}:
+
 \begin{align*}
 \rho\left(\partial_{t} v_{x}+v_{x} \partial_{x} v_{x}+v_{y} \partial_{y} v_{x}+v_{z} \partial_{z} v_{x}\right) & =-\partial_{x} p+\mu \nabla^{2} v_{x} \\
 \implies \quad \rho\left(\partial_{t} v_{x}+ 0 + 0 + 0 \right) & =-\partial_{x} p+\mu \partial_z^2v_x \\
@@ -181,6 +182,6 @@ When we plot the field at time $t = 0$ (Figure \ref{fig:velocity_t0}) and $t = T
 
 \section{Computational part}
 
-All explanations for the computational part are in the jupyter notebook.
+All explanations for the computational part are in the jupyter notebook. 
 
 \end{document}
