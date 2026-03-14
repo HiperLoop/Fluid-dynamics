@@ -60,15 +60,33 @@
 \subsection*{a)}
 
 We argue that we can describe the flow using mass and momentum balance as
-
-\begin{align}
-    \partial_{x} v_{x}+\partial_{y} v_{y}+\partial_{z} v_{z} & =0 \label{eq:a1}\\
-    \rho\left(\partial_{t} v_{x}+v_{x} \partial_{x} v_{x}+v_{y} \partial_{y} v_{x}+v_{z} \partial_{z} v_{x}\right) & =-\partial_{x} p+\mu \nabla^{2} v_{x} \label{eq:a2} \\
-    \rho\left(\partial_{t} v_{y}+v_{x} \partial_{x} v_{y}+v_{y} \partial_{y} v_{y}+v_{z} \partial_{z} v_{y}\right) & =-\partial_{y} p+\mu \nabla^{2} v_{y} \label{eq:a3} \\
-    \rho\left(\partial_{t} v_{z}+v_{x} \partial_{x} v_{z}+v_{y} \partial_{y} v_{z}+v_{z} \partial_{z} v_{z}\right) & =-\partial_{z} p+\mu \nabla^{2} v_{z}-\rho g \label{eq:a4}
-\end{align}
-
-This is because TODO
+\begin{align*}
+\partial_{x} v_{x}+\partial_{y} v_{y}+\partial_{z} v_{z} & =0 \\
+\rho\left(\partial_{t} v_{x}+v_{x} \partial_{x} v_{x}+v_{y} \partial_{y} v_{x}+v_{z} \partial_{z} v_{x}\right) & =-\partial_{x} p+\mu \nabla^{2} v_{x} \\
+\rho\left(\partial_{t} v_{y}+v_{x} \partial_{x} v_{y}+v_{y} \partial_{y} v_{y}+v_{z} \partial_{z} v_{y}\right) & =-\partial_{y} p+\mu \nabla^{2} v_{y} \\
+\rho\left(\partial_{t} v_{z}+v_{x} \partial_{x} v_{z}+v_{y} \partial_{y} v_{z}+v_{z} \partial_{z} v_{z}\right) & =-\partial_{z} p+\mu \nabla^{2} v_{z}-\rho g
+\end{align*}
+The first equation tells us that the fluid has no divergence as is therefore incompressible.
+For the other three, we can use momentum balance as a starting point:
+$$\rho\frac{Dv}{dt} = f + \nabla \cdot T$$
+where we know that the material derivative and stress tensor are:
+$$\frac{Dv}{dt} = \partial_t v + (v \cdot \nabla)v$$
+$$T = -pI + \lambda(\nabla \cdot v)I + 2\mu D$$ \\
+for our case, our fluid is Newtonian and therefore $\lambda = 0$. The divergence of the stress tensor becomes:
+$$\nabla \cdot T = -p(\nabla \cdot I) + 2\mu(\nabla \cdot D) = -\nabla p + 2\mu(\nabla \cdot D)$$
+D is the deformation tensor defined as:
+$$D_{ij} = \frac{1}{2}\left(\partial_j v_i + \partial_i v_j\right)$$
+where i and j are indices representing our coordinates. Looking at each direction $i = x, y, z$ separately:
+\begin{align*}
+    (\nabla \cdot T)_i &= - \partial_i p + \mu \sum_j \partial_j (\partial_j v_i + \partial_i v_j) \\
+    &= -\partial_i p + \mu \left(\sum_j \partial_j \partial_j v_i + \sum_j \partial_j \partial_i v_j\right)
+\end{align*}
+The term $\sum_j \partial_j \partial_j v_i$ is equal to the Laplacian of the velocity $\nabla^2 v_i$, while the term $\sum_j \partial_j \partial_i v_j$ is zero because the divergence $\sum_j \partial_j v_j = 0$ since our fluid is incompressible.
+Therefore:
+$$(\nabla \cdot T)_i = -\partial_i p +\mu \nabla^2 v_i$$
+Coming now back to our momentum balance relation, we can write an expression for each of the directions x, y, and z separately by writing them with the index i:
+$$\rho \left(\partial_t v_i + \sum_j v_j \partial_j v_i \right) = f_i - \partial_i p + \mu \nabla^2 v_i$$
+Replacing i with each cartesian coordinate at a time gives the bottom three equations. For x and y, the volume forces in that direction are zero and the $f$ term drops off, however for z this term is equal to $f = - \rho g$ due to gravity.
 
 \subsection*{b)}
 
