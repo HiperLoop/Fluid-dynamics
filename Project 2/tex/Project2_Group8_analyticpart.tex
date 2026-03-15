@@ -159,7 +159,20 @@ The equations of motion and boundary conditions then become
     (4)\quad & t = 0 :\; u = 0. \label{eq:c4}
 \end{align*}
 
-This is beacause TODO
+As shown in question b), because the pressure is independent of $x$, $\partial_x p = 0$. Therefore, we were able to simplfy equation \ref{eq:a1} into the equation \ref{eq:c4}.
+\begin{equation*}
+     \rho \, \partial_t u = -\partial_x p + \mu \,\partial_z^2 u \implies \rho \partial_t u = \mu \,\partial_z^2 u
+\end{equation*}
+
+Equations \ref{eq:c2}, \ref{eq:c3}, and \ref{eq:c4} are our boundary conditions. \\
+Because of the no-slip condition, we are claiming that the layer of fluid, that is directly in contact with the oscillating plane, does not slip. Therefore the velocity of that layer,
+ at $z = 0$, must be the same velocity as the plate $u = U(t)$. \\
+As also will be explained in question d), the oscilation of the plate will only move up the water with a certain delay and with a certain damping. Therefore, at a finite time, 
+we will always be able to pick a point that is high 
+enough on the $z$-axis, $z = \infty$, such that the information of the oscillation has not reached there yet. The velocity there will still be 0, $u \rightarrow 0$. Hence, boundary condition \ref{eq:c3}. \\
+Boundary condition \ref{eq:c4} is our initial condition. At $t = 0$ the plate starts oscillating, but it's velocity is still $0$ as well, $U(0) = U_0 \sin(2\pi \frac{0}{T}) = 0$. 
+Therefore, the velocity of the fluid will also still be $0$, $u = 0$.
+
 
 \subsection*{d)}
 We can find with BC (2) that the solution should have a form: 
