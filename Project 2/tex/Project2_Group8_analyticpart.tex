@@ -68,7 +68,28 @@ We argue that we can describe the flow using mass and momentum balance as
     \rho\left(\partial_{t} v_{z}+v_{x} \partial_{x} v_{z}+v_{y} \partial_{y} v_{z}+v_{z} \partial_{z} v_{z}\right) & =-\partial_{z} p+\mu \nabla^{2} v_{z}-\rho g \label{eq:a4}
 \end{align}
 
-This is because TODO
+
+The first equation tells us that the fluid has no divergence as is therefore incompressible.
+For the other three, we can use momentum balance as a starting point:
+$$\rho\frac{Dv}{dt} = f + \nabla \cdot T$$
+where we know that the material derivative and stress tensor are:
+$$\frac{Dv}{dt} = \partial_t v + (v \cdot \nabla)v$$
+$$T = -pI + \lambda(\nabla \cdot v)I + 2\mu D$$ \\
+for our case, our fluid is Newtonian and therefore $\lambda = 0$. The divergence of the stress tensor becomes:
+$$\nabla \cdot T = -p(\nabla \cdot I) + 2\mu(\nabla \cdot D) = -\nabla p + 2\mu(\nabla \cdot D)$$
+D is the deformation tensor defined as:
+$$D_{ij} = \frac{1}{2}\left(\partial_j v_i + \partial_i v_j\right)$$
+where i and j are indices representing our coordinates. Looking at each direction $i = x, y, z$ separately:
+\begin{align*}
+    (\nabla \cdot T)_i &= - \partial_i p + \mu \sum_j \partial_j (\partial_j v_i + \partial_i v_j) \\
+    &= -\partial_i p + \mu \left(\sum_j \partial_j \partial_j v_i + \sum_j \partial_j \partial_i v_j\right)
+\end{align*}
+The term $\sum_j \partial_j \partial_j v_i$ is equal to the Laplacian of the velocity $\nabla^2 v_i$, while the term $\sum_j \partial_j \partial_i v_j$ is zero because the divergence $\sum_j \partial_j v_j = 0$ since our fluid is incompressible.
+Therefore:
+$$(\nabla \cdot T)_i = -\partial_i p +\mu \nabla^2 v_i$$
+Coming now back to our momentum balance relation, we can write an expression for each of the directions x, y, and z separately by writing them with the index i:
+$$\rho \left(\partial_t v_i + \sum_j v_j \partial_j v_i \right) = f_i - \partial_i p + \mu \nabla^2 v_i$$
+Replacing i with each cartesian coordinate at a time gives the bottom three equations. For x and y, the volume forces in that direction are zero and the $f$ term drops off, however for z this term is equal to $f = - \rho g$ due to gravity.
 
 \subsection*{b)}
 
@@ -84,7 +105,8 @@ In our situation, the equations, using $v_x = u$, simplify to
 
 We can do this, because we know the velocity field $\vec{v}=(u(z,t), 0, 0)^T$. $v_y, v_z=0$, and therefore their derivatives will be $0$ too. $v_x$ only depends on $z$ and $t$, and therefore also $\partial_x v_x, \partial_y v_x = 0$. This allows us to do the following simplifications. \\
 
-\ref{eq:a2} simplifies to \ref{eq:b1}:
+Equation \ref{eq:a2} simplifies to equation \ref{eq:b1}:
+
 \begin{align*}
 \rho\left(\partial_{t} v_{x}+v_{x} \partial_{x} v_{x}+v_{y} \partial_{y} v_{x}+v_{z} \partial_{z} v_{x}\right) & =-\partial_{x} p+\mu \nabla^{2} v_{x} \\
 \implies \quad \rho\left(\partial_{t} v_{x}+ 0 + 0 + 0 \right) & =-\partial_{x} p+\mu \partial_z^2v_x \\
@@ -123,21 +145,34 @@ Equation \ref{eq:b5} comes from taking the integral over equation \ref{eq:b4} an
 
 
  We are assuming that the plate that is oscillating is infinite and uniform in the $x,y$-direction. Therefore, the velocity cannot depend on $x,y$. Also, initially, the pressure must be constant in the $x,y$ directions, otherwise there would be a pressure gradient, giving the water a velocity in the $x,y$ directions. For all $t$ there is always a $z$ where the fluid is still not moving. The pressure can still not depend on $x,y$. This means that $\partial_xp = \partial_y p = 0$ and, therefore, $C$ cannot depend on $x,y$. Knowing this we can simplify equation \ref{eq:b1}.
- $$
+ \begin{equation*}
  \rho \, \partial_t u = -\partial_x p + \mu \,\partial_z^2 u \implies \rho \partial_t u = \mu \,\partial_z^2 u
- $$
+\end{equation*}
  
-\subsection*{c)}
+\subsection*{c)} 
 
 The equations of motion and boundary conditions then become
 \begin{align*}
-    (1)\quad & \rho \,\partial_t u = \mu \,\partial_z^2 u, \\
-    (2)\quad & z = 0 :\; u = U(t), \\
-    (3)\quad & z = \infty :\; u \rightarrow 0, \\
-    (4)\quad & t = 0 :\; u = 0.
+    (1)\quad & \rho \,\partial_t u = \mu \,\partial_z^2 u, \label{eq:c1}\\
+    (2)\quad & z = 0 :\; u = U(t), \label{eq:c2} \\
+    (3)\quad & z = \infty :\; u \rightarrow 0, \label{eq:c3}\\
+    (4)\quad & t = 0 :\; u = 0. \label{eq:c4}
 \end{align*}
 
-This is beacause TODO
+As shown in question b), because the pressure is independent of $x$, $\partial_x p = 0$. Therefore, we were able to simplfy equation \ref{eq:a1} into the equation \ref{eq:c4}.
+\begin{equation*}
+     \rho \, \partial_t u = -\partial_x p + \mu \,\partial_z^2 u \implies \rho \partial_t u = \mu \,\partial_z^2 u
+\end{equation*}
+
+Equations \ref{eq:c2}, \ref{eq:c3}, and \ref{eq:c4} are our boundary conditions. \\
+Because of the no-slip condition, we are claiming that the layer of fluid, that is directly in contact with the oscillating plane, does not slip. Therefore the velocity of that layer,
+ at $z = 0$, must be the same velocity as the plate $u = U(t)$. \\
+As also will be explained in question d), the oscilation of the plate will only move up the water with a certain delay and with a certain damping. Therefore, at a finite time, 
+we will always be able to pick a point that is high 
+enough on the $z$-axis, $z = \infty$, such that the information of the oscillation has not reached there yet. The velocity there will still be 0, $u \rightarrow 0$. Hence, boundary condition \ref{eq:c3}. \\
+Boundary condition \ref{eq:c4} is our initial condition. At $t = 0$ the plate starts oscillating, but it's velocity is still $0$ as well, $U(0) = U_0 \sin(2\pi \frac{0}{T}) = 0$. 
+Therefore, the velocity of the fluid will also still be $0$, $u = 0$.
+
 
 \subsection*{d)}
 We can find with BC (2) that the solution should have a form: 
@@ -214,6 +249,6 @@ When we plot the field at time $t = 0$ (Figure \ref{fig:velocity_t0}) and $t = T
 
 \section{Computational part}
 
-All explanations for the computational part are in the jupyter notebook.
+All explanations for the computational part are in the jupyter notebook. 
 
 \end{document}
