@@ -1,8 +1,8 @@
-PWD c:/Users/brale/Documents/GitHub/Fluid-dynamics/Project 2/tex
+PWD c:/Users/Lenovo Yoga/OneDrive - Universiteit Utrecht/Documents/GitHub/Fluid-dynamics/Project 2/tex
 INPUT c:/texlive/2026/texmf.cnf
 INPUT c:/texlive/2026/texmf-dist/web2c/texmf.cnf
 INPUT c:/texlive/2026/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT c:/Users/brale/Documents/GitHub/Fluid-dynamics/Project 2/tex/Project2_Group8_analyticpart.tex
+INPUT c:/Users/Lenovo Yoga/OneDrive - Universiteit Utrecht/Documents/GitHub/Fluid-dynamics/Project 2/tex/Project2_Group8_analyticpart.tex
 OUTPUT Project2_Group8_analyticpart.log
 INPUT c:/texlive/2026/texmf-dist/tex/latex/base/article.cls
 INPUT c:/texlive/2026/texmf-dist/tex/latex/base/article.cls
@@ -165,7 +165,6 @@ INPUT ./figures/1_e_Velocity_profile_t=Tover4.png
 INPUT ./figures/1_e_Velocity_profile_t=Tover4.png
 INPUT ./figures/1_e_Velocity_profile_t=Tover4.png
 INPUT Project2_Group8_analyticpart.aux
-INPUT c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
