@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.10)  11 MAR 2026 17:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.10)  13 MAR 2026 18:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/brale/Documents/GitHub/Fluid-dynamics/Project 1/tex/main.tex"
-(c:/Users/brale/Documents/GitHub/Fluid-dynamics/Project 1/tex/main.tex
+**"c:/Users/brale/Documents/GitHub/Fluid-dynamics/Project 2/tex/Project2_Group8_analyticpart.tex"
+(c:/Users/brale/Documents/GitHub/Fluid-dynamics/Project 2/tex/Project2_Group8_analyticpart.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
 (c:/texlive/2026/texmf-dist/tex/latex/base/article.cls
@@ -254,8 +254,8 @@ Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
 \f@nch@widthC=\skip70
 \f@nch@widthR=\skip71
 \@temptokenb=\toks35
-) (auxi/main.aux)
-\openout1 = `main.aux'.
+) (./Project2_Group8_analyticpart.aux)
+\openout1 = `Project2_Group8_analyticpart.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
 LaTeX Font Info:    ... okay on input line 51.
@@ -328,201 +328,60 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 60.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 64.
  (c:/texlive/2026/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 60.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 64.
  (c:/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 60.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 64.
  (c:/texlive/2026/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
-)
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 23.10004pt, for example:
-(fancyhdr)                \setlength{\headheight}{23.10004pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-11.10004pt}.
-
-[1{c:/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+) [1{c:/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 ]
+Underfull \hbox (badness 10000) in paragraph at lines 109--111
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 23.10004pt, for example:
-(fancyhdr)                \setlength{\headheight}{23.10004pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-11.10004pt}.
+ []
 
 [2]
+Underfull \hbox (badness 10000) in paragraph at lines 150--151
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 23.10004pt, for example:
-(fancyhdr)                \setlength{\headheight}{23.10004pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-11.10004pt}.
+ []
 
-[3]
-<figures/a_scatter.png, id=25, 462.528pt x 346.896pt>
-File: figures/a_scatter.png Graphic file (type png)
-<use figures/a_scatter.png>
-Package pdftex.def Info: figures/a_scatter.png  used on input line 222.
-(pdftex.def)             Requested size: 400.38872pt x 300.30438pt.
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 23.10004pt, for example:
-(fancyhdr)                \setlength{\headheight}{23.10004pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-11.10004pt}.
-
-[4]
-<figures/b_streamfunction_gamma0.png, id=30, 462.528pt x 346.896pt>
-File: figures/b_streamfunction_gamma0.png Graphic file (type png)
-<use figures/b_streamfunction_gamma0.png>
-Package pdftex.def Info: figures/b_streamfunction_gamma0.png  used on input line 237.
-(pdftex.def)             Requested size: 240.23016pt x 180.17522pt.
-<figures/b_streamfunction_gamma-3.png, id=31, 462.528pt x 346.896pt>
-File: figures/b_streamfunction_gamma-3.png Graphic file (type png)
-<use figures/b_streamfunction_gamma-3.png>
-Package pdftex.def Info: figures/b_streamfunction_gamma-3.png  used on input line 244.
-(pdftex.def)             Requested size: 240.23016pt x 180.17522pt.
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 23.10004pt, for example:
-(fancyhdr)                \setlength{\headheight}{23.10004pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-11.10004pt}.
-
-[5 <./figures/a_scatter.png>]
-<figures/b_velocity_potential_gamma0.png, id=36, 462.528pt x 346.896pt>
-File: figures/b_velocity_potential_gamma0.png Graphic file (type png)
-<use figures/b_velocity_potential_gamma0.png>
-Package pdftex.def Info: figures/b_velocity_potential_gamma0.png  used on input line 257.
-(pdftex.def)             Requested size: 240.23016pt x 180.17522pt.
-<figures/b_velocity_potential_gamma-3.png, id=37, 462.528pt x 346.896pt>
-File: figures/b_velocity_potential_gamma-3.png Graphic file (type png)
-<use figures/b_velocity_potential_gamma-3.png>
-Package pdftex.def Info: figures/b_velocity_potential_gamma-3.png  used on input line 264.
-(pdftex.def)             Requested size: 240.23016pt x 180.17522pt.
-<figures/c_streamfunction_gamma0.png, id=38, 462.528pt x 346.896pt>
-File: figures/c_streamfunction_gamma0.png Graphic file (type png)
-<use figures/c_streamfunction_gamma0.png>
-Package pdftex.def Info: figures/c_streamfunction_gamma0.png  used on input line 280.
-(pdftex.def)             Requested size: 240.23016pt x 180.17522pt.
-<figures/c_streamfunction_gamma-3.png, id=39, 462.528pt x 346.896pt>
-File: figures/c_streamfunction_gamma-3.png Graphic file (type png)
-<use figures/c_streamfunction_gamma-3.png>
-Package pdftex.def Info: figures/c_streamfunction_gamma-3.png  used on input line 287.
-(pdftex.def)             Requested size: 240.23016pt x 180.17522pt.
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 23.10004pt, for example:
-(fancyhdr)                \setlength{\headheight}{23.10004pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-11.10004pt}.
-
-[6 <./figures/b_streamfunction_gamma0.png> <./figures/b_streamfunction_gamma-3.png> <./figures/b_velocity_potential_gamma0.png> <./figures/b_velocity_potential_gamma-3.png>]
-<figures/d_streamfunction_zoom_gamma0.png, id=48, 578.16pt x 435.6275pt>
-File: figures/d_streamfunction_zoom_gamma0.png Graphic file (type png)
-<use figures/d_streamfunction_zoom_gamma0.png>
-Package pdftex.def Info: figures/d_streamfunction_zoom_gamma0.png  used on input line 303.
-(pdftex.def)             Requested size: 240.23016pt x 181.00139pt.
-<figures/d_streamfunction_zoom_gamma-1.png, id=49, 578.16pt x 435.6275pt>
-File: figures/d_streamfunction_zoom_gamma-1.png Graphic file (type png)
-<use figures/d_streamfunction_zoom_gamma-1.png>
-Package pdftex.def Info: figures/d_streamfunction_zoom_gamma-1.png  used on input line 310.
-(pdftex.def)             Requested size: 240.23016pt x 181.00139pt.
-<figures/d_streamfunction_zoom_gamma-2.png, id=50, 578.16pt x 435.6275pt>
-File: figures/d_streamfunction_zoom_gamma-2.png Graphic file (type png)
-<use figures/d_streamfunction_zoom_gamma-2.png>
-Package pdftex.def Info: figures/d_streamfunction_zoom_gamma-2.png  used on input line 317.
-(pdftex.def)             Requested size: 240.23016pt x 181.00139pt.
-<figures/d_streamfunction_zoom_gamma-3.png, id=51, 578.16pt x 435.6275pt>
-File: figures/d_streamfunction_zoom_gamma-3.png Graphic file (type png)
-<use figures/d_streamfunction_zoom_gamma-3.png>
-Package pdftex.def Info: figures/d_streamfunction_zoom_gamma-3.png  used on input line 325.
-(pdftex.def)             Requested size: 240.23016pt x 181.00139pt.
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 23.10004pt, for example:
-(fancyhdr)                \setlength{\headheight}{23.10004pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-11.10004pt}.
-
-[7 <./figures/c_streamfunction_gamma0.png> <./figures/c_streamfunction_gamma-3.png>]
-<figures/e_streamfunction_gamma--2.8.png, id=58, 462.528pt x 346.896pt>
-File: figures/e_streamfunction_gamma--2.8.png Graphic file (type png)
-<use figures/e_streamfunction_gamma--2.8.png>
-Package pdftex.def Info: figures/e_streamfunction_gamma--2.8.png  used on input line 342.
-(pdftex.def)             Requested size: 240.23016pt x 180.17522pt.
-<figures/e_zoomed_streamfunction_gamma--2.8.png, id=59, 462.528pt x 346.896pt>
-File: figures/e_zoomed_streamfunction_gamma--2.8.png Graphic file (type png)
-<use figures/e_zoomed_streamfunction_gamma--2.8.png>
-Package pdftex.def Info: figures/e_zoomed_streamfunction_gamma--2.8.png  used on input line 349.
-(pdftex.def)             Requested size: 240.23016pt x 180.17522pt.
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 23.10004pt, for example:
-(fancyhdr)                \setlength{\headheight}{23.10004pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-11.10004pt}.
-
-[8 <./figures/d_streamfunction_zoom_gamma0.png (PNG copy)> <./figures/d_streamfunction_zoom_gamma-1.png (PNG copy)> <./figures/d_streamfunction_zoom_gamma-2.png (PNG copy)> <./figures/d_streamfunction_zoom_gamma-3.png (PNG copy)>]
-<figures/f_Cylinder_pressure.png, id=63, 462.528pt x 346.896pt>
-File: figures/f_Cylinder_pressure.png Graphic file (type png)
-<use figures/f_Cylinder_pressure.png>
-Package pdftex.def Info: figures/f_Cylinder_pressure.png  used on input line 365.
-(pdftex.def)             Requested size: 240.23016pt x 180.17522pt.
-<figures/f_Wing_pressure.png, id=64, 462.528pt x 346.896pt>
-File: figures/f_Wing_pressure.png Graphic file (type png)
-<use figures/f_Wing_pressure.png>
-Package pdftex.def Info: figures/f_Wing_pressure.png  used on input line 372.
-(pdftex.def)             Requested size: 240.23016pt x 180.17522pt.
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 23.10004pt, for example:
-(fancyhdr)                \setlength{\headheight}{23.10004pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-11.10004pt}.
-
-[9 <./figures/e_streamfunction_gamma--2.8.png> <./figures/e_zoomed_streamfunction_gamma--2.8.png> <./figures/f_Cylinder_pressure.png> <./figures/f_Wing_pressure.png>]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 23.10004pt, for example:
-(fancyhdr)                \setlength{\headheight}{23.10004pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-11.10004pt}.
-
-[10] 
+<figures/1_e_Velocity_profile_t=0.png, id=20, 722.7pt x 433.62pt>
+File: figures/1_e_Velocity_profile_t=0.png Graphic file (type png)
+<use figures/1_e_Velocity_profile_t=0.png>
+Package pdftex.def Info: figures/1_e_Velocity_profile_t=0.png  used on input line 159.
+(pdftex.def)             Requested size: 240.23016pt x 144.13383pt.
+<figures/1_e_Velocity_profile_t=Tover4.png, id=22, 722.7pt x 433.62pt>
+File: figures/1_e_Velocity_profile_t=Tover4.png Graphic file (type png)
+<use figures/1_e_Velocity_profile_t=Tover4.png>
+Package pdftex.def Info: figures/1_e_Velocity_profile_t=Tover4.png  used on input line 166.
+(pdftex.def)             Requested size: 240.23016pt x 144.13383pt.
+[3 <./figures/1_e_Velocity_profile_t=0.png> <./figures/1_e_Velocity_profile_t=Tover4.png>] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
-(auxi/main.aux)
+(./Project2_Group8_analyticpart.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 6547 strings out of 467525
- 107324 string characters out of 5423209
- 531500 words of memory out of 5000000
- 35357 multiletter control sequences out of 15000+600000
+ 6429 strings out of 467525
+ 102799 string characters out of 5423209
+ 532842 words of memory out of 5000000
+ 35240 multiletter control sequences out of 15000+600000
  640065 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 73i,13n,77p,595b,512s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on auxi/main.pdf (10 pages, 2721652 bytes).
+ 73i,13n,77p,699b,508s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on Project2_Group8_analyticpart.pdf (3 pages, 219979 bytes).
 PDF statistics:
- 134 PDF objects out of 1000 (max. 8388607)
- 67 compressed objects within 1 object stream
+ 79 PDF objects out of 1000 (max. 8388607)
+ 45 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 76 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

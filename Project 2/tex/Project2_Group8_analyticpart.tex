@@ -61,85 +61,183 @@
 
 We argue that we can describe the flow using mass and momentum balance as
 
-\begin{align*}
-    \partial_x^2(\mathbf v)+\partial _x\nabla v_x&=\nabla ^2v_x,\\
-    \partial ^2_xv_x+\partial ^2_xv_y+\partial^2_xv_z+\partial _x\nabla \cdot v_x&=\partial_x^2v_x+\partial_y^2v_x+\partial_z ^2v_x,\\
-    \partial ^2_xv_x+\partial ^2_xv_y+\partial^2_xv_z+\partial _{xy}v_x+\partial_{xz}v_x&=\partial_y^2v_x+\partial_z ^2v_x,\\
-    \partial^2_x(v_x+v_y+v_z)&=(\partial _y^2+\partial_z^2-\partial _{xy}-\partial_{xz})v_x.
-\end{align*}
+\begin{align}
+    \partial_{x} v_{x}+\partial_{y} v_{y}+\partial_{z} v_{z} & =0 \label{eq:a1}\\
+    \rho\left(\partial_{t} v_{x}+v_{x} \partial_{x} v_{x}+v_{y} \partial_{y} v_{x}+v_{z} \partial_{z} v_{x}\right) & =-\partial_{x} p+\mu \nabla^{2} v_{x} \label{eq:a2} \\
+    \rho\left(\partial_{t} v_{y}+v_{x} \partial_{x} v_{y}+v_{y} \partial_{y} v_{y}+v_{z} \partial_{z} v_{y}\right) & =-\partial_{y} p+\mu \nabla^{2} v_{y} \label{eq:a3} \\
+    \rho\left(\partial_{t} v_{z}+v_{x} \partial_{x} v_{z}+v_{y} \partial_{y} v_{z}+v_{z} \partial_{z} v_{z}\right) & =-\partial_{z} p+\mu \nabla^{2} v_{z}-\rho g \label{eq:a4}
+\end{align}
 
-This is because TODO
+
+The first equation tells us that the fluid has no divergence as is therefore incompressible.
+For the other three, we can use momentum balance as a starting point:
+$$\rho\frac{Dv}{dt} = f + \nabla \cdot T$$
+where we know that the material derivative and stress tensor are:
+$$\frac{Dv}{dt} = \partial_t v + (v \cdot \nabla)v$$
+$$T = -pI + \lambda(\nabla \cdot v)I + 2\mu D$$ \\
+for our case, our fluid is Newtonian and therefore $\lambda = 0$. The divergence of the stress tensor becomes:
+$$\nabla \cdot T = -p(\nabla \cdot I) + 2\mu(\nabla \cdot D) = -\nabla p + 2\mu(\nabla \cdot D)$$
+D is the deformation tensor defined as:
+$$D_{ij} = \frac{1}{2}\left(\partial_j v_i + \partial_i v_j\right)$$
+where i and j are indices representing our coordinates. Looking at each direction $i = x, y, z$ separately:
+\begin{align*}
+    (\nabla \cdot T)_i &= - \partial_i p + \mu \sum_j \partial_j (\partial_j v_i + \partial_i v_j) \\
+    &= -\partial_i p + \mu \left(\sum_j \partial_j \partial_j v_i + \sum_j \partial_j \partial_i v_j\right)
+\end{align*}
+The term $\sum_j \partial_j \partial_j v_i$ is equal to the Laplacian of the velocity $\nabla^2 v_i$, while the term $\sum_j \partial_j \partial_i v_j$ is zero because the divergence $\sum_j \partial_j v_j = 0$ since our fluid is incompressible.
+Therefore:
+$$(\nabla \cdot T)_i = -\partial_i p +\mu \nabla^2 v_i$$
+Coming now back to our momentum balance relation, we can write an expression for each of the directions x, y, and z separately by writing them with the index i:
+$$\rho \left(\partial_t v_i + \sum_j v_j \partial_j v_i \right) = f_i - \partial_i p + \mu \nabla^2 v_i$$
+Replacing i with each cartesian coordinate at a time gives the bottom three equations. For x and y, the volume forces in that direction are zero and the $f$ term drops off, however for z this term is equal to $f = - \rho g$ due to gravity.
 
 \subsection*{b)}
 
 In our situation, the equations, using $v_x = u$, simplify to
 
+\begin{align}
+    \rho \partial_t u &= -\partial_x p + \mu \,\partial_z^2 u, \label{eq:b1}\\
+    \partial_z v_z &= 0, \qquad \text{hence } v_z = 0, \label{eq:b2}\\
+    0 &= -\partial_y p, \label{eq:b3}\\
+    0 &= -\partial_z p - \rho g, \label{eq:b4} \\
+    p(x,z,t) &= -\rho g z + C(x,y,t). \label{eq:b5}
+\end{align}
+
+We can do this, because we know the velocity field $\vec{v}=(u(z,t), 0, 0)^T$. $v_y, v_z=0$, and therefore their derivatives will be $0$ too. $v_x$ only depends on $z$ and $t$, and therefore also $\partial_x v_x, \partial_y v_x = 0$. This allows us to do the following simplifications. \\
+
+Equation \ref{eq:a2} simplifies to equation \ref{eq:b1}:
+
 \begin{align*}
-    \rho \,\partial_t u &= -\partial_x p + \mu \,\partial_z^2 u, \\
-    \partial_z v_z &= 0, \qquad \text{hence } v_z = 0, \\
-    0 &= -\partial_y p, \\
-    0 &= -\partial_z p - \rho g, \\
-    p(x,z,t) &= -\rho g z + C(x,y,t).
+\rho\left(\partial_{t} v_{x}+v_{x} \partial_{x} v_{x}+v_{y} \partial_{y} v_{x}+v_{z} \partial_{z} v_{x}\right) & =-\partial_{x} p+\mu \nabla^{2} v_{x} \\
+\implies \quad \rho\left(\partial_{t} v_{x}+ 0 + 0 + 0 \right) & =-\partial_{x} p+\mu \partial_z^2v_x \\
+\implies \quad \rho \,\partial_t u &= -\partial_x p + \mu \,\partial_z^2 u
 \end{align*}
 
-This is because TODO
+Equation \ref{eq:b2} is trivial from the known velocity field $\vec{v}=(u(z,t), 0, 0)^T$. \\
 
-Additionally, $C$ does not depend on $x, y$, therefore we can siplify the equations even further to TODO
+\vspace{5mm}
 
-\subsection*{c)}
+Equation \ref{eq:b3} is a simplified form from \ref{eq:a3}:
+\begin{align*}
+    \rho\left(\partial_{t} v_{y}+v_{x} \partial_{x} v_{y}+v_{y} \partial_{y} v_{y}+v_{z} \partial_{z} v_{y}\right) & =-\partial_{y} p+\mu \nabla^{2} v_{y} \\
+    \implies \quad \rho\left(0 + 0 + 0 + 0\right) & =-\partial_{y} p+\mu \cdot 0 \\
+    \implies \quad 0 &= -\partial_y p
+\end{align*}
+
+\vspace{5mm}
+
+Equation \ref{eq:b4} comes from \ref{eq:a4}
+\begin{align*}
+    \rho\left(\partial_{t} v_{z}+v_{x} \partial_{x} v_{z}+v_{y} \partial_{y} v_{z}+v_{z} \partial_{z} v_{z}\right) & =-\partial_{z} p+\mu \nabla^{2} v_{z}-\rho g \\
+    \implies \quad \rho\left( 0 + 0 + 0 + 0 \right) & =-\partial_{z} p+\mu \cdot 0 - \rho g \\
+    \implies \quad 0 &= -\partial_z p - \rho g  
+\end{align*}
+
+\vspace{5mm}
+
+Equation \ref{eq:b5} comes from taking the integral over equation \ref{eq:b4} and knowing $\partial_y p=0$
+\begin{align*}
+    0 &= -\partial_z p - \rho g \\
+    \partial_z p &= -\rho g \\
+    \int \partial_z p dz &= \int -\rho g dz \\
+    p(x, y, z, t) = - \rho g z + C(x, y, t)
+\end{align*}
+
+
+ We are assuming that the plate that is oscillating is infinite and uniform in the $x,y$-direction. Therefore, the velocity cannot depend on $x,y$. Also, initially, the pressure must be constant in the $x,y$ directions, otherwise there would be a pressure gradient, giving the water a velocity in the $x,y$ directions. For all $t$ there is always a $z$ where the fluid is still not moving. The pressure can still not depend on $x,y$. This means that $\partial_xp = \partial_y p = 0$ and, therefore, $C$ cannot depend on $x,y$. Knowing this we can simplify equation \ref{eq:b1}.
+ \begin{equation*}
+ \rho \, \partial_t u = -\partial_x p + \mu \,\partial_z^2 u \implies \rho \partial_t u = \mu \,\partial_z^2 u
+\end{equation*}
+ 
+\subsection*{c)} 
 
 The equations of motion and boundary conditions then become
-\begin{align*}
-    (1)\quad & \rho \,\partial_t u = \mu \,\partial_z^2 u, \\
-    (2)\quad & z = 0 :\; u = U(t), \\
-    (3)\quad & z = \infty :\; u \rightarrow 0, \\
-    (4)\quad & t = 0 :\; u = 0.
-\end{align*}
+\begin{align}
+    \rho \,\partial_t u = \mu \,\partial_z^2 u, \label{eq:c1}\\
+    z = 0 :\; u = U(t), \label{eq:c2} \\
+    z = \infty :\; u \rightarrow 0, \label{eq:c3}\\
+    t = 0 :\; u = 0. \label{eq:c4}
+\end{align}
 
-This is beacause TODO
+As shown in question b), because the pressure is independent of $x$, $\partial_x p = 0$. Therefore, we were able to simplfy equation \ref{eq:b1} into the equation \ref{eq:c1}.
+\begin{equation*}
+     \rho \, \partial_t u = -\partial_x p + \mu \,\partial_z^2 u \implies \rho \partial_t u = \mu \,\partial_z^2 u
+\end{equation*}
+
+Equations \ref{eq:c2}, \ref{eq:c3}, and \ref{eq:c4} are our boundary conditions. \\
+Because of the no-slip condition, we are claiming that the layer of fluid, that is directly in contact with the oscillating plane, does not slip. Therefore the velocity of that layer,
+ at $z = 0$, must be the same velocity as the plate $u = U(t)$. \\
+As also will be explained in question d), the oscilation of the plate will only move up the water with a certain delay and with a certain damping. Therefore, at a finite time, 
+we will always be able to pick a point that is high 
+enough on the $z$-axis, $z = \infty$, such that the information of the oscillation has not reached there yet. The velocity there will still be 0, $u \rightarrow 0$. Hence, boundary condition \ref{eq:c3}. \\
+Boundary condition \ref{eq:c4} is our initial condition. At $t = 0$ the plate starts oscillating, but it's velocity is still $0$ as well, $U(0) = U_0 \sin(2\pi \frac{0}{T}) = 0$. 
+Therefore, the velocity of the fluid will also still be $0$, $u = 0$.
+
 
 \subsection*{d)}
-
-After the plate has oscilated a few times, the equaiton of motion becomes
+We can find with BC (2) that the solution should have a form: 
+\begin{align*}
+    u(z,t) = f(z)\cdot U_0 \sin\!\left( 2\pi \frac{t - \tau(z)}{T} \right),
+\end{align*}
+with $f(0)=1$ and $\tau(0)=0$. Here, $f(z)$ is a function that describes how the amplitude of the oscillations changes with height and $\tau(z)$ is a function that describes how the phase of the oscillations changes with height. Since we know that the amplitude of oscilation is damped for higher $z$, we can expect that $f(z)$ is a decreasing function of $z$. Furtermore, Damping is usually exponential, which is why $f(z)=e^{-k}$ is a reasonable guess. The phase-shift is necessary, since we know that the oscilation only moves up the water with a ceratin delay. Then, the equaiton of motion becomes
 \begin{align*}
     u(z,t) = U_0 e^{-kz} \sin\!\left( 2\pi \frac{t - \tau(z)}{T} \right),
 \end{align*}
-where $k > 0$ is a constant and $\tau(z)$ a height-ependent phase shift.\\
+where $k$ must be a positive constant, since otherwise there would be no damping effect.\\
 
-We can assume this because TODO\\
+Note that we implicitly used BC (3), as this is determining the damping. Furthermore, this is only reasonable after a few oscilations, which is why we cannot apply BC (4). This leaves us with BC (1), with which we can determine $k$ and $\tau(z)$:
+\begin{align*}
+    \rho \,\partial_t u &= \mu \,\partial_z^2 u\\
+    \rho U_0 e^{-kz} \frac{2\pi}{T} \cos\!\left( 2\pi \frac{t - \tau(z)}{T} \right) &=\mu\partial _z\left(U_0e^{-kz}(-k)\sin\left(2\pi\frac{t-\tau(z)}{T}\right)-U_0e^{-kz}\cos\left(2\pi\frac{t-\tau(z)}{T}\right)\frac{2\pi\partial_z\tau(z)}{T}\right)\\
+    \frac{\rho}{\mu}e^{-kz}\frac{2\pi}{T}\cos\!\left( 2\pi \frac{t - \tau(z)}{T} \right) &=e^{-kz}\left(k^2\sin \left(2\pi\frac{t-\tau(z)}{T}\right)+k\cos \left(2\pi\frac{t-\tau(z)}{T}\right)\frac{2\pi\partial_z\tau(z)}{T}\right)\\
+    &\quad -e^{-kz}\cos\left(2\pi\frac{t-\tau(z)}{T}\right)\frac{2\pi}{T}\left((-k\partial _z\tau(z))+\partial ^2_z\tau(z)\right)\\
+    &\quad-e^{-kz}\sin\left(2\pi\frac{t-\tau(z)}{T}\right)\left(\frac{2\pi\partial_z\tau(z)}{T}\right)^2\\
+    \frac{2\pi\rho}{\mu T}\cos\!\left( 2\pi \frac{t - \tau(z)}{T} \right) &=\sin \left(2\pi\frac{t-\tau(z)}{T}\right)\left(k^2-\left(\frac{2\pi\partial_z\tau(z)}{T}\right)^2\right)\\
+    &\quad+\cos \left(2\pi\frac{t-\tau(z)}{T}\right)\left(2k\frac{2\pi\partial_z\tau(z)}{T}-\left(\frac{2\pi\partial_z^2\tau(z)}{T}\right)\right)
+\end{align*}
+Since we know that this must be true for all of $t$, we can find that the $\sin$ terms must be zero and the $\cos$ terms must be equal on both sides. This gives us the two equations: 
+\begin{align*}
+    k^2-\left(\frac{2\pi\partial_z\tau(z)}{T}\right)^2&=0,\\
+    2k\frac{2\pi\partial_z\tau(z)}{T}-\left(\frac{2\pi\partial_z^2\tau(z)}{T}\right)&=\frac{2\pi\rho}{\mu T}.
+\end{align*}
+The first one reduces to: 
+\begin{align*}
+    k&=\frac{2\pi\partial_z\tau(z)}{T} \Leftrightarrow \partial_z\tau(z) = \frac{kT}{2\pi} \rightarrow \tau(z) = \frac{kT}{2\pi}z + C
+\end{align*}
+To determine the constant, we use BC (2):\footnote{Of course, we used this already above, for completion the calculation is included here.}
+\begin{align*}
+    u(0,t)&=U(t)\\
+    U_0 \sin\!\left( 2\pi \frac{t-\tau(0)}{T} \right)&=  U_0 \sin\!\left( 2\pi \frac{t}{T} \right)\\
+    \Rightarrow \tau (0)&=0 \Rightarrow \frac{kT}{2\pi}0 + C = 0 \Rightarrow C = 0
+\end{align*}
+With the second equation, we can determine the value of $k$:
+\begin{align*}
+    2k\partial_z\tau(z)-\partial_z^2\tau(z)&=\frac{\rho}{\mu}\\
+    \Leftrightarrow\tau''-2k\tau'+\frac{\rho}{\mu}&=0\\
+    0-2k\frac{kT}{2\pi}+\frac{\rho}{\mu}&=0\\
+    \Rightarrow k&=\sqrt{\frac{\rho 2\pi}{2\mu T}}=\sqrt{\frac{\rho \omega}{2\mu}}
+\end{align*}
 
-When we insert this into equations in c) we see that this provides a solution with correct $k$ and $\tau(z)$ as TODO
-
-We find that $k = \sqrt{\dfrac{\rho \omega}{2\mu}}$ where $\omega = 2\pi/T$ and $\tau(z) = TODO$. It makes sense that $k$ increases with $\omega$ as TODO
+We find that $k = \sqrt{\dfrac{\rho \omega}{2\mu}}$ where $\omega = 2\pi/T$ and $\tau(z) = \frac{kT}{2\pi}z$. \\
+The statement that $k$ increases with $\omega$ is equivalent to saying that a faster oscilation will experience stronger damping. This statement is reasonable, since the acceleration of the next layer of fluid is not instentanous. However, when now the oscilation is faster, the next layer of fluid will not have enough time to accelerate before the oscilation changes direction again, therefore the whole motion experiences stronger damping per height.
 
 \subsection*{e)}
 
-The velocity field $u(z, t)$ changes over a period $T$ as TODO\\
-
-When we plot the field at time $t = 0$ (Figure \ref{fig:velocity_t0}) and $t = T/4$ (Figure \ref{fig:velocity_tT/4}) we see that TODO
+The velocity field $u(z, t)$ changes over a period $T$ as a damped sinusodial function along the z-axis. This is plotted for $t=0$ in blue and for $t=T/4$ in red, both in Figure \ref{fig:velocity_t0}. We used the constants from the numerical part, namely $\rho=1000$ kg/m$^3$, $\mu = 1$ N$\text{m}^{-2}\cdot$s, $T = 0.1$ s, and $U_0 = 1$ m/s. The velocity field is plotted for $z \in [0, 0.06]$ m, which is a reasonable range to see the damping effect since the velocity approaches zero afterwards. 
 
     \begin{figure}[H]
     \centering
-    
     \begin{subfigure}{0.48\textwidth}
         \centering
         \includegraphics[width=\linewidth]{\PATH 1_e_Velocity_profile_t=0.png}
         \caption{}
         \label{fig:velocity_t0}
     \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{\PATH 1_e_Velocity_profile_t=Tover4.png}
-        \caption{}
-        \label{fig:velocity_tT/4}
-    \end{subfigure}
-
-    \caption{Velocity field for $t = 0$ (a) and $t = T/4$ (b)}
+    \caption{Velocity field for $t = 0$ and $t = T/4$}
     \end{figure}
 
 \section{Computational part}
 
-All explanations for the computational part are in the jupyter notebook.
+All explanations for the computational part are in the jupyter notebook. 
 
 \end{document}
