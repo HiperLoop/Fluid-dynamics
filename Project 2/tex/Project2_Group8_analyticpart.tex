@@ -153,13 +153,13 @@ Equation \ref{eq:b5} comes from taking the integral over equation \ref{eq:b4} an
 
 The equations of motion and boundary conditions then become
 \begin{align}
-    (1)\quad & \rho \,\partial_t u = \mu \,\partial_z^2 u, \label{eq:c1}\\
-    (2)\quad & z = 0 :\; u = U(t), \label{eq:c2} \\
-    (3)\quad & z = \infty :\; u \rightarrow 0, \label{eq:c3}\\
-    (4)\quad & t = 0 :\; u = 0. \label{eq:c4}
+    \rho \,\partial_t u = \mu \,\partial_z^2 u, \label{eq:c1}\\
+    z = 0 :\; u = U(t), \label{eq:c2} \\
+    z = \infty :\; u \rightarrow 0, \label{eq:c3}\\
+    t = 0 :\; u = 0. \label{eq:c4}
 \end{align}
 
-As shown in question b), because the pressure is independent of $x$, $\partial_x p = 0$. Therefore, we were able to simplfy equation \ref{eq:a1} into the equation \ref{eq:c4}.
+As shown in question b), because the pressure is independent of $x$, $\partial_x p = 0$. Therefore, we were able to simplfy equation \ref{eq:b1} into the equation \ref{eq:c1}.
 \begin{equation*}
      \rho \, \partial_t u = -\partial_x p + \mu \,\partial_z^2 u \implies \rho \partial_t u = \mu \,\partial_z^2 u
 \end{equation*}
@@ -204,7 +204,7 @@ The first one reduces to:
 \begin{align*}
     k&=\frac{2\pi\partial_z\tau(z)}{T} \Leftrightarrow \partial_z\tau(z) = \frac{kT}{2\pi} \rightarrow \tau(z) = \frac{kT}{2\pi}z + C
 \end{align*}
-To determine the constant, we use BC (2):\footnote{Of course, used this already above, for completion the calculation is included here.}
+To determine the constant, we use BC (2):\footnote{Of course, we used this already above, for completion the calculation is included here.}
 \begin{align*}
     u(0,t)&=U(t)\\
     U_0 \sin\!\left( 2\pi \frac{t-\tau(0)}{T} \right)&=  U_0 \sin\!\left( 2\pi \frac{t}{T} \right)\\
@@ -219,32 +219,21 @@ With the second equation, we can determine the value of $k$:
 \end{align*}
 
 We find that $k = \sqrt{\dfrac{\rho \omega}{2\mu}}$ where $\omega = 2\pi/T$ and $\tau(z) = \frac{kT}{2\pi}z$. \\
-The statement that $k$ increases with $\omega$ is equivalent to saying that a faster oscilation will experience stronger damping. This statement is reasonable, since the acceleration of the next layer of fluid due to the friction is not instentanous. However, when now the oscilation is faster, the next layer of fluid will not have enough time to accelerate before the oscilation changes direction again, therefore the whole motion experiences stronger damping per height.
+The statement that $k$ increases with $\omega$ is equivalent to saying that a faster oscilation will experience stronger damping. This statement is reasonable, since the acceleration of the next layer of fluid is not instentanous. However, when now the oscilation is faster, the next layer of fluid will not have enough time to accelerate before the oscilation changes direction again, therefore the whole motion experiences stronger damping per height.
 
 \subsection*{e)}
 
-The velocity field $u(z, t)$ changes over a period $T$ as a damped sinusodial function along the z-axis. \\
-
-When we plot the field at time $t = 0$ (Figure \ref{fig:velocity_t0}) and $t = T/4$ (Figure \ref{fig:velocity_tT/4}) we see that TODO
+The velocity field $u(z, t)$ changes over a period $T$ as a damped sinusodial function along the z-axis. This is plotted for $t=0$ in blue and for $t=T/4$ in red, both in Figure \ref{fig:velocity_t0}. We used the constants from the numerical part, namely $\rho=1000$ kg/m$^3$, $\mu = 1$ N$\text{m}^{-2}\cdot$s, $T = 0.1$ s, and $U_0 = 1$ m/s. The velocity field is plotted for $z \in [0, 0.06]$ m, which is a reasonable range to see the damping effect since the velocity approaches zero afterwards. 
 
     \begin{figure}[H]
     \centering
-    
     \begin{subfigure}{0.48\textwidth}
         \centering
         \includegraphics[width=\linewidth]{\PATH 1_e_Velocity_profile_t=0.png}
         \caption{}
         \label{fig:velocity_t0}
     \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{\PATH 1_e_Velocity_profile_t=Tover4.png}
-        \caption{}
-        \label{fig:velocity_tT/4}
-    \end{subfigure}
-
-    \caption{Velocity field for $t = 0$ (a) and $t = T/4$ (b)}
+    \caption{Velocity field for $t = 0$ and $t = T/4$}
     \end{figure}
 
 \section{Computational part}
