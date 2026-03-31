@@ -15,8 +15,7 @@ r = 10 # Rescaled reduced Rayleigh number as given in the problem statement
 # Main execution
 if __name__ == "__main__":
     # a) Simulate trajectory
-    plot_optimal_trajectory(initial_pos, initial_dt, max_computation_time, max_error, t_min, t_max)
+    plot_optimal_trajectory(initial_pos, initial_dt, max_computation_time, max_error, t_min, t_max, save_fig=True)
 
     # b) Plot different regimes
     # i)
-    

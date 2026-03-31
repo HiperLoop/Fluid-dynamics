@@ -2,6 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import time
 
+# Path to save figures
+PATH = "Project 3/tex/figures/"
+
 # Physical constants
 g = 9.81 # Gravitational acceleration
 H = 1 # Leyer thickness
@@ -78,17 +81,19 @@ def find_optimal_dt(initial_pos, dt, max_comp_time, max_error, t_min, t_max):
         dt *= duration / max_comp_time # Decrease dt to improve accuracy
 
 # Plotting
-def plot_trajectory(positions):
+def plot_trajectory(positions, save_fig=False, title='Trajectory in Phase Space'):
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
     ax.plot(positions[:, 0], positions[:, 1], positions[:, 2])
     ax.set_xlabel('X-axis')
     ax.set_ylabel('Y-axis')
     ax.set_zlabel('Z-axis')
-    ax.set_title('Trajectory in Phase Space')
+    ax.set_title(title)
+    if save_fig:
+        plt.savefig(PATH + title.replace(" ", "_") + '.png')
     plt.show()
 
-def plot_optimal_trajectory(initial_pos, initial_dt, max_computation_time, max_error, t_min, t_max):
+def plot_optimal_trajectory(initial_pos, initial_dt, max_computation_time, max_error, t_min, t_max, save_fig):
     dt = find_optimal_dt(initial_pos, initial_dt, max_computation_time, max_error, t_min, t_max)
     trajectory = simulate_trajectory(initial_pos, dt, t_min, t_max)
-    plot_trajectory(trajectory)
+    plot_trajectory(trajectory, save_fig, title=f"Optimal Trajectory with dt={dt:.4f}")
