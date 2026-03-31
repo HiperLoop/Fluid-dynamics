@@ -18,14 +18,6 @@ wave_number = 1 # Wave number
 raileigh_number = g * theta_delta * H**3 / (nu * Kappa) # Rayleigh number
 r = raileigh_number * wave_number**2 / (wave_number**2 + np.pi**2)**3 # General rescaled reduced Rayleigh number
 
-# Simulation parameters
-t_min = 0 # Minimum time
-t_max = 50 # Maximum time
-
-# Initial conditions
-initial_pos = np.array([1, 1, 1]) # Initial position in phase space
-r = 10 # Rescaled reduced Rayleigh number as given in the problem statement
-
 # Basic functions
 def tau_from_t(t):
     return t * (wave_number**2 + np.pi**2)
@@ -44,7 +36,7 @@ def dpos_dtau(pos):
 def euler_forward(pos, dtau):
     return pos + dpos_dtau(pos) * dtau
 
-def simulate_trajectory(initial_pos, dt):
+def simulate_trajectory(initial_pos, dt, t_min, t_max):
     num_steps = int((t_max - t_min) / dt) # Number of time steps
     dtau = tau_from_t(dt);
     positions = np.zeros((num_steps, 3))
@@ -53,34 +45,23 @@ def simulate_trajectory(initial_pos, dt):
         positions[i] = euler_forward(positions[i-1], dtau)
     return positions
 
-# Plotting
-def plot_trajectory(positions):
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
-    ax.plot(positions[:, 0], positions[:, 1], positions[:, 2])
-    ax.set_xlabel('X-axis')
-    ax.set_ylabel('Y-axis')
-    ax.set_zlabel('Z-axis')
-    ax.set_title('Trajectory in Phase Space')
-    plt.show()
-
 # Determining dt
 def mean_squared_error(positions_dt1, positions_dt2):
     return np.mean((positions_dt1[:-1:2] - positions_dt2)**2)
 
-def dt_to_2dt_comparison(initial_pos, dt):
-    trajectory_dt1 = simulate_trajectory(initial_pos, dt)
-    trajectory_dt2 = simulate_trajectory(initial_pos, 2 * dt)
+def dt_to_2dt_comparison(initial_pos, dt, t_min, t_max):
+    trajectory_dt1 = simulate_trajectory(initial_pos, dt, t_min, t_max)
+    trajectory_dt2 = simulate_trajectory(initial_pos, 2 * dt, t_min, t_max)
     error = mean_squared_error(trajectory_dt1, trajectory_dt2)
     print(f"Mean Squared Error between dt={dt} and dt={2 * dt}: {error}")
 
-def find_optimal_dt(initial_pos, dt, max_comp_time, max_error):
+def find_optimal_dt(initial_pos, dt, max_comp_time, max_error, t_min, t_max):
     last_time_exceeded = True
     while True:
         start_time = time.time()
-        trajectory_dt1 = simulate_trajectory(initial_pos, dt)
+        trajectory_dt1 = simulate_trajectory(initial_pos, dt, t_min, t_max)
         duration = time.time() - start_time
-        trajectory_dt2 = simulate_trajectory(initial_pos, 2 * dt)
+        trajectory_dt2 = simulate_trajectory(initial_pos, 2 * dt, t_min, t_max)
         error = mean_squared_error(trajectory_dt1, trajectory_dt2)
         print(f"Computed trajectory for dt={dt} in {duration:.2f} seconds")
         if duration > max_comp_time:
@@ -96,13 +77,18 @@ def find_optimal_dt(initial_pos, dt, max_comp_time, max_error):
         last_time_exceeded = False
         dt *= duration / max_comp_time # Decrease dt to improve accuracy
 
-# Main execution
-if __name__ == "__main__":
-    max_computation_time = 1 # Maximum computation time in seconds
-    initial_dt = 0.1 # Initial guess for dt
-    max_error = 1 # Maximum acceptable mean squared error
-    dt = find_optimal_dt(initial_pos, initial_dt, max_computation_time, max_error)
-    trajectory = simulate_trajectory(initial_pos, dt)
-    plot_trajectory(trajectory)
-    trajectory = simulate_trajectory(initial_pos, 2 * dt)
+# Plotting
+def plot_trajectory(positions):
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    ax.plot(positions[:, 0], positions[:, 1], positions[:, 2])
+    ax.set_xlabel('X-axis')
+    ax.set_ylabel('Y-axis')
+    ax.set_zlabel('Z-axis')
+    ax.set_title('Trajectory in Phase Space')
+    plt.show()
+
+def plot_optimal_trajectory(initial_pos, initial_dt, max_computation_time, max_error, t_min, t_max):
+    dt = find_optimal_dt(initial_pos, initial_dt, max_computation_time, max_error, t_min, t_max)
+    trajectory = simulate_trajectory(initial_pos, dt, t_min, t_max)
     plot_trajectory(trajectory)
