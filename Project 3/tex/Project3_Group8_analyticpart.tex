@@ -102,7 +102,32 @@ Now we can use the definition of the Laplacian, $\nabla ^2 = \partial_x^2 + \par
 
 \subsection*{b)}
 \subsection*{c)}
-
+We know that the solution is an equilibrium solution if all time-derivatives are zero. Therefore, we have to check whether 
+\begin{align*}
+    \dot X=s(Y-X)=0\\
+    \dot Y=rX-Y-XZ=0\\
+    \dot Z=XY-bZ=0
+\end{align*}
+given our initial $X_0,Y_0,Z_0$. We therefore check the three given solution. For $X_0=Y_0=Z_0=0$, we have:
+\begin{align*}
+    \dot X=s(0-0)=0\\
+    \dot Y=r\cdot 0-0-0\cdot 0=0\\
+    \dot Z=0\cdot 0-b \cdot 0=0 \quad \square
+\end{align*}
+Now we check the second solution, $X_0=Y_0=\sqrt{b(r-1)},Z_0=r-1$:
+\begin{align*}
+    \dot X&=s(\sqrt{b(r-1)}-\sqrt{b(r-1)})=0\\
+    \dot Y&=r\sqrt{b(r-1)}-\sqrt{b(r-1)}-\sqrt{b(r-1)}(r-1)\\
+    &=(r-1)\sqrt{b(r-1)}-\sqrt{b(r-1)}(r-1)=0\\
+    \dot Z&=\sqrt{b(r-1)}\cdot \sqrt{b(r-1)}-b(r-1)=0 \quad \square
+\end{align*}
+Finally, we check the third solution, $X_0=Y_0=-\sqrt{b(r-1)},Z_0=r-1$:
+\begin{align*}
+    \dot X&=s(-\sqrt{b(r-1)}-(-\sqrt{b(r-1)}))=0\\
+    \dot Y&=-r\sqrt{b(r-1)}+\sqrt{b(r-1)}-(r-1)(-\sqrt{b(r-1)})\\
+    &=(-r+1)\sqrt{b(r-1)}+\sqrt{b(r-1)}(r-1)=0\\
+    \dot Z&=\sqrt{b(r-1)}\cdot (-\sqrt{b(r-1)})-b(r-1)=0 \quad \square
+\end{align*}
 
 \section{Computational part}
 
