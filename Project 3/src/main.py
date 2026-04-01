@@ -10,12 +10,12 @@ def a(save=False):
     max_computation_time = 2 # Maximum computation time in seconds
     max_error = 1 # Maximum acceptable mean squared error
     initial_dt = 0.1 # Initial guess for dt
-    H = 1 # Leyer thickness
     initial_pos = np.array([1, 1, 1]) # Initial position in phase space
     r = 10 # Rescaled reduced Rayleigh number as given in the problem statement
 
     # Show plot for a)
-    plot_optimised_trajectory(initial_pos, initial_dt, max_computation_time, max_error, t_min, t_max, r, H, save_fig=save)
+    plot_title = f"Plot of a)\nTrajectory with initial position= {initial_pos}, r = {r},"
+    plot_optimised_trajectory(initial_pos, initial_dt, max_computation_time, max_error, t_min, t_max, r, save_fig=save, title=plot_title)
 
 
 # b) Plot figures for i) to iv)
@@ -27,7 +27,6 @@ def b_i(save=False):
     max_computation_time = 2 # Maximum computation time in seconds
     max_error = 1 # Maximum acceptable mean squared error
     initial_dt = 0.1 # Initial guess for dt
-    H = 1 # Leyer thickness
     num_of_plots = 2
     random_bound = 20
     initial_positions = [np.array([randint(-random_bound, random_bound), randint(-random_bound, random_bound), randint(-random_bound, random_bound)]) for _ in range(num_of_plots)]
@@ -37,7 +36,8 @@ def b_i(save=False):
 
     # Show plots for b.i)
     for idx, pos in enumerate(initial_positions):
-        plot_optimised_trajectory(pos, initial_dt, max_computation_time, max_error, t_min, t_max, r, H, save_fig=save)
+        plot_title = f"Plot of b.i) ({idx+1})\nTrajectory with initial position= {pos}, r = {r},"
+        plot_optimised_trajectory(pos, initial_dt, max_computation_time, max_error, t_min, t_max, r, save_fig=save, title=plot_title)
 
 # ii)
 def b_ii(save=False):
@@ -47,7 +47,6 @@ def b_ii(save=False):
     max_computation_time = 2 # Maximum computation time in seconds
     max_error = 1 # Maximum acceptable mean squared error
     initial_dt = 0.1 # Initial guess for dt
-    H = 1 # Leyer thickness
     num_of_plots = 2
     random_bound = 20
     initial_positions = [np.array([randint(-random_bound, random_bound), randint(-random_bound, random_bound), randint(-random_bound, random_bound)]) for _ in range(num_of_plots)]
@@ -57,7 +56,8 @@ def b_ii(save=False):
 
     # Show plots for b.ii)
     for idx, pos in enumerate(initial_positions):
-        plot_optimised_trajectory(pos, initial_dt, max_computation_time, max_error, t_min, t_max, r, H, save_fig=save)
+        plot_title = f"Plot of b.ii) ({idx+1})\nTrajectory with initial position= {pos}, r = {r},"
+        plot_optimised_trajectory(pos, initial_dt, max_computation_time, max_error, t_min, t_max, r, save_fig=save, title=plot_title)
 
 # iii)
 def b_iii(save=False):
@@ -67,7 +67,6 @@ def b_iii(save=False):
     max_computation_time = 10 # Maximum computation time in seconds
     max_error = 120 # Increased maximum acceptable mean squared error for b.iii) due to increased complexity of the trajectories
     initial_dt = 0.1 # Initial guess for dt
-    H = 1 # Leyer thickness
     num_of_plots = 2
     random_bound = 20
     initial_positions = [np.array([randint(-random_bound, random_bound), randint(-random_bound, random_bound), randint(-random_bound, random_bound)]) for _ in range(num_of_plots)]
@@ -77,7 +76,8 @@ def b_iii(save=False):
     
     # Show plots for b.iii)
     for idx, pos in enumerate(initial_positions):
-        plot_optimised_trajectory(pos, initial_dt, max_computation_time, max_error, t_min, t_max, r, H, save_fig=False)
+        plot_title = f"Plot of b.iii) ({idx+1})\nTrajectory with initial position= {pos}, r = {r},"
+        plot_optimised_trajectory(pos, initial_dt, max_computation_time, max_error, t_min, t_max, r, save_fig=False, title=plot_title)
 
 # iv)
 def b_iv(save=False):
@@ -87,7 +87,6 @@ def b_iv(save=False):
     max_computation_time = 10 # Maximum computation time in seconds
     max_error = 120 # Increased maximum acceptable mean squared error for b.iv) due to increased complexity of the trajectories
     initial_dt = 0.1 # Initial guess for dt
-    H = 1 # Leyer thickness
     initial_pos = np.array([1, 1, 1])
     delta = 0.001
     delta_initial_pos = initial_pos + np.array([delta, 0, 0]) # Perturbation of the initial position
@@ -98,7 +97,8 @@ def b_iv(save=False):
 
     # Show plots for b.iv)
     for idx, pos in enumerate(initial_positions):
-        plot_optimised_trajectory(pos, initial_dt, max_computation_time, max_error, t_min, t_max, r, H, save_fig=False)
+        plot_title = f"Plot of b.iv) ({idx+1})\nTrajectory with initial position= {pos}, r = {r},"
+        plot_optimised_trajectory(pos, initial_dt, max_computation_time, max_error, t_min, t_max, r, save_fig=False, title=plot_title)
 
 # Main execution
 if __name__ == "__main__":
