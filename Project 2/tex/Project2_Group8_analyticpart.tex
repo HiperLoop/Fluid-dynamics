@@ -145,21 +145,34 @@ Equation \ref{eq:b5} comes from taking the integral over equation \ref{eq:b4} an
 
 
  We are assuming that the plate that is oscillating is infinite and uniform in the $x,y$-direction. Therefore, the velocity cannot depend on $x,y$. Also, initially, the pressure must be constant in the $x,y$ directions, otherwise there would be a pressure gradient, giving the water a velocity in the $x,y$ directions. For all $t$ there is always a $z$ where the fluid is still not moving. The pressure can still not depend on $x,y$. This means that $\partial_xp = \partial_y p = 0$ and, therefore, $C$ cannot depend on $x,y$. Knowing this we can simplify equation \ref{eq:b1}.
- $$
+ \begin{equation*}
  \rho \, \partial_t u = -\partial_x p + \mu \,\partial_z^2 u \implies \rho \partial_t u = \mu \,\partial_z^2 u
- $$
+\end{equation*}
  
-\subsection*{c)}
+\subsection*{c)} 
 
 The equations of motion and boundary conditions then become
-\begin{align*}
-    (1)\quad & \rho \,\partial_t u = \mu \,\partial_z^2 u, \\
-    (2)\quad & z = 0 :\; u = U(t), \\
-    (3)\quad & z = \infty :\; u \rightarrow 0, \\
-    (4)\quad & t = 0 :\; u = 0.
-\end{align*}
+\begin{align}
+    \rho \,\partial_t u = \mu \,\partial_z^2 u, \label{eq:c1}\\
+    z = 0 :\; u = U(t), \label{eq:c2} \\
+    z = \infty :\; u \rightarrow 0, \label{eq:c3}\\
+    t = 0 :\; u = 0. \label{eq:c4}
+\end{align}
 
-This is beacause TODO
+As shown in question b), because the pressure is independent of $x$, $\partial_x p = 0$. Therefore, we were able to simplfy equation \ref{eq:b1} into the equation \ref{eq:c1}.
+\begin{equation*}
+     \rho \, \partial_t u = -\partial_x p + \mu \,\partial_z^2 u \implies \rho \partial_t u = \mu \,\partial_z^2 u
+\end{equation*}
+
+Equations \ref{eq:c2}, \ref{eq:c3}, and \ref{eq:c4} are our boundary conditions. \\
+Because of the no-slip condition, we are claiming that the layer of fluid, that is directly in contact with the oscillating plane, does not slip. Therefore the velocity of that layer,
+ at $z = 0$, must be the same velocity as the plate $u = U(t)$. \\
+As also will be explained in question d), the oscilation of the plate will only move up the water with a certain delay and with a certain damping. Therefore, at a finite time, 
+we will always be able to pick a point that is high 
+enough on the $z$-axis, $z = \infty$, such that the information of the oscillation has not reached there yet. The velocity there will still be 0, $u \rightarrow 0$. Hence, boundary condition \ref{eq:c3}. \\
+Boundary condition \ref{eq:c4} is our initial condition. At $t = 0$ the plate starts oscillating, but it's velocity is still $0$ as well, $U(0) = U_0 \sin(2\pi \frac{0}{T}) = 0$. 
+Therefore, the velocity of the fluid will also still be $0$, $u = 0$.
+
 
 \subsection*{d)}
 We can find with BC (2) that the solution should have a form: 
@@ -191,8 +204,7 @@ The first one reduces to:
 \begin{align*}
     k&=\frac{2\pi\partial_z\tau(z)}{T} \Leftrightarrow \partial_z\tau(z) = \pm \frac{kT}{2\pi} \rightarrow \tau(z) = \pm \frac{kT}{2\pi}z + C
 \end{align*}
-where we only take the positive value of $\tau$ because the particles higher up cannot be ahead of the particles below.
-To determine the constant, we use BC (2):\footnote{Of course, used this already above, for completion the calculation is included here.}
+To determine the constant, we use BC (2):\footnote{Of course, we used this already above, for completion the calculation is included here.}
 \begin{align*}
     u(0,t)&=U(t)\\
     U_0 \sin\!\left( 2\pi \frac{t-\tau(0)}{T} \right)&=  U_0 \sin\!\left( 2\pi \frac{t}{T} \right)\\
@@ -207,32 +219,17 @@ With the second equation, we can determine the value of $k$:
 \end{align*}
 
 We find that $k = \sqrt{\dfrac{\rho \omega}{2\mu}}$ where $\omega = 2\pi/T$ and $\tau(z) = \frac{kT}{2\pi}z$. \\
-The statement that $k$ increases with $\omega$ is equivalent to saying that a faster oscilation will experience stronger damping. This statement is reasonable, since the acceleration of the next layer of fluid due to the friction is not instentanous. However, when now the oscilation is faster, the next layer of fluid will not have enough time to accelerate before the oscilation changes direction again, therefore the whole motion experiences stronger damping per height.
+The statement that $k$ increases with $\omega$ is equivalent to saying that a faster oscilation will experience stronger damping. This statement is reasonable, since the acceleration of the next layer of fluid is not instentanous. However, when now the oscilation is faster, the next layer of fluid will not have enough time to accelerate before the oscilation changes direction again, therefore the whole motion experiences stronger damping per height.
 
 \subsection*{e)}
 
-The velocity field $u(z, t)$ changes over a period $T$ as a damped sinusodial function along the z-axis. \\
-
-When we plot the field at time $t = 0$ (Figure \ref{fig:velocity_t0}) and $t = T/4$ (Figure \ref{fig:velocity_tT/4}) we see that TODO
+The velocity field $u(z, t)$ changes over a period $T$ as a damped sinusodial function along the z-axis. This is plotted for $t=0$ in blue and for $t=T/4$ in red, both in Figure \ref{fig:velocity_t0}. We used the constants from the numerical part, namely $\rho=1000$ kg/m$^3$, $\mu = 1$ N$\text{m}^{-2}\cdot$s, $T = 0.1$ s, and $U_0 = 1$ m/s. The velocity field is plotted for $z \in [0, 0.06]$ m, which is a reasonable range to see the damping effect since the velocity approaches zero afterwards. 
 
     \begin{figure}[H]
-    \centering
-    
-    \begin{subfigure}{0.48\textwidth}
         \centering
         \includegraphics[width=\linewidth]{\PATH 1_e_Velocity_profile_t=0.png}
-        \caption{}
+        \caption{Velocity field for $t = 0$ and $t = T/4$}
         \label{fig:velocity_t0}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{\PATH 1_e_Velocity_profile_t=Tover4.png}
-        \caption{}
-        \label{fig:velocity_tT/4}
-    \end{subfigure}
-
-    \caption{Velocity field for $t = 0$ (a) and $t = T/4$ (b)}
     \end{figure}
 
 \section{Computational part}
