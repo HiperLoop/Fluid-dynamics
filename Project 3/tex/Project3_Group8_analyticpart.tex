@@ -124,6 +124,99 @@
         \frac{d\Psi(t)}{dt} &= - \Pr (k^2 + \pi^2) \Psi(t) + \Pr \frac{k \Ra}{k^2 + \pi^2} \Theta_1(t) 
     \end{align*}
 
+We want to show that the equations for $\Theta_1(t)$ and $\Theta_2(t)$ are given by:
+\begin{equation}\label{T1}
+    \frac{d\Theta_1}{dt} = k\Psi - (k^2 + \pi^2)\Theta_1 - \pi k \Psi \Theta_2
+\end{equation}
+\begin{equation}\label{T2}
+    \frac{d\Theta_2}{dt} = \frac{1}{2}k\pi \Psi \Theta_1 - 4\pi^2\Theta_2
+\end{equation}
+To do this, we plug the expression for temperature
+\begin{equation}
+    \vartheta(x,z,t) = \Theta_1(t)\cos kx \sin \pi z - \Theta_2(t)\sin 2\pi z
+\end{equation}
+into
+\begin{equation}\label{temp}
+    \partial_t \vartheta + u\partial_x \vartheta + w\partial_z \vartheta - w = \partial^2_x \vartheta + \partial^2_z \vartheta
+\end{equation} 
+Computing the derivatives:
+\begin{align*}
+    \partial_t \vartheta &= \frac{d\Theta_1(t)}{dt}\cos kx \sin \pi z - \frac{d\Theta_2}{dt}\sin 2\pi z \\
+    \partial_x \vartheta &= -k \Theta_1 \sin kx \sin \pi z \\
+    \partial_z \vartheta &= \pi \Theta_1 \cos kx \cos \pi z - 2\pi \Theta_2 \cos 2\pi z \\
+    \partial^2_x \vartheta &= -k^2 \Theta_1 \cos kx \sin \pi z \\
+    \partial^2_z \vartheta &= -\pi^2 \Theta_1 \cos kx \sin \pi z + 4\pi^2 \Theta_2 \sin 2\pi z
+\end{align*}
+Using the definitions of u and w:
+\begin{align*}
+    u = -\partial_z \psi = -\Psi(t) \pi \sin kx \cos \pi z \\
+    w = \partial_x \psi = \Psi(t) k \cos kx \sin \pi z
+\end{align*}
+We start off by plugging these derivatives, along with the definitions of u and w into expression \ref{temp}. \\
+Doing this, the left-hand-side becomes:
+\begin{align*}
+    \left(\frac{d\Theta_1(t)}{dt}\cos kx \sin \pi z - \frac{d\Theta_2}{dt}\sin 2\pi z\right) + \left(-\Psi(t) \pi \sin kx \cos \pi z\right)\left(-k \Theta_1 \sin kx \sin \pi z\right) \\ + \left(\Psi(t) k \cos kx \sin \pi z\right)\left(\pi \Theta_1 \cos kx \cos \pi z - 2\pi \Theta_2 \cos 2\pi z\right) - \left(\Psi(t) k \cos kx \sin \pi z\right)
+\end{align*}
+and the right-hand-side becomes:
+\begin{align*}
+    \left(-k^2 \Theta_1 \cos kx \sin \pi z\right) + \left(-\pi^2 \Theta_1 \cos kx \sin \pi z + 4\pi^2 \Theta_2 \sin 2\pi z\right)
+\end{align*}
+We can use the indentity $\sin 2 \pi z = 2\cos \pi z \sin \pi z$ to simplify the terms $\sin 2\pi z$ on both sides, which allows us to divide both sides by $\sin \pi z$. Doing this and multiplying out terms in brackets gives:
+Left-hand-side:
+\begin{align*}
+    \frac{d\Theta_1}{dt}\cos kx - 2\frac{d\Theta_2}{dt}\cos \pi z + k\pi \Psi\Theta_1 \sin^2 kx \cos \pi z + k\pi\Psi\Theta_1 \cos^2 kx \cos \pi z - 2k\pi \Psi\Theta_2 \cos kx \cos 2\pi z - k\Psi \cos kx
+\end{align*}
+We can merge 
+\begin{align*}
+    -k \pi \Psi\Theta_1  \sin^2 kx \cos \pi z - k \pi \Psi \Theta_1  \cos^2 kx \cos \pi z
+\end{align*}
+into 
+\begin{align*}
+    -k \pi \Psi \Theta_1 \cos \pi z
+\end{align*}
+which simplifies our expression to
+\begin{align*}
+    \frac{d\Theta_1}{dt}\cos kx - 2\frac{d\Theta_2}{dt}\cos \pi z -k \pi \Psi \Theta_1 \cos \pi z - 2k\pi \Psi\Theta_2 \cos kx \cos 2\pi z - k\Psi \cos kx
+\end{align*}
+Right-hand-side:
+\begin{align*}
+    -k^2 \Theta_1 \cos kx - \pi^2 \Theta_1 \cos kx + 8\pi^2 \Theta_2 \cos \pi z
+\end{align*}
+where $-k^2\Theta_1 \cos kx - \pi^2 \Theta_1 \cos kx = -\Theta_1\cos kx \left(k^2 + \pi^2\right)$, so this becomes:
+\begin{align*}
+    -\Theta_1\cos kx \left(k^2 + \pi^2\right) + 8\pi^2 \Theta_2 \cos \pi z
+\end{align*}
+Setting the two sides equal and equating all the coefficients in front of $\cos kx$ and $\cos \pi z$, respectively, yields the following pair of equalities:
+\begin{equation*}
+    \frac{d\Theta_1}{dt} = -\Theta_1 \left(k^2 + \pi^2\right) + 2\pi k \Psi \Theta_2 \cos 2\pi z + k\Psi \\
+\end{equation*}
+\begin{equation*}
+        \frac{d\Theta_2}{dt} = -\frac{k}{2} \pi \Psi \Theta_1 - 4\pi^2 \Theta_2 
+\end{equation*}
+The second equation we obtain matches \ref{T2}, however the first doesn't yet match \ref{T1}. To make them match, we use the identity to reexpress the second term
+\begin{align*}
+    \cos 2\pi z \sin \pi z = \frac{1}{2}\left(\sin 3 \pi z - \sin \pi z\right)
+\end{align*}
+This is done as follows:
+\begin{align*}
+    2 \pi k \Psi \Theta_2 \cos 2\pi z = 2 \pi k \Psi \Theta_2 \cos 2\pi z \frac{\sin \pi z}{\sin \pi z}
+\end{align*}
+using the identity, this becomes
+\begin{align*}
+    2 \pi k \Psi \Theta_2 \cos 2\pi z \frac{\sin \pi z}{\sin \pi z} = \pi k \Theta_2 \Psi \frac{\sin 3\pi z - \sin \pi z}{\sin \pi z}
+\end{align*}
+since we are only considering the first 2 Fourier modes in the z-direction, we can drop the term $\sin 3 \pi z$, and we get:
+\begin{align*}
+    \pi k \Theta_2 \Psi \frac{\sin 3\pi z - \sin \pi z}{\sin \pi z} = \pi k \Theta_2 \Psi
+\end{align*}
+This means if we now substitute this in place of the second term, we get equations which match \ref{T1} and \ref{T2}:
+\begin{equation*}
+    \frac{d\Theta_1}{dt} = -\Theta_1 \left(k^2 + \pi^2\right) + \pi k \Theta_2 \Psi + k\Psi \\
+\end{equation*}
+\begin{equation*}
+        \frac{d\Theta_2}{dt} = -\frac{k}{2} \pi \Psi \Theta_1 - 4\pi^2 \Theta_2 
+\end{equation*}
+
 \subsection*{c)}
 
 
