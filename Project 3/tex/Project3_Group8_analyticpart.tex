@@ -44,6 +44,9 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\I}{\mathbb{I}}
 \newcommand{\E}{\mathbb{E}}
+\renewcommand{\Pr}{\textbf{Pr}}
+\newcommand{\Ra}{\textbf{Ra}}
+\newcommand{\bracket}[1]{\left(#1\right)}
 
 \newcommand{\mbeq}{\overset{!}{=}}
 \newcommand{\PATH}{figures/}
@@ -59,6 +62,68 @@
 
 \subsection*{a)}
 \subsection*{b)}
+    To find the expression for $\frac{d\Psi}{dt}$ we start of with the equation from problem (a)
+    \begin{gather}
+        \frac{1}{\Pr}(\partial_t(\nabla^2 \psi) + u \partial_x(\nabla^2 \psi) + w \partial_z(\nabla^2 \psi) = \partial_x^2(\nabla^2 \psi) + \partial_z^2 (\nabla^2 \psi) + \Ra \partial_x \vartheta \\
+    \end{gather}
+    Using the expression for $\psi(x,z,t)$ and $\vartheta(x,z,t)$
+    \begin{gather*}
+        \psi(x,z,t) = \Psi(t) \sin(kx) \sin(\pi z) \\
+        \vartheta(x,z,t) = \Theta_1(t) \cos(kx) \sin(\pi z) - \Theta_2(t) \sin(2\pi z) 
+    \end{gather*}
+    
+    we can calculate the components of the first equation seperately
+    \begin{align*}
+        \nabla^2 \psi &= -\Psi(t) k^2 \sin(kx) \sin(\pi z) - \Psi(t) \pi^2 \sin(k x) \sin(\pi z) \\
+        %
+        \partial_t(\nabla^2 \psi) &= \partial_t (-\Psi(t) k^2 \sin(kx) \sin(\pi z) - \Psi(t) \pi^2 \sin(k x) \sin(\pi z)) \\
+        &= -\frac{d\Psi(t)}{dt} \sin(k x) \sin(\pi z) (k^2 + \pi^2) \\
+        %
+        \partial_x(\nabla^2 \psi) &= \partial_x (-\Psi(t) k^2 \sin(kx) \sin(\pi z) - \Psi(t) \pi^2 \sin(k x) \sin(\pi z)) \\
+        &= \Psi(t) \cos(k x) \sin(\pi z) (k^3 + k\pi^2) \\
+        %
+        \partial_z (\nabla^2 \psi) &= \partial_z (-\Psi(t) k^2 \sin(kx) \sin(\pi z) - \Psi(t) \pi^2 \sin(k x) \sin(\pi z)) \\
+        &= \Psi(t) \sin(k x) \cos(\pi z) (k^2 \pi + \pi^3) \\
+        %
+        \partial_x^2 (\nabla^2 \psi) &= \partial_x^2 (-\Psi(t) k^2 \sin(kx) \sin(\pi z) - \Psi(t) \pi^2 \sin(k x) \sin(\pi z)) \\
+        &= \Psi(t) \sin(k x) \sin(\pi z) (k^2 \pi^2 + \pi^4) \\
+        %
+        \partial_z^2 (\nabla^2 \psi) &= \partial_z^2 (-\Psi(t) k^2 \sin(kx) \sin(\pi z) - \Psi(t) \pi^2 \sin(k x) \sin(\pi z)) \\
+        &= \Psi(t) \sin(k x) \sin(\pi z) (k^4 + k^2 \pi^2) \\
+        %
+        \Ra \partial_x \vartheta &= \Ra \partial_x (\Theta_1(t) \cos(kx) \sin(\pi z) - \Theta_2(t) \sin(2\pi z)) \\
+        &=-\Ra (\Theta_1(t) k \sin(kx) \sin(\pi z)) \\
+        %
+        u &= -\partial_z \psi = -\Psi(t) \pi \sin(kx) \cos(\pi z) \\
+        %
+        w &= \Psi(t) k \cos(kx) \sin(\pi z)
+    \end{align*}
+    Combining this into the equation, while multiplying everything by $\Pr$ and taking everything to the left side gives us 
+    \begin{align*}
+        &-\frac{d\Psi(t)}{dt} \sin(k x) \sin(\pi z) (k^2 + \pi^2) + u \Psi(t) \cos(k x) \sin(\pi z) (k^3 + k\pi^2) + w \Psi(t) \sin(k x) \cos(\pi z) (k^2 \pi + \pi^3) \\ 
+        &\qquad - \Pr \Psi(t) \sin(k x) \sin(\pi z) (k^2 \pi^2 + \pi^4) - \Pr \Psi(t) \sin(k x) \sin(\pi z) (k^4 + k^2 \pi^2) + \Pr \Ra (\Theta_1(t) k \sin(kx) \sin(\pi z)) = 0
+    \end{align*}
+    Now we can take out $\Psi(t)$ and divide by the term with the $\frac{d\Psi(t)}{dt}$
+    \begin{align*}
+        &-\frac{d\Psi(t)}{dt} \sin(k x) \sin(\pi z) (k^2 + \pi^2) + \Psi(t) (u \cos(k x) \sin(\pi z) (k^3 + k\pi^2) + w \sin(k x) \cos(\pi z) (k^2 \pi + \pi^3) \\
+        &\qquad - \Pr \sin(k x) \sin(\pi z) (k^2 \pi^2 + \pi^4) - \Pr \sin(k x) \sin(\pi z) (k^4 + k^2 \pi^2)) + \Pr \Ra (\Theta_1(t) k \sin(kx) \sin(\pi z)) = 0 \\
+        %
+        &-\frac{d\Psi(t)}{dt} + \Psi(t) (u \frac{\cos(k x)}{\sin(k x)} (\frac{k^3 + k\pi^2}{k^2 + \pi^2}) + w \frac{\cos(\pi z)}{\sin(\pi z)} (\frac{k^2 \pi + \pi^3}{k^2 + \pi^2}) - \Pr (\frac{k^2 \pi^2 + \pi^4}{k^2 + \pi^2}) - \Pr (\frac{k^4 + k^2 \pi^2}{k^2 + \pi^2})) \\
+        & \qquad+ \Pr \frac{\Ra \Theta_1(t) k}{k^2 + \pi^2} = 0
+    \end{align*}
+    Substitution in the expressions for $u$ and $w$, taking $\frac{d\Psi(t)}{dt}$ to the other side and simplifying the equation gives us
+    \begin{align*}
+        \frac{d\Psi(t)}{dt} &= \Psi(t) (-\Psi(t) \pi \sin(kx) \cos(\pi z) \frac{\cos(k x)}{\sin(k x)} (\frac{k^3 + k\pi^2}{k^2 + \pi^2}) + \Psi(t) k \cos(kx) \sin(\pi z) \frac{\cos(\pi z)}{\sin(\pi z)} (\frac{k^2 \pi + \pi^3}{k^2 + \pi^2}) \\
+        &\qquad- \Pr (\frac{K^4 + 2k^2 \pi^2 + \pi^4}{k^2 + \pi^2}) + \Pr \frac{\Ra \Theta_1(t) k}{k^2 + \pi^2} \\
+        %
+        \frac{d\Psi(t)}{dt} &= \Psi(t) (-\Psi(t) \cos(\pi z) \cos(k x) (\frac{k^3 \pi + k\pi^3}{k^2 + \pi^2}) + \Psi(t) \cos(kx) \cos(\pi z) (\frac{k^3 \pi + k \pi^3}{k^2 + \pi^2}) - \Pr (\frac{k^4 + 2k^2 \pi^2 + \pi^4}{k^2 + \pi^2})) \\
+        &\qquad + \Pr \frac{\Ra \Theta_1(t) k}{k^2 + \pi^2} \\
+        %
+        \frac{d\Psi(t)}{dt} &= \Psi(t) (\Psi(t) \cos(\pi z) \cos(k x) (\frac{-k^3 \pi - k\pi^3 + k^3 \pi + k \pi^3}{k^2 + \pi^2}) - \Pr (\frac{(k^2 + \pi^2)^2}{k^2 + \pi^2})) + \Pr \frac{\Ra \Theta_1(t) k}{k^2 + \pi^2} \\
+        %
+        \frac{d\Psi(t)}{dt} &= - \Pr (k^2 + \pi^2) \Psi(t) + \Pr \frac{k \Ra}{k^2 + \pi^2} \Theta_1(t) 
+    \end{align*}
+
 \subsection*{c)}
 
 
