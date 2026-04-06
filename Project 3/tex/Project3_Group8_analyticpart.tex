@@ -221,6 +221,19 @@ Finally, we check the third solution, $X_0=Y_0=-\sqrt{b(r-1)},Z_0=r-1$:
     &=(-r+1)\sqrt{b(r-1)}+\sqrt{b(r-1)}(r-1)=0\\
     \dot Z&=\sqrt{b(r-1)}\cdot (-\sqrt{b(r-1)})-b(r-1)=0 \quad \square
 \end{align*}
+We can now find the matrix by linearizing the system around the equilibria, disturbed by small pertubations. For this, we express the system as $(X,Y,Z)=(X_0+\hat X,Y_0+\hat Y,Z_0+\hat Z)$. We are interested in how the whole system behaves in time when these small perturbations are added, so we compute the time-derivative of the pertubations. For this, we use $\hat X=X-X_0$, $\hat Y=Y-Y_0$, and $\hat Z=Z-Z_0$. Then, $\frac{\text d}{\text{dt}}\hat X=\frac{\text d}{\text{dt}}X-\frac{\text d}{\text{dt}}X_0=\dot X$, since the equilibrium condition is time independent. This goes analougue for Y and Z. This gives us:
+\begin{align*}
+    \frac{\text d}{\text{dt}}\begin{bmatrix}
+         \hat X \\
+         \hat Y \\
+         \hat Z
+    \end{bmatrix} = \begin{bmatrix}
+         \dot X\\
+         \dot Y \\
+         \dot Z
+    \end{bmatrix} = 
+\end{align*}
+where $M$ is the Jacobian matrix of the system evaluated at the equilibrium point.
 
 \section{Computational part}
 
