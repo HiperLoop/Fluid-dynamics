@@ -27,7 +27,7 @@ def update_values2(M,r):
 
 def main():
     """This is the main function to run the code for part c) of the analytical part. Change between the equilibrium states in the line below"""
-    update_function=update_values0 #Change between the three equilibrium states here by changing the update function between 0,1, and 2
+    update_function=update_values2 #Change between the three equilibrium states here by changing the update function between 0,1, and 2
     
     a=np.arange(0.1, 100.1, 0.1) #Array size to determine for which r values to compute the eigenvalues
     M=np.zeros((3,3)) #Initialise the matrix M
@@ -41,6 +41,8 @@ def main():
     plt.title('Max Eigenvalue vs r')
     plt.grid()
     plt.show()
+    print(np.linalg.eigvals(M))
+    print(np.linalg.eig(M))
 #Define global constants
 s=10 
 b=8/3
