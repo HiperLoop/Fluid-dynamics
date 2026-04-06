@@ -61,6 +61,48 @@
 \section{Analytic part}
 
 \subsection*{a)}
+To argue that we can use the streamfunction $\psi$ to describe the flow, we can start at the first boundary condition, namely that the fluid is incompressible. This implies that the density does not change with time. If we plug this into the continuity equation, we get:
+\begin{align*}
+    \frac{\partial \rho}{\partial t} + \nabla \cdot (\rho \mathbf{v}) = 0 \\
+    \Leftrightarrow \nabla \cdot \mathbf{v} = 0
+\end{align*}
+This means that the velocity field is divergence free. We can now use this to define a streamfunction $\psi$ that automatically satisfies
+\begin{align*}
+    u &= \frac{\partial \psi}{\partial z}  \\
+    w &= -\frac{\partial \psi}{\partial x}
+\end{align*}
+If we now insert these definitions into the boundary condition, we find:
+\begin{align*}
+    \partial _x \left( \frac{\partial \psi}{\partial z} \right) + \partial _z \left( -\frac{\partial \psi}{\partial x} \right) &= 0 \\
+    \frac{\partial^2 \psi}{\partial x \partial z} - \frac{\partial^2 \psi}{\partial z \partial x} &= 0 \quad \square
+\end{align*}
+Since the streamfunction is function describing the position of the particle, its derivative is the velocity of the particle, so it also makes sense intuitively. 
+We now plug this into the second and third equations:
+\begin{align*}
+    \textbf{Pr}^{-1}(\partial _t u+ u\partial_xu+
+    w\partial _zu)=-\partial _xp+\partial ^2_xu+\partial ^2_zu\\
+    \Rightarrow \textbf{Pr}^{-1}(\partial _t \partial_z \psi+ u \partial_x\partial_z \psi+w \partial _z^2\psi)=-\partial _xp+\partial ^2_x\partial_z\psi+\partial ^3_z\psi\\
+    \textbf{Pr}^{-1}(\partial _t w+ u\partial _xw+w\partial _zw)=-\partial _zp+\partial ^2_xw+\partial ^2_zw+\textbf{Ra}\vartheta\\
+    \Rightarrow \textbf{Pr}^{-1}(-\partial _t \partial_x \psi-u \partial_x^2 \psi-w \partial_z \partial_x \psi)=-\partial _zp-\partial ^3_x\psi-\partial ^2_z\partial _x\psi+\textbf{Ra}\vartheta
+\end{align*}
+To cancel out the pressure, we are now deriving both equations, the first one with respect to $z$ and the second one with respect to $x$:
+\begin{align*}
+    \textbf{Pr}^{-1}(\partial _t \partial^2_z \psi+ u \partial_x\partial^2_z \psi+w \partial^3_z \psi)=-\partial _{x}\partial_zp+\partial ^2_x\partial_z^2\psi+\partial ^4_z\psi\\
+    \textbf{Pr}^{-1}(-\partial _t \partial^2_x \psi-u \partial^3_x \psi-w \partial_z \partial^2_x \psi)=-\partial _{x}\partial_zp-\partial ^4_x\psi-\partial ^2_z\partial _x^2\psi+\textbf{Ra}\partial _x\vartheta
+\end{align*}
+Now we can subtract the second equation from the first one to get:
+\begin{align*}
+    \textbf{Pr}^{-1}(\partial _t \partial^2_z \psi+ u \partial_x\partial^2_z \psi+w \partial^3_z \psi+\partial _t \partial^2_x \psi+u \partial^3_x \psi+w \partial_z \partial^2_x \psi)\\
+    =\partial ^2_x\partial_z^2\psi+\partial ^4_z\psi+\partial ^4_x\psi+\partial ^2_z\partial _x^2\psi-\textbf{Ra}\partial _x\vartheta\\
+    \Leftrightarrow \textbf{Pr}^{-1}(\partial _t (\partial^2_x+ \partial^2_z) \psi+ u \partial_x(\partial_x^2+\partial_z^2) \psi+w \partial_z (\partial_x^2+\partial_z^2) \psi)\\
+    =\partial _x^2(\partial_z^2+\partial_x^2)\psi+\partial _z^2(\partial_x^2+\partial_z^2)\psi-\textbf{Ra}\partial _x\vartheta\\
+\end{align*}
+Now we can use the definition of the Laplacian, $\nabla ^2 = \partial_x^2 + \partial_z^2$, to get:
+\begin{align*}
+    \textbf{Pr}^{-1}(\partial _t \nabla^2 \psi+ u \partial_x \nabla^2 \psi+w \partial_z \nabla^2 \psi)=\partial_x^2(\nabla^2\psi)+\partial_z^2(\nabla^2\psi)-\textbf{Ra}\partial _x\vartheta \quad \square 
+\end{align*}
+
+
 \subsection*{b)}
     To find the expression for $\frac{d\Psi}{dt}$ we start of with the equation from problem (a)
     \begin{gather}
@@ -218,7 +260,32 @@ This means if we now substitute this in place of the second term, we get equatio
 \end{equation*}
 
 \subsection*{c)}
-
+We know that the solution is an equilibrium solution if all time-derivatives are zero. Therefore, we have to check whether 
+\begin{align*}
+    \dot X=s(Y-X)=0\\
+    \dot Y=rX-Y-XZ=0\\
+    \dot Z=XY-bZ=0
+\end{align*}
+given our initial $X_0,Y_0,Z_0$. We therefore check the three given solution. For $X_0=Y_0=Z_0=0$, we have:
+\begin{align*}
+    \dot X=s(0-0)=0\\
+    \dot Y=r\cdot 0-0-0\cdot 0=0\\
+    \dot Z=0\cdot 0-b \cdot 0=0 \quad \square
+\end{align*}
+Now we check the second solution, $X_0=Y_0=\sqrt{b(r-1)},Z_0=r-1$:
+\begin{align*}
+    \dot X&=s(\sqrt{b(r-1)}-\sqrt{b(r-1)})=0\\
+    \dot Y&=r\sqrt{b(r-1)}-\sqrt{b(r-1)}-\sqrt{b(r-1)}(r-1)\\
+    &=(r-1)\sqrt{b(r-1)}-\sqrt{b(r-1)}(r-1)=0\\
+    \dot Z&=\sqrt{b(r-1)}\cdot \sqrt{b(r-1)}-b(r-1)=0 \quad \square
+\end{align*}
+Finally, we check the third solution, $X_0=Y_0=-\sqrt{b(r-1)},Z_0=r-1$:
+\begin{align*}
+    \dot X&=s(-\sqrt{b(r-1)}-(-\sqrt{b(r-1)}))=0\\
+    \dot Y&=-r\sqrt{b(r-1)}+\sqrt{b(r-1)}-(r-1)(-\sqrt{b(r-1)})\\
+    &=(-r+1)\sqrt{b(r-1)}+\sqrt{b(r-1)}(r-1)=0\\
+    \dot Z&=\sqrt{b(r-1)}\cdot (-\sqrt{b(r-1)})-b(r-1)=0 \quad \square
+\end{align*}
 
 \section{Computational part}
 
