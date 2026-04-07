@@ -317,8 +317,27 @@ For $r<1$, there is no velocity field... \\
 
 In the figures below, we can see that we obtain different eigenvalues for different values of $r = \boldsymbol{Ra}k^2/(k^2 + \pi^2)^3$. For eigenvalues $<0$, the system is stable because the initial disturbance is scaled down by the eigenvalue and therefore the system goes back to equilibrium, while for eigenvalues $>0$, the disturbance is scaled up by the eigenvalue and therefore the system remains disturbed. For the last two disturbances, the effects are the same and therefore both are plotted in the second figure.
 
-\includegraphics[scale=0.5]{disturbance0.png}
-\includegraphics[scale=0.5]{disturbance1.png}
+\begin{figure}[H]
+    \centering
+    
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{\PATH disturbance0.png}
+        \caption{$X_0 = Y_0 = Z_0 = 0$}
+        \label{fig:disturbance0}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{\PATH disturbance1.png}
+        \caption{$(X_0, Y_0, Z_0) = (\pm \sqrt{b(r-1)}, \pm \sqrt{b(r-1)}, r-1)$}
+        \label{fig:disturbance1}
+    \end{subfigure}
+    
+    \caption{maximum eigenvalues for different $r$ for the three different equilibrium states}
+\end{figure}
+
+
 
 
 When we find the eigenvalues of the matrix, we diagonalize the matrix $det(M - \lambda I) = 0$
@@ -327,10 +346,22 @@ When we find the eigenvalues of the matrix, we diagonalize the matrix $det(M - \
         a - \lambda & b & c \\
         d & e - \lambda & f \\
         g & h & i - \lambda
-    \end{pmatrix} = 0 \\
-    (a - \lambda)((e - \lambda)(i - \lambda) - fh) + b(fg - d(i - \lambda)) + c(dh - (e - \lambda)g) = 0    
+    \end{pmatrix} = (a - \lambda)((e - \lambda)(i - \lambda) - fh) + b(fg - d(i - \lambda)) + c(dh - (e - \lambda)g) = 0    
 \end{align}
-Looking at expression \eqref{diabonalize} we can see that for us $f = -X_0, g = Y_0, g = X_0$. Because for the two cases of $(X_0, Y_0, Z_0) = (\pm \sqrt{b(r-1)}, \pm \sqrt{b(r-1)}, r-1)$, the only thing that changes is the sign of the $X_0$ and $Y_0$, nothing changes in for the eigenvalues. This is because the term $fh = (-X_0)(X_0)$ stays the same, and $c = 0$, which takes care of the sign switch of $dh = (r - Z_0)X_0 $ and $ (e - \lambda)g = -Y_0 - \lambda Y_0$. This explains why the eigenvalues of these two situations are the same.
+Looking at expression \eqref{diagonalize} we can see that for us $f = -X_0, g = Y_0, h = X_0$. Because for the two cases of $(X_0, Y_0, Z_0) = (\pm \sqrt{b(r-1)}, \pm \sqrt{b(r-1)}, r-1)$, the only thing that changes is the sign of the $X_0$ and $Y_0$, nothing changes in for the eigenvalues. This is because the term $fh = (-X_0)(X_0)$ stays the same, and $c = 0$, which takes care of the sign switch of $dh = (r - Z_0)X_0 $ and $ (e - \lambda)g = -Y_0 - \lambda Y_0$. This explains why the eigenvalues of these two situations are the same.\\
+%
+r measures the relative importance of temperature-induced buoyancy forces and frictional forces in our system and therefore shows how much convection will accure. For $r<1$ we have the equilibrium state $X_0 = Y_0 = Z_0 = 0$ (fig. \ref{fig:disturbance0}). When there is at least one possitive eigenvalue, the disturbances will increase and therefore the system is unstable. You can see that for this first equilibrium state, the maximum eigenvalue will stay below $0$ for $r<1$. This means that when $r<1$, no convection will occure, giving a velocity and temperature field as in the situation sketch in the assignment. \\
+%
+For $r>1$ we have the equilibrium solutions $(X_0, Y_0, Z_0) = (\pm \sqrt{b(r-1)}, \pm \sqrt{b(r-1)}, r-1)$. The maximum eigenvalues of this system stay negative for $r$ being around $r<25$. \\
+%
+For $r$ becoming much larger, we will see that the eigenvalues are possitive for all the situations. This means that the pertubations will be amplified and therefore we have an instable system. Rayleigh-Bénard convection will occure like in figure \ref{Rayleigh_Bénard_convection}. This will in some places bring warmer water up and colder water down. The line of equal temperature will therefore not be horizontal anymore, but will look more like in figure \ref{Rayleigh_Bénard_convection}.
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8 \textwidth]{\PATH flow.png}
+        \caption{Rayleigh-Bénard convection}
+        \label{Rayleigh_Bénard_convection}
+    \end{figure}
+
 
 \section{Computational part}
 
