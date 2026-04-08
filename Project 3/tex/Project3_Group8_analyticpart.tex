@@ -44,6 +44,9 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\I}{\mathbb{I}}
 \newcommand{\E}{\mathbb{E}}
+\renewcommand{\Pr}{\textbf{Pr}}
+\newcommand{\Ra}{\textbf{Ra}}
+\newcommand{\bracket}[1]{\left(#1\right)}
 
 \newcommand{\mbeq}{\overset{!}{=}}
 \newcommand{\PATH}{figures/}
@@ -58,8 +61,306 @@
 \section{Analytic part}
 
 \subsection*{a)}
+To argue that we can use the streamfunction $\psi$ to describe the flow, we can start at the first boundary condition, namely that the fluid is incompressible. This implies that the density does not change with time. If we plug this into the continuity equation, we get:
+\begin{align*}
+    \frac{\partial \rho}{\partial t} + \nabla \cdot (\rho \mathbf{v}) = 0 \\
+    \Leftrightarrow \nabla \cdot \mathbf{v} = 0
+\end{align*}
+This means that the velocity field is divergence free. We can now use this to define a streamfunction $\psi$ that automatically satisfies
+\begin{align*}
+    u &= \frac{\partial \psi}{\partial z}  \\
+    w &= -\frac{\partial \psi}{\partial x}
+\end{align*}
+If we now insert these definitions into the boundary condition, we find:
+\begin{align*}
+    \partial _x \left( \frac{\partial \psi}{\partial z} \right) + \partial _z \left( -\frac{\partial \psi}{\partial x} \right) &= 0 \\
+    \frac{\partial^2 \psi}{\partial x \partial z} - \frac{\partial^2 \psi}{\partial z \partial x} &= 0 \quad \square
+\end{align*}
+Since the streamfunction is function describing the position of the particle, its derivative is the velocity of the particle, so it also makes sense intuitively. 
+We now plug this into the second and third equations:
+\begin{align*}
+    \textbf{Pr}^{-1}(\partial _t u+ u\partial_xu+
+    w\partial _zu)=-\partial _xp+\partial ^2_xu+\partial ^2_zu\\
+    \Rightarrow \textbf{Pr}^{-1}(\partial _t \partial_z \psi+ u \partial_x\partial_z \psi+w \partial _z^2\psi)=-\partial _xp+\partial ^2_x\partial_z\psi+\partial ^3_z\psi\\
+    \textbf{Pr}^{-1}(\partial _t w+ u\partial _xw+w\partial _zw)=-\partial _zp+\partial ^2_xw+\partial ^2_zw+\textbf{Ra}\vartheta\\
+    \Rightarrow \textbf{Pr}^{-1}(-\partial _t \partial_x \psi-u \partial_x^2 \psi-w \partial_z \partial_x \psi)=-\partial _zp-\partial ^3_x\psi-\partial ^2_z\partial _x\psi+\textbf{Ra}\vartheta
+\end{align*}
+To cancel out the pressure, we are now deriving both equations, the first one with respect to $z$ and the second one with respect to $x$:
+\begin{align*}
+    \textbf{Pr}^{-1}(\partial _t \partial^2_z \psi+ u \partial_x\partial^2_z \psi+w \partial^3_z \psi)=-\partial _{x}\partial_zp+\partial ^2_x\partial_z^2\psi+\partial ^4_z\psi\\
+    \textbf{Pr}^{-1}(-\partial _t \partial^2_x \psi-u \partial^3_x \psi-w \partial_z \partial^2_x \psi)=-\partial _{x}\partial_zp-\partial ^4_x\psi-\partial ^2_z\partial _x^2\psi+\textbf{Ra}\partial _x\vartheta
+\end{align*}
+Now we can subtract the second equation from the first one to get:
+\begin{align*}
+    \textbf{Pr}^{-1}(\partial _t \partial^2_z \psi+ u \partial_x\partial^2_z \psi+w \partial^3_z \psi+\partial _t \partial^2_x \psi+u \partial^3_x \psi+w \partial_z \partial^2_x \psi)\\
+    =\partial ^2_x\partial_z^2\psi+\partial ^4_z\psi+\partial ^4_x\psi+\partial ^2_z\partial _x^2\psi-\textbf{Ra}\partial _x\vartheta\\
+    \Leftrightarrow \textbf{Pr}^{-1}(\partial _t (\partial^2_x+ \partial^2_z) \psi+ u \partial_x(\partial_x^2+\partial_z^2) \psi+w \partial_z (\partial_x^2+\partial_z^2) \psi)\\
+    =\partial _x^2(\partial_z^2+\partial_x^2)\psi+\partial _z^2(\partial_x^2+\partial_z^2)\psi-\textbf{Ra}\partial _x\vartheta\\
+\end{align*}
+Now we can use the definition of the Laplacian, $\nabla ^2 = \partial_x^2 + \partial_z^2$, to get:
+\begin{align*}
+    \textbf{Pr}^{-1}(\partial _t \nabla^2 \psi+ u \partial_x \nabla^2 \psi+w \partial_z \nabla^2 \psi)=\partial_x^2(\nabla^2\psi)+\partial_z^2(\nabla^2\psi)-\textbf{Ra}\partial _x\vartheta \quad \square 
+\end{align*}
+
+
 \subsection*{b)}
+    To find the expression for $\frac{d\Psi}{dt}$ we start of with the equation from problem (a)
+    \begin{gather}
+        \frac{1}{\Pr}(\partial_t(\nabla^2 \psi) + u \partial_x(\nabla^2 \psi) + w \partial_z(\nabla^2 \psi) = \partial_x^2(\nabla^2 \psi) + \partial_z^2 (\nabla^2 \psi) + \Ra \partial_x \vartheta \\
+    \end{gather}
+    Using the expression for $\psi(x,z,t)$ and $\vartheta(x,z,t)$
+    \begin{gather*}
+        \psi(x,z,t) = \Psi(t) \sin(kx) \sin(\pi z) \\
+        \vartheta(x,z,t) = \Theta_1(t) \cos(kx) \sin(\pi z) - \Theta_2(t) \sin(2\pi z) 
+    \end{gather*}
+    
+    we can calculate the components of the first equation seperately
+    \begin{align*}
+        \nabla^2 \psi &= -\Psi(t) k^2 \sin(kx) \sin(\pi z) - \Psi(t) \pi^2 \sin(k x) \sin(\pi z) \\
+        %
+        \partial_t(\nabla^2 \psi) &= \partial_t (-\Psi(t) k^2 \sin(kx) \sin(\pi z) - \Psi(t) \pi^2 \sin(k x) \sin(\pi z)) \\
+        &= -\frac{d\Psi(t)}{dt} \sin(k x) \sin(\pi z) (k^2 + \pi^2) \\
+        %
+        \partial_x(\nabla^2 \psi) &= \partial_x (-\Psi(t) k^2 \sin(kx) \sin(\pi z) - \Psi(t) \pi^2 \sin(k x) \sin(\pi z)) \\
+        &= \Psi(t) \cos(k x) \sin(\pi z) (k^3 + k\pi^2) \\
+        %
+        \partial_z (\nabla^2 \psi) &= \partial_z (-\Psi(t) k^2 \sin(kx) \sin(\pi z) - \Psi(t) \pi^2 \sin(k x) \sin(\pi z)) \\
+        &= \Psi(t) \sin(k x) \cos(\pi z) (k^2 \pi + \pi^3) \\
+        %
+        \partial_x^2 (\nabla^2 \psi) &= \partial_x^2 (-\Psi(t) k^2 \sin(kx) \sin(\pi z) - \Psi(t) \pi^2 \sin(k x) \sin(\pi z)) \\
+        &= \Psi(t) \sin(k x) \sin(\pi z) (k^2 \pi^2 + \pi^4) \\
+        %
+        \partial_z^2 (\nabla^2 \psi) &= \partial_z^2 (-\Psi(t) k^2 \sin(kx) \sin(\pi z) - \Psi(t) \pi^2 \sin(k x) \sin(\pi z)) \\
+        &= \Psi(t) \sin(k x) \sin(\pi z) (k^4 + k^2 \pi^2) \\
+        %
+        \Ra \partial_x \vartheta &= \Ra \partial_x (\Theta_1(t) \cos(kx) \sin(\pi z) - \Theta_2(t) \sin(2\pi z)) \\
+        &=-\Ra (\Theta_1(t) k \sin(kx) \sin(\pi z)) \\
+        %
+        u &= -\partial_z \psi = -\Psi(t) \pi \sin(kx) \cos(\pi z) \\
+        %
+        w &= \Psi(t) k \cos(kx) \sin(\pi z)
+    \end{align*}
+    Combining this into the equation, while multiplying everything by $\Pr$ and taking everything to the left side gives us 
+    \begin{align*}
+        &-\frac{d\Psi(t)}{dt} \sin(k x) \sin(\pi z) (k^2 + \pi^2) + u \Psi(t) \cos(k x) \sin(\pi z) (k^3 + k\pi^2) + w \Psi(t) \sin(k x) \cos(\pi z) (k^2 \pi + \pi^3) \\ 
+        &\qquad - \Pr \Psi(t) \sin(k x) \sin(\pi z) (k^2 \pi^2 + \pi^4) - \Pr \Psi(t) \sin(k x) \sin(\pi z) (k^4 + k^2 \pi^2) + \Pr \Ra (\Theta_1(t) k \sin(kx) \sin(\pi z)) = 0
+    \end{align*}
+    Now we can take out $\Psi(t)$ and divide by the term with the $\frac{d\Psi(t)}{dt}$
+    \begin{align*}
+        &-\frac{d\Psi(t)}{dt} \sin(k x) \sin(\pi z) (k^2 + \pi^2) + \Psi(t) (u \cos(k x) \sin(\pi z) (k^3 + k\pi^2) + w \sin(k x) \cos(\pi z) (k^2 \pi + \pi^3) \\
+        &\qquad - \Pr \sin(k x) \sin(\pi z) (k^2 \pi^2 + \pi^4) - \Pr \sin(k x) \sin(\pi z) (k^4 + k^2 \pi^2)) + \Pr \Ra (\Theta_1(t) k \sin(kx) \sin(\pi z)) = 0 \\
+        %
+        &-\frac{d\Psi(t)}{dt} + \Psi(t) (u \frac{\cos(k x)}{\sin(k x)} (\frac{k^3 + k\pi^2}{k^2 + \pi^2}) + w \frac{\cos(\pi z)}{\sin(\pi z)} (\frac{k^2 \pi + \pi^3}{k^2 + \pi^2}) - \Pr (\frac{k^2 \pi^2 + \pi^4}{k^2 + \pi^2}) - \Pr (\frac{k^4 + k^2 \pi^2}{k^2 + \pi^2})) \\
+        & \qquad+ \Pr \frac{\Ra \Theta_1(t) k}{k^2 + \pi^2} = 0
+    \end{align*}
+    Substitution in the expressions for $u$ and $w$, taking $\frac{d\Psi(t)}{dt}$ to the other side and simplifying the equation gives us
+    \begin{align*}
+        \frac{d\Psi(t)}{dt} &= \Psi(t) (-\Psi(t) \pi \sin(kx) \cos(\pi z) \frac{\cos(k x)}{\sin(k x)} (\frac{k^3 + k\pi^2}{k^2 + \pi^2}) + \Psi(t) k \cos(kx) \sin(\pi z) \frac{\cos(\pi z)}{\sin(\pi z)} (\frac{k^2 \pi + \pi^3}{k^2 + \pi^2}) \\
+        &\qquad- \Pr (\frac{K^4 + 2k^2 \pi^2 + \pi^4}{k^2 + \pi^2}) + \Pr \frac{\Ra \Theta_1(t) k}{k^2 + \pi^2} \\
+        %
+        \frac{d\Psi(t)}{dt} &= \Psi(t) (-\Psi(t) \cos(\pi z) \cos(k x) (\frac{k^3 \pi + k\pi^3}{k^2 + \pi^2}) + \Psi(t) \cos(kx) \cos(\pi z) (\frac{k^3 \pi + k \pi^3}{k^2 + \pi^2}) - \Pr (\frac{k^4 + 2k^2 \pi^2 + \pi^4}{k^2 + \pi^2})) \\
+        &\qquad + \Pr \frac{\Ra \Theta_1(t) k}{k^2 + \pi^2} \\
+        %
+        \frac{d\Psi(t)}{dt} &= \Psi(t) (\Psi(t) \cos(\pi z) \cos(k x) (\frac{-k^3 \pi - k\pi^3 + k^3 \pi + k \pi^3}{k^2 + \pi^2}) - \Pr (\frac{(k^2 + \pi^2)^2}{k^2 + \pi^2})) + \Pr \frac{\Ra \Theta_1(t) k}{k^2 + \pi^2} \\
+        %
+        \frac{d\Psi(t)}{dt} &= - \Pr (k^2 + \pi^2) \Psi(t) + \Pr \frac{k \Ra}{k^2 + \pi^2} \Theta_1(t) 
+    \end{align*}
+
+We want to show that the equations for $\Theta_1(t)$ and $\Theta_2(t)$ are given by:
+\begin{equation}\label{T1}
+    \frac{d\Theta_1}{dt} = k\Psi - (k^2 + \pi^2)\Theta_1 - \pi k \Psi \Theta_2
+\end{equation}
+\begin{equation}\label{T2}
+    \frac{d\Theta_2}{dt} = \frac{1}{2}k\pi \Psi \Theta_1 - 4\pi^2\Theta_2
+\end{equation}
+To do this, we plug the expression for temperature
+\begin{equation}
+    \vartheta(x,z,t) = \Theta_1(t)\cos kx \sin \pi z - \Theta_2(t)\sin 2\pi z
+\end{equation}
+into
+\begin{equation}\label{temp}
+    \partial_t \vartheta + u\partial_x \vartheta + w\partial_z \vartheta - w = \partial^2_x \vartheta + \partial^2_z \vartheta
+\end{equation} 
+Computing the derivatives:
+\begin{align*}
+    \partial_t \vartheta &= \frac{d\Theta_1(t)}{dt}\cos kx \sin \pi z - \frac{d\Theta_2}{dt}\sin 2\pi z \\
+    \partial_x \vartheta &= -k \Theta_1 \sin kx \sin \pi z \\
+    \partial_z \vartheta &= \pi \Theta_1 \cos kx \cos \pi z - 2\pi \Theta_2 \cos 2\pi z \\
+    \partial^2_x \vartheta &= -k^2 \Theta_1 \cos kx \sin \pi z \\
+    \partial^2_z \vartheta &= -\pi^2 \Theta_1 \cos kx \sin \pi z + 4\pi^2 \Theta_2 \sin 2\pi z
+\end{align*}
+Using the definitions of u and w:
+\begin{align*}
+    u = -\partial_z \psi = -\Psi(t) \pi \sin kx \cos \pi z \\
+    w = \partial_x \psi = \Psi(t) k \cos kx \sin \pi z
+\end{align*}
+We start off by plugging these derivatives, along with the definitions of u and w into expression \ref{temp}. \\
+Doing this, the left-hand-side becomes:
+\begin{align*}
+    \left(\frac{d\Theta_1(t)}{dt}\cos kx \sin \pi z - \frac{d\Theta_2}{dt}\sin 2\pi z\right) + \left(-\Psi(t) \pi \sin kx \cos \pi z\right)\left(-k \Theta_1 \sin kx \sin \pi z\right) \\ + \left(\Psi(t) k \cos kx \sin \pi z\right)\left(\pi \Theta_1 \cos kx \cos \pi z - 2\pi \Theta_2 \cos 2\pi z\right) - \left(\Psi(t) k \cos kx \sin \pi z\right)
+\end{align*}
+and the right-hand-side becomes:
+\begin{align*}
+    \left(-k^2 \Theta_1 \cos kx \sin \pi z\right) + \left(-\pi^2 \Theta_1 \cos kx \sin \pi z + 4\pi^2 \Theta_2 \sin 2\pi z\right)
+\end{align*}
+We can use the indentity $\sin 2 \pi z = 2\cos \pi z \sin \pi z$ to simplify the terms $\sin 2\pi z$ on both sides, which allows us to divide both sides by $\sin \pi z$. Doing this and multiplying out terms in brackets gives:
+Left-hand-side:
+\begin{align*}
+    \frac{d\Theta_1}{dt}\cos kx - 2\frac{d\Theta_2}{dt}\cos \pi z + k\pi \Psi\Theta_1 \sin^2 kx \cos \pi z + k\pi\Psi\Theta_1 \cos^2 kx \cos \pi z - 2k\pi \Psi\Theta_2 \cos kx \cos 2\pi z - k\Psi \cos kx
+\end{align*}
+We can merge 
+\begin{align*}
+    -k \pi \Psi\Theta_1  \sin^2 kx \cos \pi z - k \pi \Psi \Theta_1  \cos^2 kx \cos \pi z
+\end{align*}
+into 
+\begin{align*}
+    -k \pi \Psi \Theta_1 \cos \pi z
+\end{align*}
+which simplifies our expression to
+\begin{align*}
+    \frac{d\Theta_1}{dt}\cos kx - 2\frac{d\Theta_2}{dt}\cos \pi z -k \pi \Psi \Theta_1 \cos \pi z - 2k\pi \Psi\Theta_2 \cos kx \cos 2\pi z - k\Psi \cos kx
+\end{align*}
+Right-hand-side:
+\begin{align*}
+    -k^2 \Theta_1 \cos kx - \pi^2 \Theta_1 \cos kx + 8\pi^2 \Theta_2 \cos \pi z
+\end{align*}
+where $-k^2\Theta_1 \cos kx - \pi^2 \Theta_1 \cos kx = -\Theta_1\cos kx \left(k^2 + \pi^2\right)$, so this becomes:
+\begin{align*}
+    -\Theta_1\cos kx \left(k^2 + \pi^2\right) + 8\pi^2 \Theta_2 \cos \pi z
+\end{align*}
+Setting the two sides equal and equating all the coefficients in front of $\cos kx$ and $\cos \pi z$, respectively, yields the following pair of equalities:
+\begin{equation*}
+    \frac{d\Theta_1}{dt} = -\Theta_1 \left(k^2 + \pi^2\right) + 2\pi k \Psi \Theta_2 \cos 2\pi z + k\Psi \\
+\end{equation*}
+\begin{equation*}
+        \frac{d\Theta_2}{dt} = -\frac{k}{2} \pi \Psi \Theta_1 - 4\pi^2 \Theta_2 
+\end{equation*}
+The second equation we obtain matches \ref{T2}, however the first doesn't yet match \ref{T1}. To make them match, we use the identity to reexpress the second term
+\begin{align*}
+    \cos 2\pi z \sin \pi z = \frac{1}{2}\left(\sin 3 \pi z - \sin \pi z\right)
+\end{align*}
+This is done as follows:
+\begin{align*}
+    2 \pi k \Psi \Theta_2 \cos 2\pi z = 2 \pi k \Psi \Theta_2 \cos 2\pi z \frac{\sin \pi z}{\sin \pi z}
+\end{align*}
+using the identity, this becomes
+\begin{align*}
+    2 \pi k \Psi \Theta_2 \cos 2\pi z \frac{\sin \pi z}{\sin \pi z} = \pi k \Theta_2 \Psi \frac{\sin 3\pi z - \sin \pi z}{\sin \pi z}
+\end{align*}
+since we are only considering the first 2 Fourier modes in the z-direction, we can drop the term $\sin 3 \pi z$, and we get:
+\begin{align*}
+    \pi k \Theta_2 \Psi \frac{\sin 3\pi z - \sin \pi z}{\sin \pi z} = \pi k \Theta_2 \Psi
+\end{align*}
+This means if we now substitute this in place of the second term, we get equations which match \ref{T1} and \ref{T2}:
+\begin{equation*}
+    \frac{d\Theta_1}{dt} = -\Theta_1 \left(k^2 + \pi^2\right) + \pi k \Theta_2 \Psi + k\Psi \\
+\end{equation*}
+\begin{equation*}
+        \frac{d\Theta_2}{dt} = -\frac{k}{2} \pi \Psi \Theta_1 - 4\pi^2 \Theta_2 
+\end{equation*}
+
 \subsection*{c)}
+We know that the solution is an equilibrium solution if all time-derivatives are zero. Therefore, we have to check whether 
+\begin{align}
+    \dot X=s(Y-X)=0 \label{goveqX}\\
+    \dot Y=rX-Y-XZ=0 \label{goveqY}\\
+    \dot Z=XY-bZ=0 \label{goveqZ}
+\end{align}
+given our initial $X_0,Y_0,Z_0$. We therefore check the three given solution. For $X_0=Y_0=Z_0=0$, we have:
+\begin{align*}
+    \dot X=s(0-0)=0\\
+    \dot Y=r\cdot 0-0-0\cdot 0=0\\
+    \dot Z=0\cdot 0-b \cdot 0=0 \quad \square
+\end{align*}
+Now we check the second solution, $X_0=Y_0=\sqrt{b(r-1)},Z_0=r-1$:
+\begin{align*}
+    \dot X&=s(\sqrt{b(r-1)}-\sqrt{b(r-1)})=0\\
+    \dot Y&=r\sqrt{b(r-1)}-\sqrt{b(r-1)}-\sqrt{b(r-1)}(r-1)\\
+    &=(r-1)\sqrt{b(r-1)}-\sqrt{b(r-1)}(r-1)=0\\
+    \dot Z&=\sqrt{b(r-1)}\cdot \sqrt{b(r-1)}-b(r-1)=0 \quad \square
+\end{align*}
+Finally, we check the third solution, $X_0=Y_0=-\sqrt{b(r-1)},Z_0=r-1$:
+\begin{align*}
+    \dot X&=s(-\sqrt{b(r-1)}-(-\sqrt{b(r-1)}))=0\\
+    \dot Y&=-r\sqrt{b(r-1)}+\sqrt{b(r-1)}-(r-1)(-\sqrt{b(r-1)})\\
+    &=(-r+1)\sqrt{b(r-1)}+\sqrt{b(r-1)}(r-1)=0\\
+    \dot Z&=\sqrt{b(r-1)}\cdot (-\sqrt{b(r-1)})-b(r-1)=0 \quad \square
+\end{align*}
+To show that we can linearise our governing equations, we assume that there are small perturbations around our equilibruim solutions, which can be written in the following way: 
+\begin{align*}
+    \hat{X} = X - X_0 \\
+    \hat{Y} = Y - Y_0 \\
+    \hat{Z} = Z - Z_0
+\end{align*}
+We now plug these expressions into the governing equations \ref{goveqX}, \ref{goveqY}, and \ref{goveqZ}:
+\begin{align*}
+    \dot{X} &= \frac{d}{dt} (X_0 + \hat{X}) = \frac{d}{dt} \hat{X} = sY_0 + s\hat{Y} - sX_0 - s\hat{X} = s\hat{Y} - s\hat{X} \\
+    \dot{Y} &= \frac{d}{dt} (Y_0 + \hat{Y}) = \frac{d}{dt} \hat{Y} = rX_0 + r\hat{X} - Y_0 - \hat{Y} - X_0Z_0 - X_0\hat{Z} - \hat{X}Z_0 - \hat{X}\hat{Z} = \hat{X}(r - Z_0)- \hat{Y} - X_0\hat{Z} \\
+    \dot{Z} &= \frac{d}{dt} (Z_0 + \hat{Z}) = \frac{d}{dt} \hat{Z} = X_0Y_0 + X_0\hat{Y} + \hat{X}Y_0 + \hat{X}\hat{Y} - bZ_0 - b\hat{Z} = Y_0\hat{X} + X_0\hat{Y} - b\hat{Z}
+\end{align*}
+where we have dropped terms which are products of two disturbances because they are much smaller than all the other terms, as well as terms which contain purely equilibrium values because these go to 0. \\
+
+These equations are equivalent to the result obtained by carrying out the following matrix vector multiplication:
+\begin{equation*}
+    \frac{d}{dt}\begin{pmatrix}
+    \hat{X} \\ \hat{Y} \\ \hat{Z}
+    \end{pmatrix} = \begin{pmatrix}
+    -s & s & 0 \\
+    r - Z_0 & -1 & -X_0 \\
+    Y_0 & X_0 & -b
+    \end{pmatrix}\begin{pmatrix}
+    \hat{X} \\ \hat{Y} \\ \hat{Z}
+    \end{pmatrix} 
+\end{equation*}
+Knowing that when at least one eigenvalue is bigger than one, the system is unstable, we can see that for the situation where $X_0 = Y_0 = Z_0 = 0$ the system is stable when $r<1$. For the other two situations the $r$ can be much bigger and still have a stable system. The value for $r$ for which we have a stable system is for $r < 25?$. This means that for the last two situations, there are other forces that influence the system more than the density difference due to the temperature gradient.
+For $r<1$, there is no velocity field... \\
+
+In the figures below, we can see that we obtain different eigenvalues for different values of $r = \boldsymbol{Ra}k^2/(k^2 + \pi^2)^3$. For eigenvalues $<0$, the system is stable because the initial disturbance is scaled down by the eigenvalue and therefore the system goes back to equilibrium, while for eigenvalues $>0$, the disturbance is scaled up by the eigenvalue and therefore the system remains disturbed. For the last two disturbances, the effects are the same and therefore both are plotted in the second figure.
+
+\begin{figure}[H]
+    \centering
+    
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{\PATH disturbance0.png}
+        \caption{$X_0 = Y_0 = Z_0 = 0$}
+        \label{fig:disturbance0}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{\PATH disturbance1.png}
+        \caption{$(X_0, Y_0, Z_0) = (\pm \sqrt{b(r-1)}, \pm \sqrt{b(r-1)}, r-1)$}
+        \label{fig:disturbance1}
+    \end{subfigure}
+    
+    \caption{maximum eigenvalues for different $r$ for the three different equilibrium states}
+\end{figure}
+
+
+
+
+When we find the eigenvalues of the matrix, we diagonalize the matrix $det(M - \lambda I) = 0$
+\begin{align} \label{diagonalize}
+    \det \begin{pmatrix}
+        a - \lambda & b & c \\
+        d & e - \lambda & f \\
+        g & h & i - \lambda
+    \end{pmatrix} = (a - \lambda)((e - \lambda)(i - \lambda) - fh) + b(fg - d(i - \lambda)) + c(dh - (e - \lambda)g) = 0    
+\end{align}
+Looking at expression \eqref{diagonalize} we can see that for us $f = -X_0, g = Y_0, h = X_0$. Because for the two cases of $(X_0, Y_0, Z_0) = (\pm \sqrt{b(r-1)}, \pm \sqrt{b(r-1)}, r-1)$, the only thing that changes is the sign of the $X_0$ and $Y_0$, nothing changes in for the eigenvalues. This is because the term $fh = (-X_0)(X_0)$ stays the same, and $c = 0$, which takes care of the sign switch of $dh = (r - Z_0)X_0 $ and $ (e - \lambda)g = -Y_0 - \lambda Y_0$. This explains why the eigenvalues of these two situations are the same.\\
+%
+r measures the relative importance of temperature-induced buoyancy forces and frictional forces in our system and therefore shows how much convection will accure. For $r<1$ we have the equilibrium state $X_0 = Y_0 = Z_0 = 0$ (fig. \ref{fig:disturbance0}). When there is at least one possitive eigenvalue, the disturbances will increase and therefore the system is unstable. You can see that for this first equilibrium state, the maximum eigenvalue will stay below $0$ for $r<1$. This means that when $r<1$, no convection will occure, giving a velocity and temperature field as in the situation sketch in the assignment. \\
+%
+For $r>1$ we have the equilibrium solutions $(X_0, Y_0, Z_0) = (\pm \sqrt{b(r-1)}, \pm \sqrt{b(r-1)}, r-1)$. The maximum eigenvalues of this system stay negative for $r$ being around $r<25$. \\
+%
+For $r$ becoming much larger, we will see that the eigenvalues are possitive for all the situations. This means that the pertubations will be amplified and therefore we have an instable system. Rayleigh-Bénard convection will occure like in figure \ref{Rayleigh_Bénard_convection}. This will in some places bring warmer water up and colder water down. The line of equal temperature will therefore not be horizontal anymore, but will look more like in figure \ref{Rayleigh_Bénard_convection}.
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8 \textwidth]{\PATH flow.png}
+        \caption{Rayleigh-Bénard convection}
+        \label{Rayleigh_Bénard_convection}
+    \end{figure}
 
 
 \section{Computational part}

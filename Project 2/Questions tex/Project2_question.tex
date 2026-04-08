@@ -1,0 +1,156 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\graphicspath{ {./images/} }
+\usepackage{caption}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, filecolor=magenta, urlcolor=cyan,}
+\urlstyle{same}
+
+%New command to display footnote whose markers will always be hidden
+\let\svthefootnote\thefootnote
+\newcommand\blfootnotetext[1]{%
+  \let\thefootnote\relax\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \let\thefootnote\svthefootnote%
+}
+
+%Overriding the \footnotetext command to hide the marker if its value is `0`
+\let\svfootnotetext\footnotetext
+\renewcommand\footnotetext[2][?]{%
+  \if\relax#1\relax%
+    \ifnum\value{footnote}=0\blfootnotetext{#2}\else\svfootnotetext{#2}\fi%
+  \else%
+    \if?#1\ifnum\value{footnote}=0\blfootnotetext{#2}\else\svfootnotetext{#2}\fi%
+    \else\svfootnotetext[#1]{#2}\fi%
+  \fi
+}
+
+\begin{document}
+\captionsetup{singlelinecheck=false}
+\section*{Project 2 - viscous flows: Newtonian fluid on an oscillating plate}
+Hand in your solutions in one pdf (part A, and if needed explanations for part B) and one working python notebook. Both should be given logical names including your group's name such as "Project2\_GroupX\_analyticpart" and contain your names. Hand in the solutions in the Brightspace assignment. Deadline: March 25th, 13:00. Rules regarding ChatGPT and similar: see opening slides on Brightspace.
+
+\section*{1 Analytic part - 40 points}
+Starting from time \(t=0\), an infinite horizontal plate oscillates parallel to the \(x\)-axis with a velocity:
+
+\[
+U(t)=U_{0} \sin 2 \pi \frac{t}{T}
+\]
+
+where \(T\) is the period of the oscillation. As we will see, the movement induces a flow with a velocity field \(\mathbf{v}= (u(z, t), 0,0)^{T}\) in an initially static Newtonian fluid with constant density \(\rho\) and constant dynamical viscosity \(\mu\), located above the plate (Fig. 1) in the area \(z>0\).
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[alt={},max width=\textwidth]{https://panorama-eu-html-images.yuja.com/institutions/5b08c5c8-537d-4c27-88e1-3c218e574c8a/documents/5bd8bbbc-da4c-4857-832d-f83f0cda39fe/latexImages/47953469-373f-41f7-b686-d6c6be0ace30-1_472_607_1052_760.jpg}
+\captionsetup{labelformat=empty}
+\caption{Figure 1:}
+\end{center}
+\end{figure}
+
+a (4 points) Argue that the following versions of the mass and momentum balance can be used to describe the flow.
+
+\[
+\begin{aligned}
+\partial_{x} v_{x}+\partial_{y} v_{y}+\partial_{z} v_{z} & =0 \\
+\rho\left(\partial_{t} v_{x}+v_{x} \partial_{x} v_{x}+v_{y} \partial_{y} v_{x}+v_{z} \partial_{z} v_{x}\right) & =-\partial_{x} p+\mu \nabla^{2} v_{x} \\
+\rho\left(\partial_{t} v_{y}+v_{x} \partial_{x} v_{y}+v_{y} \partial_{y} v_{y}+v_{z} \partial_{z} v_{y}\right) & =-\partial_{y} p+\mu \nabla^{2} v_{y} \\
+\rho\left(\partial_{t} v_{z}+v_{x} \partial_{x} v_{z}+v_{y} \partial_{y} v_{z}+v_{z} \partial_{z} v_{z}\right) & =-\partial_{z} p+\mu \nabla^{2} v_{z}-\rho g
+\end{aligned}
+\]
+
+b (8 points) Next, show that in our situation, the equations simplify to (with \(v_{x} \equiv u\) ):
+
+\[
+\begin{gathered}
+\rho \partial_{t} u=-\partial_{x} p+\mu \partial_{z}^{2} u \\
+\partial_{z} v_{z}=0, \text { hence } v_{z}=0 \\
+0=-\partial_{y} p \\
+0=-\partial_{z} p-\rho g
+\end{gathered}
+\]
+
+\[
+p(x, z, t)=-\rho g z+C(x, y, t)
+\]
+
+In addition, argue that \(C\) does not depend on \(x, y\) and use this to simplify the first equation even further.\\
+c (6 points) Show that the equation of motion and the boundary conditions become:
+
+\[
+\begin{gathered}
+(1) \rho \partial_{t} u=\mu \partial_{z}^{2} u \\
+(2) z=0: u=U(t) \\
+(3) z=\infty: u \rightarrow 0 \\
+(4) t=0: u=0
+\end{gathered}
+\]
+
+Explain briefly where these boundary conditions come from.\\
+d ( 16 points) To solve these equations, we now make an inspired guess. After the plate has oscillated a few time, we expect the following motion to arise:
+
+\[
+u(z, t)=U_{0} e^{-k z} \sin \left(2 \pi \frac{t-\tau(z)}{T}\right)
+\]
+
+where \(k>0\) is a constant and \(\tau(z)\) a height-dependent phase shift.\\
+First, argue (very qualitatively) that the suggested guess is plausible. Next, insert it into the equations of question c), and show that the guess indeed provides a solution, provided one chooses the correct \(k\) and \(\tau(z)\). Show that \(k=\sqrt{\frac{\rho \omega}{2 \mu}}\) where \(\omega=2 \pi / T\), and also determine \(\tau(z)\). Explain qualitatively why it makes sense that \(k\) increases with \(\omega\).\\
+e (6 points) Describe how the velocity field \(u(z, t)\) changes over a period \(T\), and plot the field at \(t=0\) and \(t=T / 4\).
+
+\section*{2 Computational part - 60 points}
+Your task is to write a python notebook which solves the problem numerically. In fact, we will now deal with the full problem, i.e. also look at how the motion builds up, rather than only looking at the case where the plate has already oscillated a long while as we did above. Still, the insights from the analytic solution to the simplified problem will be helpful to make choices for designing our code.
+
+Use the following system parameters:
+
+\begin{itemize}
+  \item The fluid is initially at rest; the plate starts oscillating at time \(t=0\).
+  \item The fluid has a density of \(\rho=1000 \mathrm{~kg} / \mathrm{m}^{3}\) and a viscosity of \(\mu=1 N \mathrm{~m}^{-2} s\) (roughly resembling fairly "thin" honey).
+  \item The plate moves with a period of \(T=0.1 s\); the frequency is \(\omega=2 \pi / T\).\\
+a (5 points) Geometry:
+\end{itemize}
+
+Since the velocity does not depend on \(x, y\), all you need to do is find \(u(t, z)\). You can obviously not solve the problem for an infinitely high fluid column. This leaves you with the problem of finding a boundary condition for some not-quite-infinitely-high upper domain boundary. An easy way is to this is to assume that there is another,\\
+stationary plate at some height \(H\). Use your insights from part 1 to choose \(H\) such that it does not influence your results unduly.
+
+We will now solve the problem numerically, i.e. for specific points in space and time. In space, i.e. height, we pick grid points \(z_{j}=j d z\) with \(j=0,1,2, \ldots N_{z}\) and \(N_{z} \approx H / d z\) (the approximation is chosen because \(N_{z}\) must obviously be an integer; you can adjust \(H\) slightly to make things fit).\\
+b (5 points) Based on your results from the analytic part, what would be a good value for \(d z\) ?\\
+The equation we need to solve is a so-called diffusion equation. The simplest way to solve it is to do the following for each time step. \({ }^{1}\)
+
+\begin{itemize}
+  \item First, compute \(\partial_{z}^{2} u\) for all spatial grid points which are not on the boundary (i.e. \(j=1,2, \ldots N_{z}-1\) ). This is done by using the approximation \(\left(\partial_{z}^{2} u_{j}=\left(u_{j+1}+u_{j-1}-2 u_{j}\right) / d z^{2}\right.\).
+  \item Next, compute the right-hand-side in \(\partial_{t} u(t, z)=\mu / \rho \partial_{z}^{2} u\) for all grid points not on the boundary. Let's call this quantity \(F\)
+  \item Now do the time stepping: Away from the boundary, \(u_{t+d t, j}=u_{t, j}+d t F_{t, j}\).
+  \item On the boundary, \(u\) is prescribed: \(u_{t, N_{z}}=0\) (upper plate) and \(u_{0, t}=U_{0} \sin (\omega t)\).
+\end{itemize}
+
+It is necessary to pick \(d t\) small enough. In particular, \(d t<d x^{2} /(2 \mu / \rho)\).\\
+c (5 points) With the information above and the given period of the plate movement, what is a good value for \(d t\) ? And which number of time steps ( \(N_{t}\) ) should be chosen?\\
+d ( 35 points) Now write the notebook solving the problem. Make the following plots: 1) a contour plot of \(\mathrm{u}(\mathrm{t}, \mathrm{z}), 2\) ) lineplots of \(u\) against \(t\) for several, representative values of \(z, 3\) ) lineplots of \(u\) against \(z\) for several, representative values of \(t\). Use your plots to justify your choices in question a-c, in particular the height of the upper plate and the duration of the simulation. Then answer the following questions:
+
+\begin{itemize}
+  \item How many periods does it take until the effect of starting up is gone, i.e. the system behaviour becomes purely oscillatory by good approximation)?
+  \item Once the start-up effects are gone, how does our numerical result compare with the analytical result from part 1 ?
+\end{itemize}
+
+Some practical hints:
+
+\begin{itemize}
+  \item Avoid for-loops in python whenever you can. Define vectors and matrices and add or subtract those, rather than using a for-loop over \(z\). (You will need a for-loop in time though.)
+  \item Define useful functions: one function called "dzz \((\mathrm{F}, \mathrm{Nz}, \mathrm{dz})\) " to compute the second derivative, one function called "timestep(u0,rho,mu,dt.......)" to compute the velocity at the next time step given the previous solution, and finally a script to organise the whole time stepping procedure by calling the required functions repeatedly.\\
+e (10 points) Use your code to solve the same problem for a different motion of the lower plate: The lower plate now moves back and forth with a fixed positive (negative) velocity in alternating blocks of time:
+  \item With constant positive velocity \(U_{0}\) if \(0 \leq t<T_{2}, 2 T_{2} \leq t<3 T_{2}, 4 T_{2} \leq t<5 T_{2} \ldots\). in short, for \(2 k T_{2} \leq t< (2 k+1) T_{2}\) with \(k=0,1,2 \ldots\)
+  \item With constant negative velocity \(-U_{0}\) if \(1 T_{2} \leq t<2 T_{2}, 3 T_{2} \leq t<4 T_{2}, 5 T_{2} \leq t<6 T_{2} \ldots\). in short, for \((2 k+1) T_{2} \leq t<(2 k+2) T_{2}\) with \(k=0,1,2 \ldots\)\\
+where \(T_{2}=T / 2=0.05 s\).\\
+Compare your results with those from d).
+\end{itemize}
+
+\footnotetext{\({ }^{1}\) See here for fancier methods: \href{https://www.uni-muenster.de/imperia/md/content/physik_tp/lectures/ws20162017/num_methods_i/heat.pdf}{https://www.uni-muenster.de/imperia/md/content/physik\_tp/lectures/ws20162017/num\_methods\_i/heat.pdf}
+}
+\end{document}
