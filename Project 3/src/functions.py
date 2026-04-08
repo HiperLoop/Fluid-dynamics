@@ -93,13 +93,16 @@ def plot_trajectory(positions, save_fig=False, title='Trajectory in Phase Space'
         plt.savefig(PATH + title.replace(" ", "_") + '.png')
     plt.show()
 
-def plot_optimised_trajectory(initial_pos, initial_dt, max_computation_time, max_error, t_min, t_max, r, save_fig=False, title=None):
+def plot_optimised_trajectory(initial_pos, initial_dt, max_computation_time, max_error, t_min, t_max, r, save_fig=False, title=None, use_initial_dt=False):
     # Error handling if no suitable dt is found
-    try:
-        dt = find_optimal_dt(initial_pos, initial_dt, max_computation_time, max_error, t_min, t_max, r)
-    except Exception as e:
-        print(f"Error finding optimal dt: {e}")
-        return
+    if not use_initial_dt:
+        try:
+            dt = find_optimal_dt(initial_pos, initial_dt, max_computation_time, max_error, t_min, t_max, r)
+        except Exception as e:
+            print(f"Error finding optimal dt: {e}")
+            return
+    else:
+        dt = initial_dt
     # Simulate trajectory with the optimal dt and plot it
     trajectory = simulate_trajectory(initial_pos, dt, t_min, t_max, r)
     if title is None:
